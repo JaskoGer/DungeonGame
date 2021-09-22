@@ -1,6 +1,2 @@
 # DungonGame
-testing 1212
-testing 23
-tgreg
-testagain
-more testing
+Our Dungeon Game

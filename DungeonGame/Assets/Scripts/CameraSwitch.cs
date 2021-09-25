@@ -7,8 +7,8 @@ public class CameraSwitch : MonoBehaviour
 {
     public Transform target;
 
-    Vector3 rightRotation = new Vector3(0f, 1f, 0f);
-    Vector3 leftRotation = new Vector3(0f, -1f, 0f);
+    Vector3 rightRotation = new Vector3(0f, 5f, 0f);
+    Vector3 leftRotation = new Vector3(0f, -5f, 0f);
 
     char turnDirection = 'r';
     float turnSpeed = 1;

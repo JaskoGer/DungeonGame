@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * @Author Tobias Haubold
+ * @Since 22.09.2021
+ * Script für die Steuerung der Kameraperspektive und dazu gehöringen Tasten
+ */
+
 public class CameraSwitch : MonoBehaviour
 {
     public Transform target;
@@ -11,7 +17,8 @@ public class CameraSwitch : MonoBehaviour
     Vector3 leftRotation = new Vector3(0f, -1f, 0f);
 
     char turnDirection = 'r';
-    float turnSpeed = 1;
+    float turnSpeed = 1.0f;
+	public float speedMultiplier = 3.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +41,7 @@ public class CameraSwitch : MonoBehaviour
         }
 
         //turn speed realtive to angle
-        turnSpeed = (90 - Math.Abs(Math.Abs(rotation) % 90 - 45)) / 45;
+        turnSpeed = speedMultiplier * (((90 - Math.Abs(Math.Abs(rotation) % 90 - 45)) / 45) - 0.5f) ;
 
         //cam angles changes on press
         if (Input.GetKeyDown(KeyCode.E))

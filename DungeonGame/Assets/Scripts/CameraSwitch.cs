@@ -29,7 +29,7 @@ public class CameraSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //rotation changes ( if greater than 360)
+        //rotation changes (if > 360)
         int rotation;
         if (target.eulerAngles.y <= 180f)
         {

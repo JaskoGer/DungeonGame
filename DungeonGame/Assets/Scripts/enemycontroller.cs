@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
 		// if enemy has visual on player, calls ChasePlayer method
 		if (hasVisual(distance))
         {
-			print("Coming for you");
+			// print("Coming for you");
 			hasPatrolDest = false;
 			ChasePlayer();
 			
@@ -49,7 +49,7 @@ public class EnemyController : MonoBehaviour
 		// if not near player, calls Patroling method
 		else
         {
-			print("going Patroling");
+			// print("going Patroling");
 			Patroling();
         }	
     }
@@ -96,25 +96,28 @@ public class EnemyController : MonoBehaviour
 
 		if (!hasPatrolDest)
 		{
-			print("looking for a position");
+			// print("looking for a position");
 			patrolDest = new Vector3(transform.position[0] + Random.Range(-50f, 50), transform.position[1], transform.position[2] + Random.Range(-50, 50));
 			hasPatrolDest = true;
 		}
 
-	//	else if (patrolDest.Equals(transform.position.normalized))
-	//    else if (patrolDest.normalized == transform.position.normalized)
-	//	else if (patrolDest[0] - transform.TransformVector[0] <= 1f && patrolDest[2] - transform.TransformVector[2] <= 1f)
-	//	else if (patrolDest[0] - loc[0] <= 2f && patrolDest[2] - loc[2] <= 2f)
-    	else if ((patrolDest.normalized - transform.position.normalized).magnitude <= 0.5)
-	//    else if (agent.remainingDistance <= 1f)
+		/**
+		else if (patrolDest.Equals(transform.position.normalized))
+		else if (patrolDest.normalized == transform.position.normalized)
+		else if (patrolDest[0] - transform.TransformVector[0] <= 1f && patrolDest[2] - transform.TransformVector[2] <= 1f)
+		else if (patrolDest[0] - loc[0] <= 2f && patrolDest[2] - loc[2] <= 2f)
+		else if (agent.remainingDistance <= 3f)
+		else if ((patrolDest.normalized - transform.position.normalized).magnitude <= 1)	
+		**/
+		else if ((patrolDest.normalized - transform.position.normalized).magnitude <= 1)
 		{
-			print("found my spot");
+			// print("found my spot");
 			hasPatrolDest = false;
         }
 
 		else
         {
-			print("Going to position: " + agent.remainingDistance);
+			// print("Going to position: " + agent.remainingDistance);
 			Vector3 direction = (patrolDest - transform.position).normalized;
 			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
 			transform.rotation = lookRotation;

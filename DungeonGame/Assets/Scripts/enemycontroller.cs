@@ -24,11 +24,12 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
 		target = PlayerManager.instance.player.transform;
+		
 		// setting attributes
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 		agent.stoppingDistance = attackDistance;
 		agent.speed = movementSpeed;
-    }
+	}
 
 
     // Update is called once per frame
@@ -92,32 +93,20 @@ public class EnemyController : MonoBehaviour
 
 	private void Patroling()
     {
-		Vector3 loc = transform.TransformVector(transform.position[0], transform.position[1], transform.position[2]);
-
 		if (!hasPatrolDest)
 		{
-			// print("looking for a position");
+			StartCoroutine(waiter());
 			patrolDest = new Vector3(transform.position[0] + Random.Range(-50f, 50), transform.position[1], transform.position[2] + Random.Range(-50, 50));
 			hasPatrolDest = true;
 		}
 
-		/**
-		else if (patrolDest.Equals(transform.position.normalized))
-		else if (patrolDest.normalized == transform.position.normalized)
-		else if (patrolDest[0] - transform.TransformVector[0] <= 1f && patrolDest[2] - transform.TransformVector[2] <= 1f)
-		else if (patrolDest[0] - loc[0] <= 2f && patrolDest[2] - loc[2] <= 2f)
-		else if (agent.remainingDistance <= 3f)
-		else if ((patrolDest.normalized - transform.position.normalized).magnitude <= 1)	
-		**/
-		else if ((patrolDest.normalized - transform.position.normalized).magnitude <= 1)
+		else if (Vector3.Distance(patrolDest.normalized, transform.position.normalized) <= 0.02f)
 		{
-			// print("found my spot");
 			hasPatrolDest = false;
-        }
+		}
 
 		else
         {
-			// print("Going to position: " + agent.remainingDistance);
 			Vector3 direction = (patrolDest - transform.position).normalized;
 			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
 			transform.rotation = lookRotation;
@@ -125,6 +114,10 @@ public class EnemyController : MonoBehaviour
 		}
     }
 
+	IEnumerator waiter()
+    {
+		yield return new WaitForSeconds(3);
+	}
 
 	private void ChasePlayer()
     {

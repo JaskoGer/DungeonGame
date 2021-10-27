@@ -6,7 +6,10 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
-
+/**
+ * erstellt und bearbeitet von JASKO und JONAS
+ * Erstellung der Klasse EnemyController und Deklarierung der Variablen
+ */
 public class EnemyController : MonoBehaviour
 {
 	public float lookRadius = 15f;
@@ -17,69 +20,88 @@ public class EnemyController : MonoBehaviour
 	public bool hasPatrolDest = false;
 	public float enemyHP = 50;
 	public float attackCooldown = 0f;
+	private float patrolCooldown = 0f;
 
 	Transform target;
 	NavMeshAgent agent;
 
 
-	// Start is called before the first frame update
+	/**
+	 * erstellt und bearbeitet von JASKO
+	 * Methode Start() wird vor dem ersten geladenen Bild aufgerufen
+	 * setzt die Attribute für das Mob
+	 */
 	void Start()
 	{
 		target = PlayerManager.instance.player.transform;
-		// setting attributes
+		// setzen der Attribute
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 		agent.stoppingDistance = attackDistance;
 		agent.speed = movementSpeed;
 	}
 
-
-	// Update is called once per frame
+	/**
+	 * erstellt von JASKO
+	 * bearbeitet von TOBIAS und JONAS
+	 */
+	// Update wird einmal pro Frame aufgerufen
 	void Update()
 	{
-		// Distance between Player and enemy
+		// berechnet den Abstant zwischen dem Mob und dem Player
 		float distance = Vector3.Distance(target.position, transform.position);
 
-		// Cooldown
-		if(attackCooldown > 0)
-        {
+		// setzt und überprüft den Cooldown
+		if (attackCooldown > 0)
+		{
 			attackCooldown -= Time.deltaTime;
 			if (attackCooldown < 0)
 				attackCooldown = 0;
-        }
-		
-
-		// if enemy has visual on player, calls ChasePlayer method
-		if (hasVisual(distance))
-		{
-			// print("Coming for you");
-			hasPatrolDest = false;
-			ChasePlayer();
-
 		}
 
-		// if not near player, calls Patroling method
+		if (patrolCooldown > 0)
+		{
+			patrolCooldown -= Time.deltaTime;
+			if (patrolCooldown < 0)
+				patrolCooldown = 0;
+		}
+
+
+		// wenn das Mob Sichtkontakt zum Player hat, wird die ChasePlayer Methode aufgerufen
+		if (hasVisual(distance))
+		{
+			agent.speed = movementSpeed;
+			hasPatrolDest = false;
+			ChasePlayer();
+		}
+
+		// wenn kein Player gefunden wird, wird die Patrolling Methode aufgerufen
 		else
 		{
-			// print("going Patroling");
+			agent.speed =movementSpeed * 0.6f;
 			Patroling();
 		}
 	}
 
 
 	/**
-	 * Checks if player is close by, than casts racasts which check in the field of visibilty wheter or not the player is visible for the enemy
+	 * erstellt von JASKO
+	 * überarbeitet und verbessert von JONAS
+	 *Prüft ob ein Player in der Nähe ist und überprüft dann, ob nichts die Sicht des Mobs auf den Player blockiert
 	 */
+
 	bool hasVisual(float distance)
 	{
 		RaycastHit hit;
 		if (distance <= lookRadius)
 		{
+			Quaternion qRaycastDir = Quaternion.LookRotation(target.position - transform.position);
+			Vector3 raycastDir = qRaycastDir.eulerAngles;
 			Vector3 addDegree = new Vector3(0, 1, 0);
-			Vector3 raycastDir = transform.localEulerAngles;
+			float angle = Quaternion.Angle(transform.rotation, qRaycastDir);
 
 			for (int i = 0; i < 9; i++)
 			{
-				if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir + addDegree * i * 10) * Vector3.forward, out hit, lookRadius))
+				if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir + addDegree * i * 1) * Vector3.forward, out hit, lookRadius))
 				{
 					if (hit.transform == target)
 					{
@@ -88,11 +110,11 @@ public class EnemyController : MonoBehaviour
 							AttackPlayer();
 							setAttackCooldown();
 						}
-							
+
 						return true;
 					}
 				}
-				if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir - addDegree * i * 10) * Vector3.forward, out hit, lookRadius))
+				if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir - addDegree * i * 1) * Vector3.forward, out hit, lookRadius))
 				{
 					if (hit.transform == target)
 					{
@@ -114,7 +136,7 @@ public class EnemyController : MonoBehaviour
 	{
 		if (!hasPatrolDest)
 		{
-			patrolDest = new Vector3(transform.position[0] + Random.Range(-50f, 50), transform.position[1], transform.position[2] + Random.Range(-50, 50));
+			patrolDest = new Vector3(transform.position[0] + Random.Range(-10f, 10), transform.position[1], transform.position[2] + Random.Range(-10, 10));
 			hasPatrolDest = true;
 		}
 
@@ -123,12 +145,13 @@ public class EnemyController : MonoBehaviour
 			hasPatrolDest = false;
 		}
 
-		else
+		else if (patrolCooldown == 0)
 		{
 			Vector3 direction = (patrolDest - transform.position).normalized;
 			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
 			transform.rotation = lookRotation;
 			agent.SetDestination(patrolDest);
+			patrolCooldown = 5;
 		}
 	}
 
@@ -147,8 +170,9 @@ public class EnemyController : MonoBehaviour
 		print("I punched you in the face you A-hole!");
 	}
 
+
 	void setAttackCooldown()
-    {
+	{
 		attackCooldown = 1 / attackSpeed;
-    }
+	}
 }

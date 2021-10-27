@@ -4,8 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class PlayerStats : MonoBehaviour
+/**
+ * @Author Tobias
+ * @Since 27.10.2021
+ * Script für Playerstats
+ */
+
+public class PlayerStatsSingleton : MonoBehaviour
 {
+	public static PlayerStatsSingleton instance = null;
+	
     public Text HealthText;
     public Text ArmorText;
 
@@ -18,38 +26,64 @@ public class PlayerStats : MonoBehaviour
     private int PlayerXp = 0;
     private int nextLevelXp = 100;
 
+	private void Awake()
+	{
+		// Erstllen der Intance dieser Klasse
+		if (instance == null)
+		{
+			instance = this;
+		}
+		//Zerstöre ein bestehendes Objekt falls es nicht dieses ist
+		else if (instance != this)
+		{
+			Destroy(gameObject);
+		}
+
+		DontDestroyOnLoad (gameObject);
+	}
+
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+    /**
+     * @Author Tobias
+     *
+     * Methode zum anpassen des Levels und des Lebens jeden Frame
+     */
     void Update()
     {
         if (Health < MaxHealth)
         {
-            Health += 0.5f*Time.deltaTime;
+            Health += 0.33333f*Time.deltaTime;
             if (Health > MaxHealth)
                 Health = MaxHealth;
-            SetHealthText();
+            SetUIText();
         }
         if (Input.GetKeyUp(KeyCode.L))
         {
             LevelUp();
         }
-        if (Input.GetKeyUp(KeyCode.G))
-        {
-            PlayerDamage(10);
-        }
     }
 
+    /**
+     * @Author Tobias
+     *
+     * Zurücksetzten des Lebens
+     */
     public void resetHealth()
     {
         Health = MaxHealth;
-        SetHealthText();
-    } 
+        SetUIText();
+    }
 
+    /**
+     * @Author Tobias
+     *
+     * Festlegen des Lebens
+     */
     public void SetPlayerHealth(float pHealth)
     {
         Health = pHealth;
@@ -57,9 +91,24 @@ public class PlayerStats : MonoBehaviour
         {
             Health = 0;
         }
-        SetHealthText();
+        SetUIText();
     }
 
+    /**
+     * @Author Tobias
+     *
+     * Zurückgeben des Lebens
+     */
+    public float GetPlayerHealth()
+	{
+		return Health;
+	}
+
+    /**
+     * @Author Tobias
+     *
+     * Hinzufügen von Leben
+     */
     public void AddPlayerHealth(float pHealth)
     {
         Health = Health + pHealth;
@@ -67,15 +116,25 @@ public class PlayerStats : MonoBehaviour
         {
             Health = MaxHealth;
         }
-        SetHealthText();
+        SetUIText();
     }
 
+    /**
+     * @Author Tobias
+     *
+     * Setzen der Armor
+     */
     public void SetPlayerArmor(float pArmor)
     {
         Armor = pArmor;
         DamageReduction = 5 / (-(float)Math.Sqrt(Armor + 25)) + 1;
     }
 
+    /**
+     * @Author Tobias
+     *
+     * Schaden an den Spieler geben
+     */
     public void PlayerDamage(float pDamage)
     {
         Health = Health - pDamage * (1 - DamageReduction);
@@ -83,9 +142,14 @@ public class PlayerStats : MonoBehaviour
         {
             Health = 0;
         }
-        SetHealthText();
+        SetUIText();
     }
 
+    /**
+     * @Author Tobias
+     *
+     * Das Level erhöhen und dazu gehörige Vriablen anpassen
+     */
     public void LevelUp()
     {
         PlayerLevel++;
@@ -95,11 +159,21 @@ public class PlayerStats : MonoBehaviour
         
     }
 
+    /**
+     * @Author Tobias
+     *
+     * Zurückgeben des Levels
+     */
     public int getPlayerLevel()
     {
         return PlayerLevel;
     }
 
+    /**
+     * @Author Tobias
+     *
+     * Hinzufügen von extra XP
+     */
     public void AddPlayerXp(int pXp)
     {
         PlayerXp += pXp;
@@ -111,7 +185,12 @@ public class PlayerStats : MonoBehaviour
         nextLevelXp = 100 * PlayerLevel * PlayerLevel;
     }
 
-    public void SetHealthText()
+    /**
+     * @Author Tobias
+     *
+     * Vorläufige setzung der UI zum testen
+     */
+    public void SetUIText()
     {
         HealthText.text = (int)Health + "/" + (int)MaxHealth;
         ArmorText.text = (int)Armor + "";

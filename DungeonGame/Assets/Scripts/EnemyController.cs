@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
 	public float attackDistance = 2f;
 	public float movementSpeed = 5f;
 	public float attackSpeed = 0.5f;
+	public float attackDamage = 5f;
 	public Vector3 patrolDest;
 	public bool hasPatrolDest = false;
 	public float enemyHP = 50;
@@ -178,6 +179,7 @@ public class EnemyController : MonoBehaviour
 	void AttackPlayer()
 	{
 		print("I punched you in the face you A-hole!");
+		PlayerStatsSingleton.instance.PlayerDamage(attackDamage);
 	}
 
 	/**

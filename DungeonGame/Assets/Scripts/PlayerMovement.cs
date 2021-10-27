@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * @Author Tobias Haubold
+ * @Author Tobias
  * @Since 22.09.2021
  * Script für die Steuerung des Charakters
  */
@@ -26,35 +26,47 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 7.0f;
     public bool isGrounded = false;
     public float lerpSpeed = 0.05f;
-	float timerValue = 0;
+    float timerValue = 0;
 
-    // Start is called before the first frame update
+    /**
+     * @Author Tobias
+     *
+     * auszuführende Methode beim Spielstart
+     */
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
     }
 
-
-	void FixedUpdate()
-	{
-		RaycastHit hit;
+    /**
+     * @Author Tobias
+     *
+     * Abfragung eines Raycasts zum Boden
+     */
+    void FixedUpdate()
+    {
+        RaycastHit hit;
 
         if (Physics.Raycast(PlayerCharacter.position, Vector3.down, out hit, 2.0f))
-		{
-            if(hit.distance > 0.5)
-			{
-				isGrounded = false;
+        {
+            if (hit.distance > 0.5)
+            {
+                isGrounded = false;
             }
-			else
-			{
-				isGrounded = true;
-			}
-	    }
-    }	
+            else
+            {
+                isGrounded = true;
+            }
+        }
+    }
 
 
-    // Update is called once per frame
+    /**
+     * @Author Tobias
+     *
+     * Steuerung des Characters mit Inputs
+     */
     void Update()
     {
         var horizontal = Input.GetAxis("Horizontal");
@@ -65,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speed = 10.0f;
-            animator.SetFloat("speed", speed/8.0f);
+            animator.SetFloat("speed", speed / 8.0f);
         }
         else
         {
@@ -82,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         //jumping
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && timerValue <= 0)
         {
-			timerValue = 1.5f;
+            timerValue = 1.5f;
             rb.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
             isGrounded = false;
             speed = jumpSpeed;
@@ -100,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             if (Math.Round(Cam.eulerAngles.y) == 90)
             {
                 moveDirection = new Vector3(vertical, 0.0f, -horizontal);
-            }    
+            }
 
             if (Math.Round(Cam.eulerAngles.y) == 180)
             {
@@ -112,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
                 moveDirection = new Vector3(-vertical, 0.0f, horizontal);
             }
         }
-        
+
 
 
         //actual walking
@@ -142,10 +154,10 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("EmoteT", false);
         }
-		
-		if(timerValue > 0)
-		{
-			timerValue -= Time.deltaTime;
-		}
+
+        if (timerValue > 0)
+        {
+            timerValue -= Time.deltaTime;
+        }
     }
 }

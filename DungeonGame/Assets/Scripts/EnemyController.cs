@@ -7,7 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
 /**
- * erstellt und bearbeitet von JASKO und JONAS
+ * @author Jasko und Jonas
  * Erstellung der Klasse EnemyController und Deklarierung der Variablen
  */
 public class EnemyController : MonoBehaviour
@@ -26,9 +26,8 @@ public class EnemyController : MonoBehaviour
 	Transform target;
 	NavMeshAgent agent;
 
-
 	/**
-	 * erstellt und bearbeitet von JASKO
+	 * @author Jasko
 	 * Methode Start() wird vor dem ersten geladenen Bild aufgerufen
 	 * setzt die Attribute für das Mob
 	 */
@@ -42,13 +41,13 @@ public class EnemyController : MonoBehaviour
 	}
 
 	/**
-	 * erstellt von JASKO
+	 * @author Jasko
 	 * bearbeitet von TOBIAS und JONAS
+	 *  Methode wird vor dem ersten Frame ausgeführt
 	 */
-	// Update wird einmal pro Frame aufgerufen
 	void Update()
 	{
-		// berechnet den Abstant zwischen dem Mob und dem Player
+		// berechnet den Abstand zwischen dem Mob und dem Player
 		float distance = Vector3.Distance(target.position, transform.position);
 
 		// setzt und überprüft den Cooldown
@@ -66,7 +65,6 @@ public class EnemyController : MonoBehaviour
 				patrolCooldown = 0;
 		}
 
-
 		// wenn das Mob Sichtkontakt zum Player hat, wird die ChasePlayer Methode aufgerufen
 		if (hasVisual(distance))
 		{
@@ -78,23 +76,24 @@ public class EnemyController : MonoBehaviour
 		// wenn kein Player gefunden wird, wird die Patrolling Methode aufgerufen
 		else
 		{
-			agent.speed =movementSpeed * 0.6f;
+			agent.speed = movementSpeed * 0.6f;
 			Patroling();
 		}
 	}
 
 
 	/**
-	 * erstellt von JASKO
+	 * @author Jasko
 	 * überarbeitet und verbessert von JONAS
-	 *Prüft ob ein Player in der Nähe ist und überprüft dann, ob nichts die Sicht des Mobs auf den Player blockiert
+	 * Anpassung der Attacks durch TOBIAS
+	 * Prüft ob ein Player in der Nähe ist und überprüft dann, ob nichts die Sicht des Mobs auf den Player blockiert
 	 */
-
 	bool hasVisual(float distance)
 	{
 		RaycastHit hit;
 		if (distance <= lookRadius)
 		{
+			//Deklarierung der Vektoren
 			Quaternion qRaycastDir = Quaternion.LookRotation(target.position - transform.position);
 			Vector3 raycastDir = qRaycastDir.eulerAngles;
 			Vector3 addDegree = new Vector3(0, 1, 0);
@@ -102,6 +101,7 @@ public class EnemyController : MonoBehaviour
 
 			for (int i = 0; i < 9; i++)
 			{
+				// prüft ob der Player direkt angeschaut wird und ob er in Angriffsreichweite ist und der Attack Cooldown <= 0 ist
 				if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir + addDegree * i * 1) * Vector3.forward, out hit, lookRadius))
 				{
 					if (hit.transform == target)
@@ -132,9 +132,13 @@ public class EnemyController : MonoBehaviour
 		return false;
 	}
 
-
+	/**
+	 * @author Jasko
+	 * lässt das Mob auf random generierten Strecken patrouillieren, wenn kein Gegner bzw. Player in der Nähe ist
+	 */
 	private void Patroling()
 	{
+		//prüft, ob das Mob einen aktiven Zielpunkt hat. Fall das nicht der Fall ist, wird ein neuer Punkt zugewiesen
 		if (!hasPatrolDest)
 		{
 			patrolDest = new Vector3(transform.position[0] + Random.Range(-10f, 10), transform.position[1], transform.position[2] + Random.Range(-10, 10));
@@ -156,7 +160,10 @@ public class EnemyController : MonoBehaviour
 		}
 	}
 
-
+	/**
+	 * @author Jasko
+	 * lässt das Mob den Player verfolgen, wenn er in der unmittelbaren Nähe ist
+	 */
 	private void ChasePlayer()
 	{
 		Vector3 direction = (target.position - transform.position).normalized;
@@ -165,14 +172,20 @@ public class EnemyController : MonoBehaviour
 		agent.SetDestination(target.position);
 	}
 
-
+	/**
+	 * @author Jasko
+	 * benachrichtigt den Spieler, dass er angegriffen wird
+	 */
 	void AttackPlayer()
 	{
 		print("I punched you in the face you A-hole!");
 		PlayerStatsSingleton.instance.PlayerDamage(attackDamage);
 	}
 
-
+	/**
+	 * @author Tobias
+	 * setzt den Attack Cooldown
+	 */
 	void setAttackCooldown()
 	{
 		attackCooldown = 1 / attackSpeed;

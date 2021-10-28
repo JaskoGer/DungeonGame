@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("EmoteT", false);
         }
         
-        //spring cooldown, damit er nicht Fliegt
+        //spring cooldown, damit er nicht fliegt
         if (timerValue > 0)
         {
             jumpCooldown -= Time.deltaTime;

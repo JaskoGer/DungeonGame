@@ -31,7 +31,7 @@ public class CameraSwitch : MonoBehaviour
      */
     void Update()
     {
-        //rotation changes ( if greater than 360)
+        //Erhaltung des Winkels zwischen 0 und 360°
         int rotation;
         if (target.eulerAngles.y <= 180f)
         {
@@ -42,10 +42,10 @@ public class CameraSwitch : MonoBehaviour
             rotation = (int) Math.Round(target.eulerAngles.y - 360);
         }
 
-        //turn speed realtive to angle
+        //Änderung des turnSpeeds relativ zur Position
         turnSpeed = speedMultiplier * (((90 - Math.Abs(Math.Abs(rotation) % 90 - 45)) / 45) - 0.5f) ;
 
-        //cam angles changes on press
+        //Kamerawinkeländerung bei E und Q um 90°
         if (Input.GetKeyDown(KeyCode.E))
         {
             target.Rotate(turnSpeed * rightRotation);
@@ -58,7 +58,7 @@ public class CameraSwitch : MonoBehaviour
             turnDirection = 'r';
         }
 
-        //stop if position % 90 = 0
+        //Festlegung der Snappoints bei 90°
         if (rotation % 90 != 0)
         {
             if (turnDirection == 'l')

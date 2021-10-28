@@ -6,9 +6,8 @@ using UnityEngine;
 /**
  * @Author Tobias Haubold
  * @Since 22.09.2021
- * Script für die Steuerung der Kameraperspektive und dazu gehöringen Tasten
+ * Script fÃ¼r die Steuerung der Kameraperspektive und dazu gehÃ¶ringen Tasten
  */
-
 public class CameraSwitch : MonoBehaviour
 {
     public Transform target;
@@ -25,8 +24,11 @@ public class CameraSwitch : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
+    
+    /**
+     * @Author Tobias
+     * Steuerung der Kamera, 90 switch in die jeweilige Richtung
+     */
     void Update()
     {
         //rotation changes ( if greater than 360)

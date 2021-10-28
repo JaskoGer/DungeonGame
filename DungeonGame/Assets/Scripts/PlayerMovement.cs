@@ -6,7 +6,7 @@ using UnityEngine;
 /**
  * @Author Tobias
  * @Since 22.09.2021
- * Script f�r die Steuerung des Charakters
+ * Script für die Steuerung des Characters
  */
 
 public class PlayerMovement : MonoBehaviour
@@ -26,12 +26,11 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 7.0f;
     public bool isGrounded = false;
     public float lerpSpeed = 0.05f;
-    float timerValue = 0;
+    float jumpCooldown = 0;
 
     /**
      * @Author Tobias
-     *
-     * auszuf�hrende Methode beim Spielstart
+     * auszuführende Methode beim Spielstart
      */
     void Start()
     {
@@ -41,8 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
-     * Abfragung eines Raycasts zum Boden
+     * Abfrage eines Raycasts zum Boden
      */
     void FixedUpdate()
     {
@@ -64,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
      * Steuerung des Characters mit Inputs
      */
     void Update()
@@ -91,17 +88,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        //jumping
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && timerValue <= 0)
+        //Springen
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && jumpCooldown <= 0)
         {
-            timerValue = 1.5f;
+            jumpCooldown = 1.5f;
             rb.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
             isGrounded = false;
             speed = jumpSpeed;
         }
 
 
-        //Key changes
+        //Tastenänderungen beim Drehen der Kamera
         if (isGrounded)
         {
             if (Math.Round(Cam.eulerAngles.y) == 0)
@@ -127,15 +124,16 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        //actual walking
+        //Spielerpositionsändreung mit translate
         Player.Translate(moveDirection.normalized * Time.deltaTime * speed);
 
-        //player rotation
+        //Spielerdrehung mit schönem Übergang
         if (moveDirection != Vector3.zero)
         {
             PlayerCharacter.rotation = Quaternion.Slerp(PlayerCharacter.rotation, Quaternion.LookRotation(moveDirection), lerpSpeed);
         }
 
+        //Boolean als bool für die Laufanimation des Spielers
         if (moveDirection != Vector3.zero)
         {
             animator.SetBool("moving", true);
@@ -154,10 +152,11 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("EmoteT", false);
         }
-
+        
+        //spring Cooldown, damit er nicht fliegt
         if (timerValue > 0)
         {
-            timerValue -= Time.deltaTime;
+            jumpCooldown -= Time.deltaTime;
         }
     }
 }

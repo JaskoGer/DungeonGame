@@ -6,7 +6,7 @@ using UnityEngine;
 /**
  * @Author Tobias
  * @Since 22.09.2021
- * Script für die Steuerung des Charakters
+ * Script fÃ¼r die Steuerung des Charakters
  */
 
 public class PlayerMovement : MonoBehaviour
@@ -30,8 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
-     * auszuführende Methode beim Spielstart
+     * auszufÃ¼hrende Methode beim Spielstart
      */
     void Start()
     {
@@ -41,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
      * Abfragung eines Raycasts zum Boden
      */
     void FixedUpdate()
@@ -64,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
      * Steuerung des Characters mit Inputs
      */
     void Update()

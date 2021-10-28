@@ -7,9 +7,8 @@ using System;
 /**
  * @Author Tobias
  * @Since 27.10.2021
- * Script für Playerstats
+ * Script fÃ¼r Playerstats
  */
-
 public class PlayerStatsSingleton : MonoBehaviour
 {
 	public static PlayerStatsSingleton instance = null;
@@ -28,12 +27,12 @@ public class PlayerStatsSingleton : MonoBehaviour
 
 	private void Awake()
 	{
-		// Erstllen der Intance dieser Klasse
+		// Erstellen der Instance dieser Klasse
 		if (instance == null)
 		{
 			instance = this;
 		}
-		//Zerstöre ein bestehendes Objekt falls es nicht dieses ist
+		//ZerstÃ¶re ein bestehendes Objekt, falls es nicht dieses ist
 		else if (instance != this)
 		{
 			Destroy(gameObject);
@@ -50,8 +49,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
-     * Methode zum anpassen des Levels und des Lebens jeden Frame
+     * Methode zum Anpassen des Levels und des Lebens in jeden Frame
      */
     void Update()
     {
@@ -70,8 +68,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
-     * Zurücksetzten des Lebens
+     * ZurÃ¼cksetzen des Lebens
      */
     public void resetHealth()
     {
@@ -81,7 +78,6 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
      * Festlegen des Lebens
      */
     public void SetPlayerHealth(float pHealth)
@@ -96,8 +92,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
-     * Zurückgeben des Lebens
+     * ZurÃ¼ckgeben des Lebens
      */
     public float GetPlayerHealth()
 	{
@@ -106,8 +101,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
-     * Hinzufügen von Leben
+     * HinzufÃ¼gen von Leben
      */
     public void AddPlayerHealth(float pHealth)
     {
@@ -121,7 +115,6 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
      * Setzen der Armor
      */
     public void SetPlayerArmor(float pArmor)
@@ -132,7 +125,6 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
      * Schaden an den Spieler geben
      */
     public void PlayerDamage(float pDamage)
@@ -147,8 +139,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
-     * Das Level erhöhen und dazu gehörige Vriablen anpassen
+     * Level wird erhÃ¶ht und Stats werden angepasst
      */
     public void LevelUp()
     {
@@ -161,8 +152,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
-     * Zurückgeben des Levels
+     * ZurÃ¼ckgeben des Levels
      */
     public int getPlayerLevel()
     {
@@ -171,8 +161,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
-     * Hinzufügen von extra XP
+     * HinzufÃ¼gen von extra XP
      */
     public void AddPlayerXp(int pXp)
     {
@@ -187,8 +176,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     *
-     * Vorläufige setzung der UI zum testen
+     * vorlÃ¤ufige Setzung des UI zum testen
      */
     public void SetUIText()
     {

@@ -154,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         //spring Cooldown, damit er nicht fliegt
-        if (timerValue > 0)
+        if (jumpCooldown > 0)
         {
             jumpCooldown -= Time.deltaTime;
         }

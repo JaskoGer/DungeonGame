@@ -27,5 +27,6 @@ public class SceneComplete : MonoBehaviour
         thePlayer.GetComponent<PlayerMovement>().enabled = false;
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(GlobalScene.currentScene);
+        Destroy(thePlayer);
     }
 }

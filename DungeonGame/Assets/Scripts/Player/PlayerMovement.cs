@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public float normalSpeed = 7.0f;
     public float speed = 7.0f;
     public float jumpSpeed = 4.0f;
-    public float jumpForce = 7.0f;
+    public float jumpForce = 5.0f;
     public bool isGrounded = false;
     public float lerpSpeed = 0.05f;
     float jumpCooldown = 0;

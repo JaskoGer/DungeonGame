@@ -12,12 +12,9 @@ public class CameraSwitch : MonoBehaviour
 {
     public Transform target;
 
-    Vector3 rightRotation = new Vector3(0f, 1f, 0f);
-    Vector3 leftRotation = new Vector3(0f, -1f, 0f);
-
-    char turnDirection = 'r';
-    float turnSpeed = 1.0f;
-	public float speedMultiplier = 3.0f;
+    public float speed = 0.2f;
+    public Quaternion rotation1 = Quaternion.Euler(0, 0, 0);
+    public Quaternion rotation2 = Quaternion.Euler(0, 0, 0);
 
     // Start is called before the first frame update
     void Start()
@@ -32,44 +29,49 @@ public class CameraSwitch : MonoBehaviour
     void Update()
     {
         //Erhaltung des Winkels zwischen 0 und 360°
-        int rotation;
-        if (target.eulerAngles.y <= 180f)
+        float rotation;
+        if (target.eulerAngles.y <= 360f)
         {
-            rotation = (int) Math.Round(target.eulerAngles.y);
+            rotation = (float) target.eulerAngles.y;
         }
         else
         {
-            rotation = (int) Math.Round(target.eulerAngles.y - 360);
+            rotation = (float) target.eulerAngles.y - 360;
         }
 
-        //Änderung des turnSpeeds relativ zur Position
-        turnSpeed = speedMultiplier * (((90 - Math.Abs(Math.Abs(rotation) % 90 - 45)) / 45) - 0.5f) ;
+        rotation1 = Quaternion.Euler(0, rotation, 0);
 
         //Kamerawinkeländerung bei E und Q um 90°
         if (Input.GetKeyDown(KeyCode.E))
         {
-            target.Rotate(turnSpeed * rightRotation);
-            turnDirection = 'l';
+            rotation2 = Quaternion.Euler(0, rotation + 90, 0);
+            StartCoroutine(RotateOverTime(rotation1, rotation2, speed));
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            target.Rotate(turnSpeed * leftRotation);
-            turnDirection = 'r';
+            rotation2 = Quaternion.Euler(0, rotation - 90, 0);
+            StartCoroutine(RotateOverTime(rotation1, rotation2, speed));
         }
 
-        //Festlegung der Snappoints bei 90°
-        if (rotation % 90 != 0)
+        //Enumerator um Lerp zu benutzen, interpolarisiert zwischen zwei Drehungen/Winkeln
+        IEnumerator RotateOverTime(Quaternion originalRotation, Quaternion finalRotation, float duration)
         {
-            if (turnDirection == 'l')
+            if (duration > 0f)
             {
-                target.Rotate(turnSpeed * rightRotation);
+                float startTime = Time.time;
+                float endTime = startTime + duration;
+                target.transform.rotation = originalRotation;
+                yield return null;
+                while (Time.time < endTime)
+                {
+                    float progress = (Time.time - startTime) / duration;
+                    // progress will equal 0 at startTime, 1 at endTime.
+                    target.transform.rotation = Quaternion.Slerp(originalRotation, finalRotation, progress);
+                    yield return null;
+                }
             }
-            if(turnDirection == 'r')
-            {
-                target.Rotate(turnSpeed * leftRotation);
-            }
+            target.transform.rotation = finalRotation;
         }
-        
     }
 }

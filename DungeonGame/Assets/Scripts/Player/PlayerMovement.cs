@@ -161,16 +161,29 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpCooldown -= Time.deltaTime;
         }
-		
-		//Angreifen
-		if (Input.GetButton("Fire1"))
+
+        /*
+         * angreifen
+         * bearbeitet von Kacper
+         */
+        if (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true)
 		{
-			animator.SetBool("attack", true);
+            if(animator.GetBool("attack") == false)
+            {
+                animator.SetBool("attack", true);
+                StartCoroutine(Attack());
+            }
 		}
-		
-		if (!PlayerCharacter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("attack"))
-		{
-			animator.SetBool("attack", false);
-		}
+
+        /*
+         * @Author Kacper
+         * Methode zum abspielen der Angriffsanimation
+         */
+        IEnumerator Attack()
+        {
+            animator.SetBool("moving", false);
+            yield return new WaitForSeconds(0.75f);
+            animator.SetBool("attack", false);
+        }
     }
 }

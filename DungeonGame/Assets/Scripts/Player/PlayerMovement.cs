@@ -125,7 +125,10 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Spielerpositionsändreung mit translate
-        Player.Translate(moveDirection.normalized * Time.deltaTime * speed);
+		
+		if (!animator.GetBool("attack")){
+			Player.Translate(moveDirection.normalized * Time.deltaTime * speed);
+	    }
 
         //Spielerdrehung mit schönem Übergang
         if (moveDirection != Vector3.zero)
@@ -158,5 +161,16 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpCooldown -= Time.deltaTime;
         }
+		
+		//Angreifen
+		if (Input.GetButton("Fire1"))
+		{
+			animator.SetBool("attack", true);
+		}
+		
+		if (!PlayerCharacter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("attack"))
+		{
+			animator.SetBool("attack", false);
+		}
     }
 }

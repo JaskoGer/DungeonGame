@@ -5,7 +5,7 @@ using UnityEngine;
 /**
  * @Author Tobias
  * @Since 22.09.2021
- * Script für das Mobspawning
+ * Script fÃ¼r das Mobspawning
  */
 public class MobSpawning : MonoBehaviour
 {

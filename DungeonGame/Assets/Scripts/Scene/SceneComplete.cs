@@ -24,8 +24,8 @@ public class SceneComplete : MonoBehaviour
     {
         GlobalScene.currentScene++;
         fadeOutScene.SetActive(true);
-        thePlayer.GetComponent<PlayerMovement>().enabled = false;
         yield return new WaitForSeconds(2f);
+		Destroy(thePlayer);
         SceneManager.LoadScene(GlobalScene.currentScene);
     }
 }

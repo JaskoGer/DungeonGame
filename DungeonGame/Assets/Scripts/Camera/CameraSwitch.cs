@@ -44,13 +44,13 @@ public class CameraSwitch : MonoBehaviour
         //Kamerawinkeländerung bei E und Q um 90°
         if (Input.GetKeyDown(KeyCode.E))
         {
-            rotation2 = Quaternion.Euler(0, rotation + 90, 0);
+            rotation2 = Quaternion.Euler(0, rotation - 90, 0);
             StartCoroutine(RotateOverTime(rotation1, rotation2, speed));
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            rotation2 = Quaternion.Euler(0, rotation - 90, 0);
+            rotation2 = Quaternion.Euler(0, rotation + 90, 0);
             StartCoroutine(RotateOverTime(rotation1, rotation2, speed));
         }
 

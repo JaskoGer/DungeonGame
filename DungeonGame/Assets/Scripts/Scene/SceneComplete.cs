@@ -27,5 +27,6 @@ public class SceneComplete : MonoBehaviour
         yield return new WaitForSeconds(2f);
 		Destroy(thePlayer);
         SceneManager.LoadScene(GlobalScene.currentScene);
+        Destroy(thePlayer);
     }
 }

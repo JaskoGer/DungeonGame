@@ -22,4 +22,8 @@ public class PickUpStarterWeapon : MonoBehaviour
         FirstSceneComplete.isStarterWeaponPickedUp = true;
         Destroy(this);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ee77326f5e4adbd01b17b3df77a64ebc1ca42d37

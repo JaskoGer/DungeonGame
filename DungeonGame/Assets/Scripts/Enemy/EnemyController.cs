@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
 	public float attackDamage = 5f;
 	public Vector3 patrolDest;
 	public bool hasPatrolDest = false;
-	public float enemyHP = 50;
+	public float enemyHP = 20;
 	public float attackCooldown = 0f;
 	private float patrolCooldown = 0f;
 
@@ -34,7 +34,6 @@ public class EnemyController : MonoBehaviour
 	void Start()
 	{
 		target = PlayerManager.instance.player.transform;
-		// setzen der Attribute
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 		agent.stoppingDistance = attackDistance;
 		agent.speed = movementSpeed;
@@ -189,5 +188,18 @@ public class EnemyController : MonoBehaviour
 	void setAttackCooldown()
 	{
 		attackCooldown = 1 / attackSpeed;
+	}
+	
+	/**
+	 * @author Tobias
+	 * getDamage
+	 */
+	public void getDamage(float pAttackDamage)
+	{
+		enemyHP -= pAttackDamage;
+		if(enemyHP <= 0)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 }

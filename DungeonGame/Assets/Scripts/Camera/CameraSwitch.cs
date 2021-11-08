@@ -15,7 +15,8 @@ public class CameraSwitch : MonoBehaviour
     public float speed = 0.2f;
     public Quaternion rotation1 = Quaternion.Euler(0, 0, 0);
     public Quaternion rotation2 = Quaternion.Euler(0, 0, 0);
-    public Boolean isTurning = false;
+	
+	public Boolean isTurning = false;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,7 @@ public class CameraSwitch : MonoBehaviour
         //Enumerator um Lerp zu benutzen, interpolarisiert zwischen zwei Drehungen/Winkeln
         IEnumerator RotateOverTime(Quaternion originalRotation, Quaternion finalRotation, float duration)
         {
-            isTurning = true;
+			isTurning = true;
             if (duration > 0f)
             {
                 float startTime = Time.time;
@@ -74,7 +75,7 @@ public class CameraSwitch : MonoBehaviour
                 }
             }
             target.transform.rotation = finalRotation;
-            isTurning = false;
+			isTurning = false;
         }
     }
 }

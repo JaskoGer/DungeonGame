@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     public float lerpSpeed = 0.05f;
     float jumpCooldown = 0;
 
+    RaycastHit hitEnemy;
+
     /**
      * @Author Tobias
      * auszuführende Methode beim Spielstart
@@ -44,11 +46,11 @@ public class PlayerMovement : MonoBehaviour
      */
     void FixedUpdate()
     {
-        RaycastHit hit;
+        RaycastHit hitDown;
 
-        if (Physics.Raycast(PlayerCharacter.position, Vector3.down, out hit, 2.0f))
+        if (Physics.Raycast(PlayerCharacter.position, Vector3.down, out hitDown, 2.0f))
         {
-            if (hit.distance > 0.5)
+            if (hitDown.distance > 0.5)
             {
                 isGrounded = false;
             }
@@ -57,6 +59,9 @@ public class PlayerMovement : MonoBehaviour
                 isGrounded = true;
             }
         }
+
+        Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), PlayerCharacter.rotation * Vector3.forward, out hitEnemy, PlayerStatsSingleton.instance.AttackRange);
+        //Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.4f, 0), PlayerCharacter.rotation * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
     }
 
 
@@ -162,28 +167,30 @@ public class PlayerMovement : MonoBehaviour
             jumpCooldown -= Time.deltaTime;
         }
 
-        /*
-         * angreifen
-         * bearbeitet von Kacper
-         */
-        if (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true)
-		{
-            if(animator.GetBool("attack") == false)
+        /**
+		 * angreifen
+		 * bearbeitet von Kacper
+		 */
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (!animator.GetBool("attack"))
             {
                 animator.SetBool("attack", true);
-                StartCoroutine(Attack());
+                StartCoroutine(AttackAnimation());
             }
-		}
-
-        /*
-         * @Author Kacper
-         * Methode zum abspielen der Angriffsanimation
-         */
-        IEnumerator Attack()
-        {
-            animator.SetBool("moving", false);
-            yield return new WaitForSeconds(0.75f);
-            animator.SetBool("attack", false);
         }
     }
+	
+	/**
+     * @Author Kacper
+     * Methode zum Abspielen der Angriffsanimation
+	 */
+	IEnumerator AttackAnimation()
+	{
+		animator.SetBool("moving", false);
+		yield return new WaitForSeconds(0.3f);
+        PlayerStatsSingleton.instance.AttackEnemy(hitEnemy);
+		yield return new WaitForSeconds(0.45f);
+		animator.SetBool("attack", false);
+	}
 }

@@ -47,8 +47,4 @@ public class FirstSceneComplete : MonoBehaviour
         yield return new WaitForSeconds(4f);
         errorMessage.enabled = false;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> ee77326f5e4adbd01b17b3df77a64ebc1ca42d37

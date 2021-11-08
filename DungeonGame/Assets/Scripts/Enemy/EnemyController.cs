@@ -190,4 +190,17 @@ public class EnemyController : MonoBehaviour
 	{
 		attackCooldown = 1 / attackSpeed;
 	}
+
+	/**
+	 * @author Tobias
+	 * getDamage
+	 */
+	public void getDamage(float pAttackDamage)
+	{
+		enemyHP -= pAttackDamage;
+		if (enemyHP <= 0)
+		{
+			Destroy(this.gameObject);
+		}
+	}
 }

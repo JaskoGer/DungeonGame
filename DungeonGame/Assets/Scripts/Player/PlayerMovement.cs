@@ -171,7 +171,8 @@ public class PlayerMovement : MonoBehaviour
          * angreifen
          * bearbeitet von Kacper
          */
-        if (Input.GetButton("Fire1") /**&& FirstSceneComplete.isStarterWeaponPickedUp == true**/)
+
+        if (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true || Input.GetButton("Fire1") && GlobalScene.currentScene > 2)
 		{
             if(animator.GetBool("attack") == false)
             {

@@ -20,7 +20,7 @@ public class MovingPlatformAttach : MonoBehaviour
         }
     }
 
-    //Bindet den Spieler aus der Platform beim Raustreten
+    //Bindet den Spieler aus der Platform beim Austreten
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject == thePlayer)

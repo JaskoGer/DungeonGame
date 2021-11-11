@@ -75,7 +75,7 @@ public class PlayerStatsSingleton : MonoBehaviour
      * @Author Tobias
      * Zurücksetzen des Lebens
      */
-    public void resetHealth()
+    public void ResetHealth()
     {
         Health = MaxHealth;
         SetUIImage();
@@ -159,7 +159,7 @@ public class PlayerStatsSingleton : MonoBehaviour
      * @Author Tobias
      * Zurückgeben des Levels
      */
-    public int getPlayerLevel()
+    public int GetPlayerLevel()
     {
         return PlayerLevel;
     }
@@ -193,7 +193,7 @@ public class PlayerStatsSingleton : MonoBehaviour
             if (hitEnemy.collider.gameObject.transform.parent != null)
             {
                 Enemy = hitEnemy.collider.gameObject.transform.parent.gameObject;
-                Enemy.GetComponent<EnemyController>().getDamage(AttackDamage);
+                Enemy.GetComponent<EnemyController>().GetDamage(AttackDamage);
             }
         }
     }

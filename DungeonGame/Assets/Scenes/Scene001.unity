@@ -44253,6 +44253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBarSlider: {fileID: 1538109247}
   ArmorBarSlider: {fileID: 1326675299}
+  AttackRange: 4
+  PlayerCharacter: {fileID: 0}
 --- !u!1 &2039351395 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7200e57867ed0d449a5f20437697f432, type: 3}

@@ -25,7 +25,12 @@ public class PlayerStatsSingleton : MonoBehaviour
     private int PlayerXp = 0;
     private int nextLevelXp = 100;
 
-	private void Awake()
+    private float AttackDamage = 10f;
+    public float AttackRange = 4f;
+
+    public Transform PlayerCharacter;
+
+    private void Awake()
 	{
 		// Erstellen der Instance dieser Klasse
 		if (instance == null)
@@ -176,7 +181,26 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     * vorläufige Setzung des UI zum testen
+     * Angreifen von Gegner
+     */
+    public void AttackEnemy(RaycastHit hitEnemy)
+    {
+        if (hitEnemy.collider != null)
+        {
+            print("hit" + hitEnemy.collider.name);
+
+            GameObject Enemy = hitEnemy.collider.gameObject;
+            if (hitEnemy.collider.gameObject.transform.parent != null)
+            {
+                Enemy = hitEnemy.collider.gameObject.transform.parent.gameObject;
+                Enemy.GetComponent<EnemyController>().getDamage(AttackDamage);
+            }
+        }
+    }
+
+    /**
+     * @Author Tobias
+     * Setzung des UI
      * bearbeitet von Kacper
      */
     public void SetUIImage()

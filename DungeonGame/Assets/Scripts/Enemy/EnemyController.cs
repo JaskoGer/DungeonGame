@@ -200,7 +200,7 @@ bool HasVisual(float distance)
 	 * @author Tobias
 	 * setzt den Attack Cooldown
 	 */
-	void setAttackCooldown()
+	void SetAttackCooldown()
 	{
 		attackCooldown = 1 / attackSpeed;
 	}
@@ -209,7 +209,7 @@ bool HasVisual(float distance)
 	 * @author Tobias
 	 * getDamage
 	 */
-	public void getDamage(float pAttackDamage)
+	public void GetDamage(float pAttackDamage)
 	{
 		enemyHP -= pAttackDamage;
 		if (enemyHP <= 0)

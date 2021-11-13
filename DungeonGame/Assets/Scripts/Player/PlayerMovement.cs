@@ -183,7 +183,7 @@ public class PlayerMovement : MonoBehaviour
 
         /*
          * @Author Kacper
-         * Methode zum abspielen der Angriffsanimation
+         * Methode zum Abspielen der Angriffsanimation
          */
         IEnumerator AttackAnimation()
         {

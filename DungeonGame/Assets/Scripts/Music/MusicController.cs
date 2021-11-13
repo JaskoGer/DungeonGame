@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// @author Laurin Sebek
 /// Script für das abspielen einer zufaelligen Hintergrundmusik
-/// @Version 0.9.13 - 08.11.2021
+
 public class MusicController : MonoBehaviour
 {
     public AudioSource BackgroundMusik;

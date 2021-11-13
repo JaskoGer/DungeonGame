@@ -20,6 +20,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     private float Health = 100;
     private float Armor = 0;
     private float DamageReduction = 0;
+    private float RegenerationPower = 0.33333f;
 
     private int PlayerLevel = 1;
     private int PlayerXp = 0;
@@ -58,17 +59,30 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     void Update()
     {
-        if (Health < MaxHealth)
-        {
-            Health += 0.33333f*Time.deltaTime;
-            if (Health > MaxHealth)
-                Health = MaxHealth;
-            SetUIImage();
-        }
-        if (Input.GetKeyUp(KeyCode.L))
+        
+        HealthRegeneration(RegenerationPower);
+        
+
+        if (Input.GetKeyDown(KeyCode.L))
         {
             LevelUp();
+            /* print("This is a LevelUp"); */
+            //Funktioniert zeigt nur keine Armor an oder erhöht den Wert nicht
         }
+        /**
+         * @Author Laurin
+         * Debug Button
+         * Debugging der Werte
+         */
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            print("Level:" + GetPlayerLevel() + " Armor:" + GetPlayerArmor());
+            SetUIImage();
+            /* print("This Button Works"); */
+        }
+
+        //Keine Aktualisierung falls in der "Health Regen" schleife
+        SetUIImage();
     }
 
     /**
@@ -79,6 +93,21 @@ public class PlayerStatsSingleton : MonoBehaviour
     {
         Health = MaxHealth;
         SetUIImage();
+    }
+
+    /*
+     *@Author Laurin
+     *Methode für das Regenerieren von Leben
+     */
+    public void HealthRegeneration(float RegenerationBoost)
+    {
+        if (Health < MaxHealth)
+        {
+            Health += RegenerationBoost*Time.deltaTime;
+            if (Health > MaxHealth)
+                Health = MaxHealth;
+            
+        }
     }
 
     /**
@@ -165,6 +194,15 @@ public class PlayerStatsSingleton : MonoBehaviour
     }
 
     /**
+     * @author Laurin
+     * Zurückgeben der Armor
+     */
+    public float GetPlayerArmor()
+    {
+        return Armor;
+    }
+
+    /**
      * @Author Tobias
      * Hinzufügen von extra XP
      */
@@ -211,4 +249,4 @@ public class PlayerStatsSingleton : MonoBehaviour
         HealthBarSlider.fillAmount = Health / MaxHealth;
         ArmorBarSlider.fillAmount = Armor;
     }
-}
+} 

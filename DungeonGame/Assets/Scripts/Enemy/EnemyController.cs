@@ -133,12 +133,12 @@ bool HasVisual(float distance)
 	 */
 	private bool CheckCollider(RaycastHit hit, float distance)
 	{
-		print(hit.collider.name);
+		/* print(hit.collider.name); */
 		if (hit.collider.name == "Player")
 		{
 			if (distance <= attackDistance && attackCooldown <= 0)
 			{
-				AttackPlayer();
+				AttackInformation();
 				SetAttackCooldown();
 			}
 			return true;
@@ -190,7 +190,7 @@ bool HasVisual(float distance)
 	 * @author Jasko
 	 * benachrichtigt den Spieler, dass er angegriffen wird
 	 */
-	void AttackPlayer()
+	void AttackInformation()
 	{
 		print("I punched you in the face you A-hole!");
 		PlayerStatsSingleton.instance.PlayerDamage(attackDamage);

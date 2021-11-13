@@ -75,6 +75,12 @@ public class PlayerMovement : MonoBehaviour
         var vertical = Input.GetAxis("Vertical");
 
 
+        //Laurins Debug Schleife
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            PlayerTeleport();
+        }        
+
         //sprinting
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -194,4 +200,15 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("attack", false);
         }
     }
+
+    /*
+     *@Author Laurin   
+     *Debug Methode zum Porten des Spielers
+     */
+
+    public void PlayerTeleport()
+    {
+      Player.transform.position = new Vector3(6, 6, 56);
+    }
+
 }

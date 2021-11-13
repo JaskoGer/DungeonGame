@@ -24,11 +24,14 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 7.0f;
     public float jumpSpeed = 4.0f;
     public float jumpForce = 5.0f;
+    public float gravityScale = 5.0f;
     public bool isGrounded = false;
     public float lerpSpeed = 0.05f;
     float jumpCooldown = 0;
 
-    RaycastHit hitEnemy;
+    RaycastHit hitEnemy1;
+    RaycastHit hitEnemy2;
+    RaycastHit hitEnemy3;
 
     /**
      * @Author Tobias
@@ -42,10 +45,22 @@ public class PlayerMovement : MonoBehaviour
 
     /**
      * @Author Tobias
+     */
+    void OnCollisionEnter()
+    {
+        isGrounded = true;
+    }
+
+    /**
+     * @Author Tobias
      * Abfrage eines Raycasts zum Boden
      */
     void FixedUpdate()
     {
+        moveDirection = 0.9f * moveDirection;
+
+        rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
+
         RaycastHit hitDown;
 
         if (Physics.Raycast(PlayerCharacter.position, Vector3.down, out hitDown, 2.0f))
@@ -59,9 +74,18 @@ public class PlayerMovement : MonoBehaviour
                 isGrounded = true;
             }
         }
-        //int layer_mask = LayerMask.GetMask("Enemy");
-        Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), PlayerCharacter.rotation * Vector3.forward, out hitEnemy, PlayerStatsSingleton.instance.AttackRange);
-        Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), PlayerCharacter.rotation * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
+        
+        //Raycast zum Angreifen nach vorne
+        Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation) * Vector3.forward, out hitEnemy1, PlayerStatsSingleton.instance.AttackRange);
+        //Raycast zum Angreifen nach 3°rechts
+        Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.up * 5)) * Vector3.forward, out hitEnemy2, PlayerStatsSingleton.instance.AttackRange);
+        //Raycast zum Angreifen nach 3°rechts
+        Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.down * 5)) * Vector3.forward, out hitEnemy3, PlayerStatsSingleton.instance.AttackRange);
+        
+        //zum Testen
+        //Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), PlayerCharacter.rotation * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
+        //Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.up * 5)) * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
+        //Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.down * 5)) * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
     }
 
 
@@ -96,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
         //Springen
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && jumpCooldown <= 0)
         {
-            jumpCooldown = 1.5f;
+            jumpCooldown = 1.0f;
             rb.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
             isGrounded = false;
             speed = jumpSpeed;
@@ -189,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("moving", false);
             yield return new WaitForSeconds(0.3f);
-            PlayerStatsSingleton.instance.AttackEnemy(hitEnemy);
+            PlayerStatsSingleton.instance.AttackEnemy(hitEnemy1, hitEnemy2, hitEnemy3);
             yield return new WaitForSeconds(0.45f);
             animator.SetBool("attack", false);
         }

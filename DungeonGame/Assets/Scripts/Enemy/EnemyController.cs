@@ -139,7 +139,7 @@ bool HasVisual(float distance)
 			if (distance <= attackDistance && attackCooldown <= 0)
 			{
 				AttackPlayer();
-				setAttackCooldown();
+				SetAttackCooldown();
 			}
 			return true;
 		}

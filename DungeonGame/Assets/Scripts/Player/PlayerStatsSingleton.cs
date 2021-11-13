@@ -27,7 +27,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     private int nextLevelXp = 100;
 
     private float AttackDamage = 10f;
-    public float AttackRange = 4f;
+    private float AttackRange = 4f;
 
     public Transform PlayerCharacter;
 
@@ -82,7 +82,7 @@ public class PlayerStatsSingleton : MonoBehaviour
         }
 
         //Keine Aktualisierung falls in der "Health Regen" schleife
-        SetUIImage();
+        
     }
 
     /**
@@ -95,14 +95,16 @@ public class PlayerStatsSingleton : MonoBehaviour
         SetUIImage();
     }
 
-    /*
-     *@Author Laurin
-     *Methode für das Regenerieren von Leben
+    /**
+     * @Author Laurin
+     * Methode für das Regenerieren von Leben
+     * Bearbeitet von Tobias
      */
     public void HealthRegeneration(float RegenerationBoost)
     {
         if (Health < MaxHealth)
         {
+            SetUIImage();
             Health += RegenerationBoost*Time.deltaTime;
             if (Health > MaxHealth)
                 Health = MaxHealth;
@@ -181,6 +183,7 @@ public class PlayerStatsSingleton : MonoBehaviour
         MaxHealth += 10;
         Health += 10;
         SetPlayerArmor(Armor + 1);
+        SetUIImage();
         
     }
 
@@ -217,7 +220,7 @@ public class PlayerStatsSingleton : MonoBehaviour
         nextLevelXp = 100 * PlayerLevel * PlayerLevel;
     }
 
-        /**
+    /**
      * @Author Tobias
      * Angreifen von Gegner
      */
@@ -237,6 +240,10 @@ public class PlayerStatsSingleton : MonoBehaviour
         }
     }
 
+    /**
+     * @Author Tobias
+     * Angreifen von Gegner
+     */
     void AttackEnemyRaycast(RaycastHit hitEnemy)
     {
         GameObject Enemy = hitEnemy.collider.gameObject;
@@ -250,11 +257,19 @@ public class PlayerStatsSingleton : MonoBehaviour
         }
     }
 
+    /**
+     * @Author Laurin
+     * Getter
+     */
     public float GetAttackDamage()
     {
         return AttackDamage;
     }
 
+    /**
+     * @Author Laurin
+     * Getter
+     */
     public float GetAttackRange()
     {
         return AttackRange;

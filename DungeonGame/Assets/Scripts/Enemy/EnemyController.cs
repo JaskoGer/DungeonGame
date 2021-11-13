@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
 	public float enemyHP = 50;
 	public float attackCooldown = 0f;
 	private float patrolCooldown = 0f;
-	private float drawRayDuration = 0.2f;
+	//private float drawRayDuration = 0.2f;
 
 	Transform target;
 	NavMeshAgent agent;
@@ -109,7 +109,7 @@ bool HasVisual(float distance)
 				{	
 					for (int i = 0; i < 9; i++)
 					{
-						Debug.DrawRay(transform.position, Quaternion.Euler(raycastDir + addDegreeB * i) * Vector3.forward * 10 + Vector3.up * j, Color.red, drawRayDuration, false);
+						//Debug.DrawRay(transform.position, Quaternion.Euler(raycastDir + addDegreeB * i) * Vector3.forward * 10 + Vector3.up * j, Color.red, drawRayDuration, false);
 						// prüft ob der Player direkt angeschaut wird, ob er in Angriffsreichweite ist und ob der Attack Cooldown <= 0 ist
 						if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir + addDegreeB * i)  * Vector3.forward + Vector3.up * j, out hit, lookRadius))
 						{
@@ -133,7 +133,7 @@ bool HasVisual(float distance)
 	 */
 	private bool CheckCollider(RaycastHit hit, float distance)
 	{
-		/* print(hit.collider.name); */
+		//print(hit.collider.name);
 		if (hit.collider.name == "Player")
 		{
 			if (distance <= attackDistance && attackCooldown <= 0)

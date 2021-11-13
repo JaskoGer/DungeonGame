@@ -32445,6 +32445,7 @@ MonoBehaviour:
   speed: 7
   jumpSpeed: 5
   jumpForce: 7
+  gravityScale: 1.3
   isGrounded: 1
   lerpSpeed: 0.05
 --- !u!114 &2039309339

@@ -59,9 +59,9 @@ public class PlayerMovement : MonoBehaviour
                 isGrounded = true;
             }
         }
-
+        //int layer_mask = LayerMask.GetMask("Enemy");
         Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), PlayerCharacter.rotation * Vector3.forward, out hitEnemy, PlayerStatsSingleton.instance.AttackRange);
-        //Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.4f, 0), PlayerCharacter.rotation * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
+        Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), PlayerCharacter.rotation * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
     }
 
 

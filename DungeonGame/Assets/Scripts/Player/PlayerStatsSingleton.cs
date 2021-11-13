@@ -193,6 +193,9 @@ public class PlayerStatsSingleton : MonoBehaviour
             if (hitEnemy.collider.gameObject.transform.parent != null)
             {
                 Enemy = hitEnemy.collider.gameObject.transform.parent.gameObject;
+            }
+            print(Enemy.layer + "      " + LayerMask.NameToLayer("Enemy"));
+            if(Enemy.layer == LayerMask.NameToLayer("Enemy")) { 
                 Enemy.GetComponent<EnemyController>().GetDamage(AttackDamage);
             }
         }

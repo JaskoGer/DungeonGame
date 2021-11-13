@@ -219,7 +219,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("moving", false);
             yield return new WaitForSeconds(0.3f);
-            CombatController.instance.AttackEnemy(hitEnemy1, hitEnemy2, hitEnemy3);
+            PlayerStatsSingleton.instance.AttackEnemy(hitEnemy1, hitEnemy2, hitEnemy3);
             yield return new WaitForSeconds(0.45f);
             animator.SetBool("attack", false);
         }

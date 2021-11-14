@@ -59,30 +59,16 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     void Update()
     {
-        
         HealthRegeneration(RegenerationPower);
-        
 
         if (Input.GetKeyDown(KeyCode.L))
         {
             LevelUp();
-            /* print("This is a LevelUp"); */
-            //Funktioniert zeigt nur keine Armor an oder erhöht den Wert nicht
-        }
-        /**
-         * @Author Laurin
-         * Debug Button
-         * Debugging der Werte
-         */
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            print("Level:" + GetPlayerLevel() + " Armor:" + GetPlayerArmor());
-            SetUIImage();
-            /* print("This Button Works"); */
         }
 
+
         //Keine Aktualisierung falls in der "Health Regen" schleife
-        
+
     }
 
     /**
@@ -92,13 +78,13 @@ public class PlayerStatsSingleton : MonoBehaviour
     public void ResetHealth()
     {
         Health = MaxHealth;
-        SetUIImage();
     }
 
-    /**
+
+    /*
      * @Author Laurin
      * Methode für das Regenerieren von Leben
-     * Bearbeitet von Tobias
+     * Ausgelagerter Code geschrieben von Tobias
      */
     public void HealthRegeneration(float RegenerationBoost)
     {
@@ -108,7 +94,6 @@ public class PlayerStatsSingleton : MonoBehaviour
             Health += RegenerationBoost*Time.deltaTime;
             if (Health > MaxHealth)
                 Health = MaxHealth;
-            
         }
     }
 
@@ -123,7 +108,6 @@ public class PlayerStatsSingleton : MonoBehaviour
         {
             Health = 0;
         }
-        SetUIImage();
     }
 
     /**
@@ -146,7 +130,6 @@ public class PlayerStatsSingleton : MonoBehaviour
         {
             Health = MaxHealth;
         }
-        SetUIImage();
     }
 
     /**
@@ -170,7 +153,6 @@ public class PlayerStatsSingleton : MonoBehaviour
         {
             Health = 0;
         }
-        SetUIImage();
     }
 
     /**
@@ -183,8 +165,8 @@ public class PlayerStatsSingleton : MonoBehaviour
         MaxHealth += 10;
         Health += 10;
         SetPlayerArmor(Armor + 1);
+
         SetUIImage();
-        
     }
 
     /**
@@ -194,15 +176,6 @@ public class PlayerStatsSingleton : MonoBehaviour
     public int GetPlayerLevel()
     {
         return PlayerLevel;
-    }
-
-    /**
-     * @author Laurin
-     * Zurückgeben der Armor
-     */
-    public float GetPlayerArmor()
-    {
-        return Armor;
     }
 
     /**

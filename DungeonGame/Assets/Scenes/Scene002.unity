@@ -4135,6 +4135,10 @@ PrefabInstance:
       value: JumpPlatform001 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -4521,6 +4525,10 @@ PrefabInstance:
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_Name
       value: JumpPlatform001 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6519,6 +6527,10 @@ PrefabInstance:
       value: JumpPlatform001 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -7800,6 +7812,10 @@ PrefabInstance:
       value: JumpPlatform001 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -8776,6 +8792,10 @@ PrefabInstance:
       value: JumpPlatform001 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 916917378494744782, guid: 98f5378049f9b5745a77677f581b32b1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 916917378494744782, guid: 98f5378049f9b5745a77677f581b32b1, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -9289,6 +9309,10 @@ PrefabInstance:
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_Name
       value: JumpPlatform001 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -10001,6 +10025,10 @@ PrefabInstance:
     - target: {fileID: 916917378494744782, guid: 98f5378049f9b5745a77677f581b32b1, type: 3}
       propertyPath: m_Name
       value: JumpPlatform001 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 916917378494744782, guid: 98f5378049f9b5745a77677f581b32b1, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 916917378494744782, guid: 98f5378049f9b5745a77677f581b32b1, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -11357,6 +11385,10 @@ PrefabInstance:
       value: JumpPlatform001 (7)
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -12489,6 +12521,10 @@ PrefabInstance:
       value: JumpPlatform001 (8)
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -12730,6 +12766,10 @@ PrefabInstance:
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_Name
       value: JumpPlatform001 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13049,6 +13089,10 @@ PrefabInstance:
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_Name
       value: MovingPlatform002
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_IsActive
@@ -22658,6 +22702,10 @@ PrefabInstance:
       value: JumpPlatform001
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -25692,6 +25740,10 @@ PrefabInstance:
       value: MovingPlatform003
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -26866,7 +26918,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acd0c5bb0609a444bd1b3a5b33f0dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lowestHeight: -10
   player: {fileID: 2039309334}
+  StartPointx: 0
+  StartPointy: 0
+  StartPointz: 0
+  StartRotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!4 &1687993186
 Transform:
   m_ObjectHideFlags: 0
@@ -27249,6 +27306,10 @@ PrefabInstance:
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_Name
       value: JumpPlatform001 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -28295,6 +28356,10 @@ PrefabInstance:
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_Name
       value: MovingPlatform004
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_IsActive
@@ -31890,6 +31955,10 @@ PrefabInstance:
       value: MovingPlatform001
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -32022,6 +32091,10 @@ PrefabInstance:
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_Name
       value: JumpPlatform001 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -34882,10 +34955,18 @@ PrefabInstance:
       value: JumpPlatform001
       objectReference: {fileID: 0}
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1213648755241879656, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107297561930626515, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -34952,6 +35033,10 @@ PrefabInstance:
     - target: {fileID: 7967113165592353481, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499321396703556716, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}

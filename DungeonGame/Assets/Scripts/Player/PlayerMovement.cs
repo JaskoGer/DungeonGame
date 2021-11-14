@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 7.0f;
     public float jumpSpeed = 4.0f;
     public float jumpForce = 5.0f;
-    public float gravityScale = 5.0f;
+    public float gravityScale = 1.3f;
     public bool isGrounded = false;
     public float lerpSpeed = 0.05f;
     float jumpCooldown = 0;
@@ -46,9 +46,12 @@ public class PlayerMovement : MonoBehaviour
     /**
      * @Author Tobias
      */
-    void OnCollisionEnter()
+    void OnCollisionEnter(Collision other)
     {
-        isGrounded = true;
+        if(other.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isGrounded = true;
+        }
     }
 
     /**
@@ -77,15 +80,17 @@ public class PlayerMovement : MonoBehaviour
         
         //Raycast zum Angreifen nach vorne
         Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation) * Vector3.forward, out hitEnemy1, PlayerStatsSingleton.instance.AttackRange);
-        //Raycast zum Angreifen nach 3°rechts
+        //Raycast zum Angreifen nach 3° nach rechts
         Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.up * 5)) * Vector3.forward, out hitEnemy2, PlayerStatsSingleton.instance.AttackRange);
-        //Raycast zum Angreifen nach 3°rechts
+        //Raycast zum Angreifen nach 3° nach links
         Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.down * 5)) * Vector3.forward, out hitEnemy3, PlayerStatsSingleton.instance.AttackRange);
         
-        //zum Testen
-        //Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), PlayerCharacter.rotation * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
-        //Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.up * 5)) * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
-        //Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.down * 5)) * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
+        /**
+        zum Testen
+        Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), PlayerCharacter.rotation * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
+        Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.up * 5)) * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
+        Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.down * 5)) * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
+        **/
     }
 
 
@@ -96,14 +101,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         var horizontal = Input.GetAxis("Horizontal");
-        var vertical = Input.GetAxis("Vertical");
-
-
-        //Laurins Debug Schleife
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            PlayerTeleport();
-        }        
+        var vertical = Input.GetAxis("Vertical");    
 
         //sprinting
         if (Input.GetKey(KeyCode.LeftShift))
@@ -197,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
             jumpCooldown -= Time.deltaTime;
         }
 
-        /*
+        /**
          * angreifen
          * bearbeitet von Kacper
          */
@@ -210,29 +208,19 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(AttackAnimation());
             }
 		}
-
-        /*
-         * @Author Kacper
-         * Methode zum Abspielen der Angriffsanimation
-         */
-        IEnumerator AttackAnimation()
-        {
-            animator.SetBool("moving", false);
-            yield return new WaitForSeconds(0.3f);
-            PlayerStatsSingleton.instance.AttackEnemy(hitEnemy1, hitEnemy2, hitEnemy3);
-            yield return new WaitForSeconds(0.45f);
-            animator.SetBool("attack", false);
-        }
     }
 
-    /*
-     *@Author Laurin   
-     *Debug Methode zum Porten des Spielers
+    /**
+     * @Author Kacper
+     * Methode zum Abspielen der Angriffsanimation
+     * bearbeitet von Tobias
      */
-
-    public void PlayerTeleport()
+    IEnumerator AttackAnimation()
     {
-      Player.transform.position = new Vector3(6, 6, 56);
+        animator.SetBool("moving", false);
+        yield return new WaitForSeconds(0.3f);
+        PlayerStatsSingleton.instance.AttackEnemy(hitEnemy1, hitEnemy2, hitEnemy3);
+        yield return new WaitForSeconds(0.45f);
+        animator.SetBool("attack", false);
     }
-
 }

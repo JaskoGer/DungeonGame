@@ -138,7 +138,7 @@ bool HasVisual(float distance)
 		{
 			if (distance <= attackDistance && attackCooldown <= 0)
 			{
-				AttackInformation();
+				AttackPlayer();
 				SetAttackCooldown();
 			}
 			return true;
@@ -190,9 +190,9 @@ bool HasVisual(float distance)
 	 * @author Jasko
 	 * benachrichtigt den Spieler, dass er angegriffen wird
 	 */
-	void AttackInformation()
+	void AttackPlayer()
 	{
-		print("I punched you in the face you A-hole!");
+		//print("I punched you in the face you A-hole!");
 		PlayerStatsSingleton.instance.PlayerDamage(attackDamage);
 	}
 

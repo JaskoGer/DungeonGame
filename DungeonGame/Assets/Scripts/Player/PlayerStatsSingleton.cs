@@ -27,7 +27,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     private int nextLevelXp = 100;
 
     private float AttackDamage = 10f;
-    private float AttackRange = 4f;
+    public float AttackRange = 4f;
 
     public Transform PlayerCharacter;
 
@@ -66,9 +66,7 @@ public class PlayerStatsSingleton : MonoBehaviour
             LevelUp();
         }
 
-
-        //Keine Aktualisierung falls in der "Health Regen" schleife
-
+        SetUIImage();
     }
 
     /**
@@ -80,7 +78,6 @@ public class PlayerStatsSingleton : MonoBehaviour
         Health = MaxHealth;
     }
 
-
     /*
      * @Author Laurin
      * Methode für das Regenerieren von Leben
@@ -90,7 +87,6 @@ public class PlayerStatsSingleton : MonoBehaviour
     {
         if (Health < MaxHealth)
         {
-            SetUIImage();
             Health += RegenerationBoost*Time.deltaTime;
             if (Health > MaxHealth)
                 Health = MaxHealth;
@@ -165,8 +161,6 @@ public class PlayerStatsSingleton : MonoBehaviour
         MaxHealth += 10;
         Health += 10;
         SetPlayerArmor(Armor + 1);
-
-        SetUIImage();
     }
 
     /**
@@ -226,26 +220,8 @@ public class PlayerStatsSingleton : MonoBehaviour
         }
         if (Enemy.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Enemy.GetComponent<EnemyController>().GetDamage(GetAttackDamage());
+            Enemy.GetComponent<EnemyController>().GetDamage(AttackDamage);
         }
-    }
-
-    /**
-     * @Author Laurin
-     * Getter
-     */
-    public float GetAttackDamage()
-    {
-        return AttackDamage;
-    }
-
-    /**
-     * @Author Laurin
-     * Getter
-     */
-    public float GetAttackRange()
-    {
-        return AttackRange;
     }
 
     /**

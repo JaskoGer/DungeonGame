@@ -79,13 +79,11 @@ public class PlayerMovement : MonoBehaviour
         }
         
         //Raycast zum Angreifen nach vorne
-
         Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation) * Vector3.forward, out hitEnemy1, PlayerStatsSingleton.instance.AttackRange);
         //Raycast zum Angreifen nach 3° nach rechts
         Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.up * 5)) * Vector3.forward, out hitEnemy2, PlayerStatsSingleton.instance.AttackRange);
         //Raycast zum Angreifen nach 3° nach links
         Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.down * 5)) * Vector3.forward, out hitEnemy3, PlayerStatsSingleton.instance.AttackRange);
-
         
         /**
         zum Testen

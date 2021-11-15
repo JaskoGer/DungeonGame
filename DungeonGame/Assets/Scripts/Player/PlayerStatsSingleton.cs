@@ -59,7 +59,7 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     void Update()
     {
-        HealthRegeneration(RegenerationPower);
+        EntityStatsController.instance.HealthRegeneration(RegenerationPower, Health, MaxHealth);
 
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -69,29 +69,8 @@ public class PlayerStatsSingleton : MonoBehaviour
         SetUIImage();
     }
 
-    /**
-     * @Author Tobias
-     * Zurücksetzen des Lebens
-     */
-    public void ResetHealth()
-    {
-        Health = MaxHealth;
-    }
 
-    /*
-     * @Author Laurin
-     * Methode für das Regenerieren von Leben
-     * Ausgelagerter Code geschrieben von Tobias
-     */
-    public void HealthRegeneration(float RegenerationBoost)
-    {
-        if (Health < MaxHealth)
-        {
-            Health += RegenerationBoost*Time.deltaTime;
-            if (Health > MaxHealth)
-                Health = MaxHealth;
-        }
-    }
+    
 
     /**
      * @Author Tobias
@@ -114,6 +93,25 @@ public class PlayerStatsSingleton : MonoBehaviour
 	{
 		return Health;
 	}
+
+    /*
+     *@Author Laurin   
+     *Zurückgeben des Maximalen Lebens
+     */
+    public float GetPlayerMaxHealth()
+    {
+        return MaxHealth;
+    }
+
+    public float GetPlayerArmor()
+    {
+        return Armor;
+    }
+
+    public float GetRegenerationPower()
+    {
+        return RegenerationPower;
+    }
 
     /**
      * @Author Tobias

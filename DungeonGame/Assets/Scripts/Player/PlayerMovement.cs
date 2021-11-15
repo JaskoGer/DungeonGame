@@ -45,17 +45,6 @@ public class PlayerMovement : MonoBehaviour
 
     /**
      * @Author Tobias
-     */
-    void OnCollisionEnter(Collision other)
-    {
-        if(other.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            isGrounded = true;
-        }
-    }
-
-    /**
-     * @Author Tobias
      * Abfrage eines Raycasts zum Boden
      */
     void FixedUpdate()
@@ -66,16 +55,13 @@ public class PlayerMovement : MonoBehaviour
 
         RaycastHit hitDown;
 
-        if (Physics.Raycast(PlayerCharacter.position, Vector3.down, out hitDown, 2.0f))
+        if (Physics.Raycast(PlayerCharacter.position + Vector3.up * 0.5f, Vector3.down, out hitDown, 1f))
         {
-            if (hitDown.distance > 0.5)
-            {
-                isGrounded = false;
-            }
-            else
-            {
-                isGrounded = true;
-            }
+            isGrounded = true;  
+        }
+		else
+        {
+            isGrounded = false;
         }
         
         //Raycast zum Angreifen nach vorne
@@ -85,12 +71,14 @@ public class PlayerMovement : MonoBehaviour
         //Raycast zum Angreifen nach 3° nach links
         Physics.Raycast(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.down * 5)) * Vector3.forward, out hitEnemy3, PlayerStatsSingleton.instance.AttackRange);
         
-        /**
-        zum Testen
         Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), PlayerCharacter.rotation * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
         Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.up * 5)) * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
         Debug.DrawRay(PlayerCharacter.position + new Vector3(0, 0.3f, 0), (PlayerCharacter.rotation * Quaternion.Euler(Vector3.down * 5)) * (PlayerStatsSingleton.instance.AttackRange * Vector3.forward), Color.red, 3f);
-        **/
+
+
+		print(hitEnemy1.collider);
+		print(hitEnemy2.collider);
+		print(hitEnemy3.collider);
     }
 
 

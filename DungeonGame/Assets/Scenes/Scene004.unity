@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16147631, g: 0.11081798, b: 0.1512075, a: 1}
+  m_IndirectSpecularColor: {r: 0.16149727, g: 0.110826515, b: 0.15121487, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -980,7 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08fb6a84a69577549826557aaa88ec6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thePlayer: {fileID: 0}
+  thePlayer: {fileID: 1475087102}
 --- !u!65 &63491950
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3713,7 +3713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08fb6a84a69577549826557aaa88ec6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thePlayer: {fileID: 0}
+  thePlayer: {fileID: 1475087102}
 --- !u!65 &227989356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8390,7 +8390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08fb6a84a69577549826557aaa88ec6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thePlayer: {fileID: 0}
+  thePlayer: {fileID: 1475087102}
 --- !u!65 &486653372
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11669,7 +11669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08fb6a84a69577549826557aaa88ec6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thePlayer: {fileID: 0}
+  thePlayer: {fileID: 1475087102}
 --- !u!65 &706572358
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28192,6 +28192,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1213648755241879656, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213648755241879656, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2107297561848037233, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_Convex
       value: 0
@@ -31486,6 +31494,14 @@ PrefabInstance:
     - target: {fileID: 710652644440177372, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213648755241879656, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213648755241879656, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6827870956542709857, guid: 84e4dafdbb9995d4ca05e73767bfb24b, type: 3}
       propertyPath: m_RootOrder

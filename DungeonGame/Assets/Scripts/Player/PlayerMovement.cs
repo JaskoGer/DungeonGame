@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 moveDirection = Vector3.zero;
 
+    public static PlayerMovement instance = null;
+
     public float normalSpeed = 7.0f;
     public float speed = 7.0f;
     public float jumpSpeed = 4.0f;
@@ -32,6 +34,22 @@ public class PlayerMovement : MonoBehaviour
     RaycastHit hitEnemy1;
     RaycastHit hitEnemy2;
     RaycastHit hitEnemy3;
+
+     private void Awake()
+	{
+		// Erstellen der Instance dieser Klasse
+		if (instance == null)
+		{
+			instance = this;
+		}
+		//Zerstöre ein bestehendes Objekt, falls es nicht dieses ist
+		else if (instance != this)
+		{
+			Destroy(gameObject);
+		}
+
+		DontDestroyOnLoad (gameObject);
+	}
 
     /**
      * @Author Tobias
@@ -117,8 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Tastenänderungen beim Drehen der Kamera
-        if (isGrounded)
-        {
+       
             if (Math.Round(Cam.eulerAngles.y) == 0)
             {
                 moveDirection = new Vector3(horizontal, 0.0f, vertical);
@@ -138,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 moveDirection = new Vector3(-vertical, 0.0f, horizontal);
             }
-        }
+        
 
 
 

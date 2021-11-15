@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class EntityStatsController : MonoBehaviour
 {
+
+    /*
+     *@Author Laurin
+     *Script mit ausgelagerten und Angepassten funktionen für sowohl Enemy als auch Player
+     */
+
     public static EntityStatsController instance = null;
 
     private void Awake()
@@ -39,20 +45,26 @@ public class EntityStatsController : MonoBehaviour
      * Methode für das Regenerieren von Leben
      * Ausgelagerter Code geschrieben von Tobias
      */
-    public void HealthRegeneration(float RegenerationBoost, float Health, float MaxHealth)
+    public float HealthRegeneration(float RegenerationBoost, float Health, float MaxHealth)
     {
-        if (Health < MaxHealth)
+        
+        
+        if (Health < MaxHealth && Health != 0)
         {
             Health += RegenerationBoost*Time.deltaTime;
+            
+    
             if (Health > MaxHealth)
                 Health = MaxHealth;
         }
+        return Health;
         
     }
 
         /**
      * @Author Tobias
      * Zurücksetzen des Lebens
+     * Angepasst Laurin
      */
     public float ResetHealth(float Health, float MaxHealth)
     {

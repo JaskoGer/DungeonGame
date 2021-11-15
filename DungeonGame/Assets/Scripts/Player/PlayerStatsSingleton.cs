@@ -16,6 +16,12 @@ public class PlayerStatsSingleton : MonoBehaviour
     public Image HealthBarSlider;
     public Image ArmorBarSlider;
 
+    [SerializeField]
+    private Text HealthValue;
+    [SerializeField]
+    private Text ArmorValue;
+    
+
     private float MaxHealth = 100;
     private float Health = 100;
     private float Armor = 0;
@@ -55,11 +61,14 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     * Methode zum Anpassen des Levels und des Lebens in jeden Frame
+     * Methode zum Anpassen des Levels in jeden Frame
+     * Lebensregeneration von Laurin Angepasst
      */
     void Update()
     {
-        EntityStatsController.instance.HealthRegeneration(RegenerationPower, Health, MaxHealth);
+        float tempHealth;
+        tempHealth = EntityStatsController.instance.HealthRegeneration(RegenerationPower, Health, MaxHealth);
+        SetPlayerHealth(tempHealth);
 
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -103,11 +112,19 @@ public class PlayerStatsSingleton : MonoBehaviour
         return MaxHealth;
     }
 
+/*
+     *@Author Laurin   
+     *Zurückgeben Rüstung
+     */
     public float GetPlayerArmor()
     {
         return Armor;
     }
 
+/*
+     *@Author Laurin   
+     *Zurückgeben der Regenerationskraft
+     */
     public float GetRegenerationPower()
     {
         return RegenerationPower;
@@ -226,9 +243,21 @@ public class PlayerStatsSingleton : MonoBehaviour
      * @Author Tobias
      * Setzung des UI
      * bearbeitet von Kacper
+     * Anzeige der Lebenszahl/Rüstungszahl und rundung von Laurin
      */
     public void SetUIImage()
     {
+        float RoundedHealth;
+        if(Health == MaxHealth)
+        {
+          HealthValue.text = Health + " / " + MaxHealth;
+        }
+        else if (Health != MaxHealth)
+        {
+          RoundedHealth = Mathf.Round(Health);  
+          HealthValue.text = RoundedHealth + " / " + MaxHealth;
+        }
+        ArmorValue.text = Armor + " ";
         HealthBarSlider.fillAmount = Health / MaxHealth;
         ArmorBarSlider.fillAmount = Armor;
     }

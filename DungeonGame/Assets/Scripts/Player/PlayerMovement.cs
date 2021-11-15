@@ -117,8 +117,6 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Tastenänderungen beim Drehen der Kamera
-        if (isGrounded)
-        {
             if (Math.Round(Cam.eulerAngles.y) == 0)
             {
                 moveDirection = new Vector3(horizontal, 0.0f, vertical);
@@ -138,8 +136,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 moveDirection = new Vector3(-vertical, 0.0f, horizontal);
             }
-        }
-
 
 
         //Spielerpositionsändreung mit translate

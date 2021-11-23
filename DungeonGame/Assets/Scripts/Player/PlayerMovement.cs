@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                speed = 12.0f;
+                speed = 11.0f;
                 animator.SetFloat("speed", speed / 8.0f);
             }
             else
@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
         //Springen
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && jumpCooldown <= 0)
         {
-            jumpCooldown = 1.0f;
+            jumpCooldown = 0.6f;
             rb.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
             isGrounded = false;
         }
@@ -190,8 +190,16 @@ public class PlayerMovement : MonoBehaviour
 
         //Spielerpositionsändreung mit translate
 
+        if (wallTrigger)
+        {
+            rb.velocity = Vector3.zero;
+            moveDirection = Vector3.zero;
+            wallTrigger = false;
+        }
+
         if (!animator.GetBool("attack"))
         {
+            //rb.MovePosition(transform.position + moveDirection * speed / 50);
             Player.Translate(moveDirection * Time.deltaTime * speed);
         }
 

@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5.0f;
     public float gravityScale = 1.3f;
     public bool isGrounded = false;
-    public float lerpSpeed = 0.05f;
+    float lerpSpeed = 7.5f;
     float jumpCooldown = 0;
 
     bool wallTrigger = false;
@@ -71,14 +71,15 @@ public class PlayerMovement : MonoBehaviour
 
     /**
      * @Author Tobias
-     * Abfrage eines Raycasts zum Boden
+     * Abfrage aller Raycasts zum Boden und restliche Physics
      */
     void FixedUpdate()
     {
+        // Verlangsamung falls in der Luft (imitierte Reibung)
         moveDirection = 0.99f * moveDirection;
 
+        // Gravitation
         rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
-
 
         //Raycasts zum überprüfen der Postition
         if (Physics.Raycast(PlayerCharacter.position + Vector3.up * 0.5f, Vector3.down, 1f))
@@ -206,7 +207,7 @@ public class PlayerMovement : MonoBehaviour
         //Spielerdrehung mit schönem Übergang
         if (moveDirection != Vector3.zero)
         {
-            PlayerCharacter.rotation = Quaternion.Slerp(PlayerCharacter.rotation, Quaternion.LookRotation(moveDirection), lerpSpeed);
+            PlayerCharacter.rotation = Quaternion.Slerp(PlayerCharacter.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * lerpSpeed);
         }
 
         //Boolean als bool für die Laufanimation des Spielers
@@ -239,7 +240,6 @@ public class PlayerMovement : MonoBehaviour
          * angreifen
          * bearbeitet von Kacper
          */
-
         if (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true || Input.GetButton("Fire1") && GlobalScene.currentScene > 2)
         {
             if (animator.GetBool("attack") == false)

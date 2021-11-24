@@ -103,7 +103,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 		return Health;
 	}
 
-    /*
+    /**
      *@Author Laurin   
      *Zurückgeben des Maximalen Lebens
      */
@@ -112,7 +112,7 @@ public class PlayerStatsSingleton : MonoBehaviour
         return MaxHealth;
     }
 
-/*
+    /**
      *@Author Laurin   
      *Zurückgeben Rüstung
      */
@@ -121,7 +121,7 @@ public class PlayerStatsSingleton : MonoBehaviour
         return Armor;
     }
 
-/*
+    /**
      *@Author Laurin   
      *Zurückgeben der Regenerationskraft
      */

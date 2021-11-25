@@ -70,10 +70,6 @@ public class PlayerStatsSingleton : MonoBehaviour
         tempHealth = EntityStatsController.instance.HealthRegeneration(RegenerationPower, Health, MaxHealth);
         SetPlayerHealth(tempHealth);
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            LevelUp();
-        }
 
         SetUIImage();
     }

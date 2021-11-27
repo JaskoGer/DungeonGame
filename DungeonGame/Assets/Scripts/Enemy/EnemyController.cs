@@ -12,7 +12,6 @@ using UnityEngine.AI;
  */
 public class EnemyController : MonoBehaviour
 {
-	public EnemyController instance = null;
 	public float lookRadius = 25f;
 	public float attackDistance = 2f;
 	public float movementSpeed = 5f;
@@ -27,23 +26,6 @@ public class EnemyController : MonoBehaviour
 
 	Transform target;
 	NavMeshAgent agent;
-
-	private void Awake()
-	{
-		// Erstellen der Instance dieser Klasse
-		if (instance == null)
-		{
-			instance = this;
-		}
-		//Zerstöre ein bestehendes Objekt, falls es nicht dieses ist
-		else if (instance != this)
-		{
-			Destroy(gameObject);
-		}
-
-		DontDestroyOnLoad (gameObject);
-	}
-		//Definitiv nicht weil ich zu doof bin das anders zu machen, nein nein
 
 
 	/**

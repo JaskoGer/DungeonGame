@@ -24,7 +24,12 @@ public class RangeAttack : MonoBehaviour
         }
 
     }
-
+    
+     /**
+     *@Author Laurin   
+     * damage apply am Enemy
+     * bearbeitet von Tobias
+     */
     public void Attack()
     {
 
@@ -35,13 +40,14 @@ public class RangeAttack : MonoBehaviour
         
         if (Physics.Raycast(Entity.transform.position + new Vector3(0f, 1f, 0f), Entity.transform.forward, out hit, range))
         {
-            /* Debug.Log(hit.transform.name);
-            Debug.DrawRay(Entity.transform.position + new Vector3(0f, 1f, 0f), Entity.transform.forward, Color.green, 2, false); */
-            EnemyController target = hit.transform.GetComponent<EnemyController>();
-            /* tracer.AddPosition(hit.point); */
-            if (target != null)
+            GameObject Enemy = hit.collider.gameObject;
+            if (hit.collider.gameObject.transform.parent != null)
             {
-                target.instance.GetDamage(getDamage());
+                Enemy = hit.collider.gameObject.transform.parent.gameObject;
+            }
+            if (Enemy.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                Enemy.GetComponent<EnemyController>().GetDamage(PlayerStatsSingleton.instance.GetAttackDamage());
             }
         }
     }

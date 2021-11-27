@@ -126,6 +126,11 @@ public class PlayerStatsSingleton : MonoBehaviour
         return RegenerationPower;
     }
 
+    public float GetAttackDamage()
+    {
+        return AttackDamage;
+    }
+
     /**
      * @Author Tobias
      * Hinzufügen von Leben
@@ -225,6 +230,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     void AttackEnemyRaycast(RaycastHit hitEnemy)
     {
         GameObject Enemy = hitEnemy.collider.gameObject;
+        print(hitEnemy.collider);
         if (hitEnemy.collider.gameObject.transform.parent != null)
         {
             Enemy = hitEnemy.collider.gameObject.transform.parent.gameObject;
@@ -257,4 +263,5 @@ public class PlayerStatsSingleton : MonoBehaviour
         HealthBarSlider.fillAmount = Health / MaxHealth;
         ArmorBarSlider.fillAmount = Armor;
     }
+
 } 

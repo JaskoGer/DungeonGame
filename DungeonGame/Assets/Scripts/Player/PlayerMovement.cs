@@ -85,23 +85,23 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
 
         //Raycasts zum überprüfen der Postition
-        if (Physics.Raycast(player.position + Vector3.up * 0.5f, Vector3.down, 1f))
+        if (Physics.Raycast(playerCharacter.position + Vector3.up * 0.5f, Vector3.down, 1f))
         {
             isGrounded = true;
         }
-        else if (Physics.Raycast(player.position + Vector3.up * 0.5f + Vector3.forward * 0.5f + Vector3.left * 0.5f, Vector3.down, 1f))
+        else if (Physics.Raycast(playerCharacter.position + Vector3.up * 0.5f + Vector3.forward * 0.5f + Vector3.left * 0.5f, Vector3.down, 1f))
         {
             isGrounded = true;
         }
-        else if (Physics.Raycast(player.position + Vector3.up * 0.5f + Vector3.forward * 0.5f + Vector3.right * 0.5f, Vector3.down, 1f))
+        else if (Physics.Raycast(playerCharacter.position + Vector3.up * 0.5f + Vector3.forward * 0.5f + Vector3.right * 0.5f, Vector3.down, 1f))
         {
             isGrounded = true;
         }
-        else if (Physics.Raycast(player.position + Vector3.up * 0.5f + Vector3.back * 0.5f + Vector3.left * 0.5f, Vector3.down, 1f))
+        else if (Physics.Raycast(playerCharacter.position + Vector3.up * 0.5f + Vector3.back * 0.5f + Vector3.left * 0.5f, Vector3.down, 1f))
         {
             isGrounded = true;
         }
-        else if (Physics.Raycast(player.position + Vector3.up * 0.5f + Vector3.back * 0.5f + Vector3.right * 0.5f, Vector3.down, 1f))
+        else if (Physics.Raycast(playerCharacter.position + Vector3.up * 0.5f + Vector3.back * 0.5f + Vector3.right * 0.5f, Vector3.down, 1f))
         {
             isGrounded = true;
         }
@@ -110,12 +110,15 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
 
+        Debug.DrawRay(playerCharacter.position + new Vector3(0, 0.3f, 0), (playerCharacter.rotation) * Vector3.forward * PlayerStatsSingleton.instance.GetAttackRange(), Color.cyan, 2f);
+        Debug.DrawRay(playerCharacter.position + new Vector3(0, 0.3f, 0), (playerCharacter.rotation * Quaternion.Euler(Vector3.up * 5)) * Vector3.forward * PlayerStatsSingleton.instance.GetAttackRange(), Color.cyan, 2f);
+        Debug.DrawRay(playerCharacter.position + new Vector3(0, 0.3f, 0), (playerCharacter.rotation * Quaternion.Euler(Vector3.down * 5)) * Vector3.forward * PlayerStatsSingleton.instance.GetAttackRange(), Color.cyan, 2f);
         //Raycast zum Angreifen nach vorne
-        Physics.Raycast(player.position + new Vector3(0, 0.3f, 0), (player.rotation) * Vector3.forward, out hitEnemy1, PlayerStatsSingleton.instance.GetAttackRange());
+        Physics.Raycast(playerCharacter.position + new Vector3(0, 0.3f, 0), (playerCharacter.rotation) * Vector3.forward, out hitEnemy1, PlayerStatsSingleton.instance.GetAttackRange());
         //Raycast zum Angreifen nach 3° nach rechts
-        Physics.Raycast(player.position + new Vector3(0, 0.3f, 0), (player.rotation * Quaternion.Euler(Vector3.up * 5)) * Vector3.forward, out hitEnemy2, PlayerStatsSingleton.instance.GetAttackRange());
+        Physics.Raycast(playerCharacter.position + new Vector3(0, 0.3f, 0), (playerCharacter.rotation * Quaternion.Euler(Vector3.up * 5)) * Vector3.forward, out hitEnemy2, PlayerStatsSingleton.instance.GetAttackRange());
         //Raycast zum Angreifen nach 3° nach links
-        Physics.Raycast(player.position + new Vector3(0, 0.3f, 0), (player.rotation * Quaternion.Euler(Vector3.down * 5)) * Vector3.forward, out hitEnemy3, PlayerStatsSingleton.instance.GetAttackRange());
+        Physics.Raycast(playerCharacter.position + new Vector3(0, 0.3f, 0), (playerCharacter.rotation * Quaternion.Euler(Vector3.down * 5)) * Vector3.forward, out hitEnemy3, PlayerStatsSingleton.instance.GetAttackRange());
     }
 
     /**

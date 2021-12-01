@@ -2,6 +2,11 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
+/**
+ * @Author Jonas
+ * verschlüsselt und entschlüsselt die Daten, die gespeichert werden
+ * führt das Speichern in der PlayerData-Klasse durch
+ */
 public static class SaveSystem
 {
    public static void SavePlayer (PlayerStatsSingleton player)

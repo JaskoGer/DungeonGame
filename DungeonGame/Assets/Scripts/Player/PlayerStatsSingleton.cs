@@ -13,30 +13,23 @@ public class PlayerStatsSingleton : MonoBehaviour
 {
 	public static PlayerStatsSingleton instance = null;
 	
-    public Image HealthBarSlider;
-    public Image ArmorBarSlider;
+    public Image healthBarSlider;
 
     [SerializeField]
     private Text HealthValue;
-    [SerializeField]
-    private Text ArmorValue;
-    
 
-    private float MaxHealth = 100;
-    private float Health = 100;
-    private float Armor = 0;
-    private float DamageReduction = 0;
-    private float RegenerationPower = 0.33333f;
-
-    private int PlayerLevel = 1;
-    private int PlayerXp = 0;
+    private float maxHealth = 100;
+    private float health = 100;
+    private float regenerationPower = 0.33333f;
+    private int playerLevel = 1;
+    private int playerXp = 0;
     private int nextLevelXp = 100;
     private int moneten = 0;
 
-    private float AttackDamage = 10f;
-    public float AttackRange = 4f;
+    private float attackDamage = 10f;
+    private float attackRange = 4f;
 
-    public Transform PlayerCharacter;
+    private Transform playerCharacter;
 
     private void Awake()
 	{
@@ -57,6 +50,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerCharacter = ObjectManager.instance.playerCharacter.transform;
         SetUIImage();
     }
 
@@ -68,7 +62,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     void Update()
     {
         float tempHealth;
-        tempHealth = EntityStatsController.instance.HealthRegeneration(RegenerationPower, Health, MaxHealth);
+        tempHealth = EntityStatsController.instance.HealthRegeneration(regenerationPower, health, maxHealth);
         SetPlayerHealth(tempHealth);
         SetUIImage();
         if (Input.GetKeyDown(KeyCode.K))
@@ -98,10 +92,10 @@ public class PlayerStatsSingleton : MonoBehaviour
     {
         PlayerData data = SaveSystem.LoadPlayer();
 
-        PlayerLevel = data.level;
-        Health = data.health;
+        playerLevel = data.level;
+        health = data.health;
         moneten = data.moneten;
-        PlayerXp = data.xp;
+        playerXp = data.xp;
 
         Vector3 position;
         position.x = data.position[0];
@@ -116,10 +110,10 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     public void SetPlayerHealth(float pHealth)
     {
-        Health = pHealth;
-        if (Health <= 0)
+        health = pHealth;
+        if (health <= 0)
         {
-            Health = 0;
+            health = 0;
         }
     }
 
@@ -129,7 +123,7 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     public float GetPlayerHealth()
 	{
-		return Health;
+		return health;
 	}
 
     /**
@@ -138,16 +132,7 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     public float GetPlayerMaxHealth()
     {
-        return MaxHealth;
-    }
-
-    /**
-     *@Author Laurin   
-     *Zurückgeben Rüstung
-     */
-    public float GetPlayerArmor()
-    {
-        return Armor;
+        return maxHealth;
     }
 
     /**
@@ -156,12 +141,17 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     public float GetRegenerationPower()
     {
-        return RegenerationPower;
+        return regenerationPower;
     }
 
     public float GetAttackDamage()
     {
-        return AttackDamage;
+        return attackDamage;
+    }
+
+    public float GetAttackRange()
+    {
+        return attackRange;
     }
 
     /**
@@ -170,21 +160,11 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     public void AddPlayerHealth(float pHealth)
     {
-        Health = Health + pHealth;
-        if (Health > MaxHealth)
+        health = health + pHealth;
+        if (health > maxHealth)
         {
-            Health = MaxHealth;
+            health = maxHealth;
         }
-    }
-
-    /**
-     * @Author Tobias
-     * Setzen der Armor
-     */
-    public void SetPlayerArmor(float pArmor)
-    {
-        Armor = pArmor;
-        DamageReduction = 5 / (-(float)Math.Sqrt(Armor + 25)) + 1;
     }
 
     /**
@@ -193,10 +173,10 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     public void PlayerDamage(float pDamage)
     {
-        Health = Health - pDamage * (1 - DamageReduction);
-        if (Health <= 0)
+        health = health - pDamage;
+        if (health <= 0)
         {
-            Health = 0;
+            health = 0;
         }
     }
 
@@ -206,10 +186,9 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     public void LevelUp()
     {
-        PlayerLevel++;
-        MaxHealth += 10;
-        Health += 10;
-        SetPlayerArmor(Armor + 1);
+        playerLevel++;
+        maxHealth += 10;
+        health += 10;
     }
 
     /**
@@ -218,7 +197,7 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     public int GetPlayerLevel()
     {
-        return PlayerLevel;
+        return playerLevel;
     }
 
     /**
@@ -227,7 +206,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 	 */
     public int GetPlayerXP()
     {
-        return PlayerXp;
+        return playerXp;
     }
 
     /**
@@ -236,13 +215,13 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     public void AddPlayerXp(int pXp)
     {
-        PlayerXp += pXp;
-        if (PlayerXp >= nextLevelXp)
+        playerXp += pXp;
+        if (playerXp >= nextLevelXp)
         {
             LevelUp();
         }
-        PlayerXp = PlayerXp - nextLevelXp;
-        nextLevelXp = 100 * PlayerLevel * PlayerLevel;
+        playerXp = playerXp - nextLevelXp;
+        nextLevelXp = 100 * playerLevel * playerLevel;
     }
 
     /**
@@ -288,7 +267,7 @@ public class PlayerStatsSingleton : MonoBehaviour
         }
         if (Enemy.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Enemy.GetComponent<EnemyController>().GetDamage(AttackDamage);
+            Enemy.GetComponent<EnemyController>().GetDamage(attackDamage);
         }
     }
 
@@ -301,18 +280,16 @@ public class PlayerStatsSingleton : MonoBehaviour
     public void SetUIImage()
     {
         float RoundedHealth;
-        if(Health == MaxHealth)
+        if(health == maxHealth)
         {
-          HealthValue.text = Health + " / " + MaxHealth;
+          HealthValue.text = health + " / " + maxHealth;
         }
-        else if (Health != MaxHealth)
+        else if (health != maxHealth)
         {
-          RoundedHealth = Mathf.Round(Health);  
-          HealthValue.text = RoundedHealth + " / " + MaxHealth;
+          RoundedHealth = Mathf.Round(health);  
+          HealthValue.text = RoundedHealth + " / " + maxHealth;
         }
-        ArmorValue.text = Armor + " ";
-        HealthBarSlider.fillAmount = Health / MaxHealth;
-        ArmorBarSlider.fillAmount = Armor;
+        healthBarSlider.fillAmount = health / maxHealth;
     }
 
 } 

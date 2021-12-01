@@ -10,8 +10,8 @@ using UnityEngine;
  */
 public class CameraSwitch : MonoBehaviour
 {
-    public Transform target;
-	public Transform character;
+    private Transform rotator;
+    private Transform character;
 
     public float speed = 0.2f;
     public Quaternion rotation1 = Quaternion.Euler(0, 0, 0);
@@ -26,6 +26,8 @@ public class CameraSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        character = ObjectManager.instance.playerCharacter.transform;
+        rotator = ObjectManager.instance.camRotator.transform;
         notPlayerLayer = ~LayerMask.GetMask("Player");
     }
 
@@ -44,13 +46,13 @@ public class CameraSwitch : MonoBehaviour
 	{
 		//Erhaltung des Winkels zwischen 0 und 360°
         float rotation;
-        if (target.eulerAngles.y <= 360f)
+        if (rotator.eulerAngles.y <= 360f)
         {
-            rotation = (float) target.eulerAngles.y;
+            rotation = (float) rotator.eulerAngles.y;
         }
         else
         {
-            rotation = (float) target.eulerAngles.y - 360;
+            rotation = (float) rotator.eulerAngles.y - 360;
         }
 
         rotation1 = Quaternion.Euler(0, rotation, 0);
@@ -75,18 +77,18 @@ public class CameraSwitch : MonoBehaviour
      */
     void MoveCam() 
 	{
-        normalCameraPosition = target.localRotation * normalCameraVector;
+        normalCameraPosition = rotator.localRotation * normalCameraVector;
 
-        if (Physics.Raycast(character.position + new Vector3(0, 3f, 0), target.rotation * normalCameraVector, Vector3.Distance(transform.position, character.position + new Vector3(0, 3f, 0)), notPlayerLayer))
+        if (Physics.Raycast(character.position + new Vector3(0, 3f, 0), rotator.rotation * normalCameraVector, Vector3.Distance(transform.position, character.position + new Vector3(0, 3f, 0)), notPlayerLayer))
         {
-            if(Vector3.Distance(transform.position, target.position) > 0.4f)
+            if(Vector3.Distance(transform.position, rotator.position) > 0.4f)
             {
                 transform.Translate(0.01f * ((Quaternion.Inverse(transform.localRotation)) * -normalCameraVector));
             }
         }
-        else if(!Physics.Raycast(transform.position, target.rotation * normalCameraVector, 2.0f))
+        else if(!Physics.Raycast(transform.position, rotator.rotation * normalCameraVector, 2.0f))
         {
-            if (Vector3.Distance(transform.position, target.position) < normalCameraVector.magnitude)
+            if (Vector3.Distance(transform.position, rotator.position) < normalCameraVector.magnitude)
             {
                 transform.Translate(0.01f * ((Quaternion.Inverse(transform.localRotation)) * normalCameraVector));
             }
@@ -101,16 +103,16 @@ public class CameraSwitch : MonoBehaviour
         {
             float startTime = Time.time;
             float endTime = startTime + duration;
-            target.transform.rotation = originalRotation;
+            rotator.transform.rotation = originalRotation;
             yield return null;
             while (Time.time < endTime)
             {
                 float progress = (Time.time - startTime) / duration;
-                target.transform.rotation = Quaternion.Slerp(originalRotation, finalRotation, progress);
+                rotator.transform.rotation = Quaternion.Slerp(originalRotation, finalRotation, progress);
                 yield return null;
             }
         }
-        target.transform.rotation = finalRotation;
+        rotator.transform.rotation = finalRotation;
         isTurning = false;
     }
 }

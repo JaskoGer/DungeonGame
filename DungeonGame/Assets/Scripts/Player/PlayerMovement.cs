@@ -11,9 +11,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Transform Cam;
-    public Transform Player;
-    public Transform PlayerCharacter;
+    private Transform cam;
+    private Transform player;
+    private Transform playerCharacter;
     Animator animator;
 
     Rigidbody rb;
@@ -60,6 +60,9 @@ public class PlayerMovement : MonoBehaviour
      */
     void Start()
     {
+        cam = ObjectManager.instance.camRotator.transform;
+        playerCharacter = ObjectManager.instance.playerCharacter.transform;
+        player = ObjectManager.instance.player.transform;
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
     }
@@ -82,23 +85,23 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
 
         //Raycasts zum überprüfen der Postition
-        if (Physics.Raycast(Player.position + Vector3.up * 0.5f, Vector3.down, 1f))
+        if (Physics.Raycast(player.position + Vector3.up * 0.5f, Vector3.down, 1f))
         {
             isGrounded = true;
         }
-        else if (Physics.Raycast(Player.position + Vector3.up * 0.5f + Vector3.forward * 0.5f + Vector3.left * 0.5f, Vector3.down, 1f))
+        else if (Physics.Raycast(player.position + Vector3.up * 0.5f + Vector3.forward * 0.5f + Vector3.left * 0.5f, Vector3.down, 1f))
         {
             isGrounded = true;
         }
-        else if (Physics.Raycast(Player.position + Vector3.up * 0.5f + Vector3.forward * 0.5f + Vector3.right * 0.5f, Vector3.down, 1f))
+        else if (Physics.Raycast(player.position + Vector3.up * 0.5f + Vector3.forward * 0.5f + Vector3.right * 0.5f, Vector3.down, 1f))
         {
             isGrounded = true;
         }
-        else if (Physics.Raycast(Player.position + Vector3.up * 0.5f + Vector3.back * 0.5f + Vector3.left * 0.5f, Vector3.down, 1f))
+        else if (Physics.Raycast(player.position + Vector3.up * 0.5f + Vector3.back * 0.5f + Vector3.left * 0.5f, Vector3.down, 1f))
         {
             isGrounded = true;
         }
-        else if (Physics.Raycast(Player.position + Vector3.up * 0.5f + Vector3.back * 0.5f + Vector3.right * 0.5f, Vector3.down, 1f))
+        else if (Physics.Raycast(player.position + Vector3.up * 0.5f + Vector3.back * 0.5f + Vector3.right * 0.5f, Vector3.down, 1f))
         {
             isGrounded = true;
         }
@@ -108,11 +111,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Raycast zum Angreifen nach vorne
-        Physics.Raycast(Player.position + new Vector3(0, 0.3f, 0), (Player.rotation) * Vector3.forward, out hitEnemy1, PlayerStatsSingleton.instance.AttackRange);
+        Physics.Raycast(player.position + new Vector3(0, 0.3f, 0), (player.rotation) * Vector3.forward, out hitEnemy1, PlayerStatsSingleton.instance.GetAttackRange());
         //Raycast zum Angreifen nach 3° nach rechts
-        Physics.Raycast(Player.position + new Vector3(0, 0.3f, 0), (Player.rotation * Quaternion.Euler(Vector3.up * 5)) * Vector3.forward, out hitEnemy2, PlayerStatsSingleton.instance.AttackRange);
+        Physics.Raycast(player.position + new Vector3(0, 0.3f, 0), (player.rotation * Quaternion.Euler(Vector3.up * 5)) * Vector3.forward, out hitEnemy2, PlayerStatsSingleton.instance.GetAttackRange());
         //Raycast zum Angreifen nach 3° nach links
-        Physics.Raycast(Player.position + new Vector3(0, 0.3f, 0), (Player.rotation * Quaternion.Euler(Vector3.down * 5)) * Vector3.forward, out hitEnemy3, PlayerStatsSingleton.instance.AttackRange);
+        Physics.Raycast(player.position + new Vector3(0, 0.3f, 0), (player.rotation * Quaternion.Euler(Vector3.down * 5)) * Vector3.forward, out hitEnemy3, PlayerStatsSingleton.instance.GetAttackRange());
     }
 
     /**
@@ -157,22 +160,22 @@ public class PlayerMovement : MonoBehaviour
         //Tastenänderungen beim Drehen der Kamera
         moveDir = Vector3.zero;
         moveDirMag = (moveDirection).magnitude;
-        if (Math.Round(Cam.eulerAngles.y) == 0)
+        if (Math.Round(cam.eulerAngles.y) == 0)
         {
             moveDir = new Vector3(horizontal, 0.0f, vertical).normalized;
         }
 
-        if (Math.Round(Cam.eulerAngles.y) == 90)
+        if (Math.Round(cam.eulerAngles.y) == 90)
         {
             moveDir = new Vector3(vertical, 0.0f, -horizontal).normalized;
         }
 
-        if (Math.Round(Cam.eulerAngles.y) == 180)
+        if (Math.Round(cam.eulerAngles.y) == 180)
         {
             moveDir = new Vector3((-horizontal), 0.0f, -vertical).normalized;
         }
 
-        if (Math.Round(Cam.eulerAngles.y) == 270)
+        if (Math.Round(cam.eulerAngles.y) == 270)
         {
             moveDir = new Vector3(-vertical, 0.0f, horizontal).normalized;
         }
@@ -201,13 +204,13 @@ public class PlayerMovement : MonoBehaviour
         if (!animator.GetBool("attack"))
         {
             //rb.MovePosition(transform.position + moveDirection * speed / 50);
-            Player.Translate(moveDirection * Time.deltaTime * speed);
+            player.Translate(moveDirection * Time.deltaTime * speed);
         }
 
         //Spielerdrehung mit schönem Übergang
         if (moveDirection != Vector3.zero)
         {
-            PlayerCharacter.rotation = Quaternion.Slerp(PlayerCharacter.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * lerpSpeed);
+            playerCharacter.rotation = Quaternion.Slerp(playerCharacter.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * lerpSpeed);
         }
 
         //Boolean als bool für die Laufanimation des Spielers

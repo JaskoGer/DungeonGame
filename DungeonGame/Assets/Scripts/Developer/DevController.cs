@@ -61,7 +61,7 @@ private GameObject PortMenu;
 
     public void TeleportPlayer(float xCord, float yCord, float zCord)
     {
-        PlayerMovement.instance.Player.transform.position = new Vector3(xCord, yCord, zCord);
+        ObjectManager.instance.player.transform.position = new Vector3(xCord, yCord, zCord);
     }
 
     public void MaxHealthButton()
@@ -73,11 +73,6 @@ private GameObject PortMenu;
     public void SuicideButton()
     {
         PlayerStatsSingleton.instance.SetPlayerHealth(0);
-    }
-
-    public void AddArmorButton()
-    {
-        PlayerStatsSingleton.instance.SetPlayerArmor(PlayerStatsSingleton.instance.GetPlayerArmor() + 1);
     }
 
     public void LevelUpButton()

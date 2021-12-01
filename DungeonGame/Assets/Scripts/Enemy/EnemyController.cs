@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
 	public float enemyHP = 50;
 	public float attackCooldown = 0f;
 	private float patrolCooldown = 0f;
+	Animator animator;
 	//private float drawRayDuration = 0.2f;
 
 	Transform target;
@@ -35,9 +36,7 @@ public class EnemyController : MonoBehaviour
 	 */
 	void Start()
 	{
-		
-
-
+		animator = GetComponentInChildren<Animator>();
 		target = PlayerManager.instance.player.transform;
 		// setzen der Attribute
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -142,7 +141,7 @@ bool HasVisual(float distance)
 		{
 			if (distance <= attackDistance && attackCooldown <= 0)
 			{
-				AttackPlayer();
+				StartCoroutine(AttackPlayer());
 				SetAttackCooldown();
 			}
 			return true;
@@ -191,13 +190,16 @@ bool HasVisual(float distance)
 	}
 
 	/**
-	 * @author Jasko
+	 * @author Tobias
 	 * benachrichtigt den Spieler, dass er angegriffen wird
 	 */
-	void AttackPlayer()
+	IEnumerator AttackPlayer()
 	{
-		//print("I punched you in the face you A-hole!");
+		animator.SetBool("isAttacking", true);
+		yield return new WaitForSeconds(0.4f);
 		PlayerStatsSingleton.instance.PlayerDamage(attackDamage);
+		yield return new WaitForSeconds(0.4f);
+		animator.SetBool("isAttacking", false);
 	}
 
 	/**

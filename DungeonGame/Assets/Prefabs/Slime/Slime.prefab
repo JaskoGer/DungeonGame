@@ -1,33 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!136 &3609849495424196805
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4528839107570935491}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2
-  m_Direction: 0
-  m_Center: {x: 0, y: 0.6, z: 0}
---- !u!136 &3609849495424196804
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4528839107570935491}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!1 &3609849495465134127
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,6 +12,8 @@ GameObject:
   - component: {fileID: 3609849495465134163}
   - component: {fileID: 3609849495465134160}
   - component: {fileID: 3609849495465134161}
+  - component: {fileID: 7488567703040877950}
+  - component: {fileID: 4065794259981538159}
   m_Layer: 8
   m_Name: Slime
   m_TagString: Untagged
@@ -121,6 +95,32 @@ MonoBehaviour:
   hasPatrolDest: 0
   enemyHP: 20
   attackCooldown: 0
+--- !u!135 &7488567703040877950
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609849495465134127}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.9
+  m_Center: {x: 0, y: 0.4, z: 0}
+--- !u!65 &4065794259981538159
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609849495465134127}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1001 &3609849495629896594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204,6 +204,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d6650ea0e53098f4b8be96a3907eeeef, type: 2}
     - target: {fileID: 6372508099637438639, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -212,13 +216,9 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2223639932434330405, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}
---- !u!1 &4528839107570935491 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}
-  m_PrefabInstance: {fileID: 3609849495629896594}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3860283624340978809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}

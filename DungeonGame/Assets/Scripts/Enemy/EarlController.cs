@@ -14,8 +14,8 @@ public class EarlController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = PlayerManager.instance.player.transform;
-        randyBody = PlayerBodyManager.instance.playerBody.transform;
+        target = ObjectManager.instance.player.transform;
+        randyBody = ObjectManager.instance.playerCharacter.transform;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 

@@ -13,11 +13,10 @@ public class PickUpItem : MonoBehaviour
     public GameObject fakeItem;
     public AudioSource pickUpFX;
     public NewItem item;
-	public Transform player;
 
     private void OnTriggerEnter(Collider other)
     {
-		if(other == player.GetComponent<BoxCollider>()){	
+		if(other == ObjectManager.instance.player.GetComponent<BoxCollider>()){	
 			pickUpFX.Play();
 			Debug.Log("Picking up " + item.name);
 			bool wasPickedUp = NewInventory.instance.Add(item);

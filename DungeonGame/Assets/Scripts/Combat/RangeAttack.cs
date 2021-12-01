@@ -6,12 +6,12 @@ public class RangeAttack : MonoBehaviour
     private float damage = 10f;
     private float range = 100f;
 
-    public GameObject Entity;
+    private Transform Entity;
     public TrailRenderer tracerEffect;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Entity = ObjectManager.instance.playerCharacter.transform;
     }
 
     // Update is called once per frame

@@ -37,7 +37,7 @@ public class EnemyController : MonoBehaviour
 	void Start()
 	{
 		animator = GetComponentInChildren<Animator>();
-		target = PlayerManager.instance.player.transform;
+		target = ObjectManager.instance.player.transform;
 		// setzen der Attribute
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 		agent.stoppingDistance = attackDistance;

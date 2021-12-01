@@ -18,11 +18,16 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     public float lowestHeight = 0f;
-    public GameObject player;
-    public float StartPointx = 0f;
-    public float StartPointy = 0f;
-    public float StartPointz = 0f;
-    public Quaternion StartRotation = Quaternion.Euler(Vector3.zero);
+    private Transform player;
+    public float startPointx = 0f;
+    public float startPointy = 0f;
+    public float startPointz = 0f;
+    public Quaternion startRotation = Quaternion.Euler(Vector3.zero);
+
+    private void Start()
+    {
+        player = ObjectManager.instance.player.transform;
+    }
 
     private void Update()
     {
@@ -30,7 +35,7 @@ public class PlayerManager : MonoBehaviour
         {
             player.transform.Find("rotator").rotation = Quaternion.Euler(Vector3.zero);
             player.transform.Find("RandyBeta").rotation = Quaternion.Euler(Vector3.zero);
-            player.transform.SetPositionAndRotation(new Vector3(StartPointx, StartPointy, StartPointz), StartRotation);
+            player.transform.SetPositionAndRotation(new Vector3(startPointx, startPointy, startPointz), startRotation);
         }
     }
 

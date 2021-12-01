@@ -31,6 +31,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     private int PlayerLevel = 1;
     private int PlayerXp = 0;
     private int nextLevelXp = 100;
+    private int moneten = 0;
 
     private float AttackDamage = 10f;
     public float AttackRange = 4f;
@@ -70,10 +71,44 @@ public class PlayerStatsSingleton : MonoBehaviour
         tempHealth = EntityStatsController.instance.HealthRegeneration(RegenerationPower, Health, MaxHealth);
         SetPlayerHealth(tempHealth);
         SetUIImage();
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SavePlayer();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadPlayer();
+        }
     }
 
+    /**
+	 * @Author Jonas
+	 * Speichert die Spielerinfos
+	 */
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+    }
 
-    
+    /**
+	 * @Author Jonas
+	 * Laedt den Spielstand
+	 */
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        PlayerLevel = data.level;
+        Health = data.health;
+        moneten = data.moneten;
+        PlayerXp = data.xp;
+
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+    }
 
     /**
      * @Author Tobias
@@ -187,6 +222,15 @@ public class PlayerStatsSingleton : MonoBehaviour
     }
 
     /**
+	 * @Author Jonas
+	 * Zurückgeben der XP
+	 */
+    public int GetPlayerXP()
+    {
+        return PlayerXp;
+    }
+
+    /**
      * @Author Tobias
      * Hinzufügen von extra XP
      */
@@ -199,6 +243,15 @@ public class PlayerStatsSingleton : MonoBehaviour
         }
         PlayerXp = PlayerXp - nextLevelXp;
         nextLevelXp = 100 * PlayerLevel * PlayerLevel;
+    }
+
+    /**
+	 * @Author Jonas
+	 * Zurückgeben der Moneten
+	 */
+    public int GetPlayerMoneten()
+    {
+        return moneten;
     }
 
     /**

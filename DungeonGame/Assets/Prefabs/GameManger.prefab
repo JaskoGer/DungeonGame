@@ -12,7 +12,10 @@ GameObject:
   - component: {fileID: 1051402048190947414}
   - component: {fileID: 6795440248266071577}
   - component: {fileID: 1588719608896160582}
+<<<<<<< HEAD
+=======
   - component: {fileID: 1454871095742297154}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
   m_Layer: 0
   m_Name: GameManger
   m_TagString: Untagged
@@ -77,6 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c44806bbd78e084eb387ce5394e45ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
 --- !u!114 &1454871095742297154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,3 +95,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 0}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5

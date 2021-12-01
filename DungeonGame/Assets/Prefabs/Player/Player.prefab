@@ -1,5 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
+=======
 --- !u!1 &14611094205998266
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 --- !u!1 &2616559265895651211
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +329,10 @@ MonoBehaviour:
   rotation1: {x: 0, y: 0, z: 0, w: 1}
   rotation2: {x: 0, y: 0, z: 0, w: 1}
   isTurning: 0
+<<<<<<< HEAD
+  Slider: 1
+=======
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 --- !u!1 &2616559266214925528
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,8 +347,11 @@ GameObject:
   - component: {fileID: 2616559266214925529}
   - component: {fileID: 6020036000517617798}
   - component: {fileID: 3432387899917496130}
+<<<<<<< HEAD
+=======
   - component: {fileID: 2674005873732776397}
   - component: {fileID: 6555398550807499571}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -363,7 +373,10 @@ Transform:
   - {fileID: 2577567205001949874}
   - {fileID: 2616559267737279715}
   - {fileID: 2616559267062476211}
+<<<<<<< HEAD
+=======
   - {fileID: 8283027793571668689}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -448,6 +461,8 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.7, z: 0}
+<<<<<<< HEAD
+=======
 --- !u!114 &2674005873732776397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +492,7 @@ MonoBehaviour:
   DeathCanvas: {fileID: 0}
   MusicSource: {fileID: 7047142820103400878}
   SoundSource: {fileID: 14611094205998266}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 --- !u!1 &2616559266409022214
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +648,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2616559267789702987}
+<<<<<<< HEAD
+=======
   - {fileID: 8476654043984243008}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
   m_Father: {fileID: 2616559266214925526}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -695,7 +714,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2616559266409022215}
+<<<<<<< HEAD
+=======
   - {fileID: 5830370902446910384}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
   m_Father: {fileID: 2616559267062476211}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -734,6 +756,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+<<<<<<< HEAD
+=======
 --- !u!1 &3142305113196653410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,6 +1063,7 @@ MonoBehaviour:
   myBackgroundMusik:
   - {fileID: 8300000, guid: 348371df605dd1c4b98ef8395d3f7e79, type: 3}
   - {fileID: 8300000, guid: e9f50c7230f577a4c8814211a1b6d2d7, type: 3}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 --- !u!1001 &2616559266146489689
 PrefabInstance:
   m_ObjectHideFlags: 0

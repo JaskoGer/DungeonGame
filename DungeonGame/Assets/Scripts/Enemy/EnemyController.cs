@@ -22,7 +22,10 @@ public class EnemyController : MonoBehaviour
 	public float enemyHP = 50;
 	public float attackCooldown = 0f;
 	private float patrolCooldown = 0f;
+<<<<<<< HEAD
+=======
 	Animator animator;
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 	//private float drawRayDuration = 0.2f;
 
 	Transform target;
@@ -36,7 +39,13 @@ public class EnemyController : MonoBehaviour
 	 */
 	void Start()
 	{
+<<<<<<< HEAD
+		
+
+
+=======
 		animator = GetComponentInChildren<Animator>();
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 		target = PlayerManager.instance.player.transform;
 		// setzen der Attribute
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -141,7 +150,11 @@ bool HasVisual(float distance)
 		{
 			if (distance <= attackDistance && attackCooldown <= 0)
 			{
+<<<<<<< HEAD
+				AttackPlayer();
+=======
 				StartCoroutine(AttackPlayer());
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 				SetAttackCooldown();
 			}
 			return true;
@@ -195,8 +208,12 @@ bool HasVisual(float distance)
 	 */
 	IEnumerator AttackPlayer()
 	{
+<<<<<<< HEAD
+		//print("I punched you in the face you A-hole!");
+=======
 		animator.SetBool("isAttacking", true);
 		yield return new WaitForSeconds(0.4f);
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 		PlayerStatsSingleton.instance.PlayerDamage(attackDamage);
 		yield return new WaitForSeconds(0.4f);
 		animator.SetBool("isAttacking", false);

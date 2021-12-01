@@ -95,6 +95,8 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+<<<<<<< HEAD
+=======
 --- !u!1 &922547535794492156
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +173,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 --- !u!1 &1079802938966184657
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +363,8 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+<<<<<<< HEAD
+=======
 --- !u!1 &4005271511315292421
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +444,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Inventar
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 --- !u!1 &5219525249186659313
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +476,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
 --- !u!1 &5380940975867740951
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,6 +693,7 @@ MonoBehaviour:
   m_Spacing: {x: 6, y: 6}
   m_Constraint: 0
   m_ConstraintCount: 2
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 --- !u!1 &6919111247263479230
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +707,10 @@ GameObject:
   - component: {fileID: 3947009544150711374}
   - component: {fileID: 8117394749946993090}
   - component: {fileID: 3172012042561577404}
+<<<<<<< HEAD
+=======
   - component: {fileID: 957602285590226409}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -720,8 +732,11 @@ RectTransform:
   - {fileID: 6654906172452728150}
   - {fileID: 9158198281629484087}
   - {fileID: 6205745289238075590}
+<<<<<<< HEAD
+=======
   - {fileID: 1380379230474727689}
   - {fileID: 8797709831451467964}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
   m_Father: {fileID: 2815340651296752223}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -806,6 +821,8 @@ MonoBehaviour:
   myFX: {fileID: 0}
   hoverFX: {fileID: 8300000, guid: d685ce19ea2d34e4184e6987dced33ac, type: 3}
   clickFX: {fileID: 8300000, guid: 2bcffbe0748bf8140bfaf42a3d96749c, type: 3}
+<<<<<<< HEAD
+=======
 --- !u!114 &957602285590226409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,6 +837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsParent: {fileID: 705917582341265092}
   inventoryUI: {fileID: 8423402535147827021}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 --- !u!1 &7086467524521240168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,6 +1211,8 @@ RectTransform:
   m_AnchoredPosition: {x: -103.2, y: -26.402029}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+=======
 --- !u!1 &8423402535147827021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1259,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8423402535147827021}
   m_CullTransparentMesh: 1
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
 --- !u!1 &8783605539769902426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,6 +1407,8 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+<<<<<<< HEAD
+=======
 --- !u!1001 &146693126932388011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3426,3 +3449,4 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2964624666150114306, guid: 6dac452ecd18d884a963b9c91b69b069, type: 3}
   m_PrefabInstance: {fileID: 8825124024384513320}
   m_PrefabAsset: {fileID: 0}
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5

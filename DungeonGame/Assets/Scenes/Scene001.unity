@@ -712,6 +712,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2922426158916459317, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
 --- !u!4 &43083294 stripped
@@ -24533,14 +24537,34 @@ PrefabInstance:
       propertyPath: pickUpFX
       value: 
       objectReference: {fileID: 517709882}
+    - target: {fileID: 3144881913863523072, guid: 9c0131fc61b3f5343b085001b08563f7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3144881913863523074, guid: 9c0131fc61b3f5343b085001b08563f7, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 2066348291}
     - target: {fileID: 3144881913863523074, guid: 9c0131fc61b3f5343b085001b08563f7, type: 3}
+      propertyPath: fakeItem
+      value: 
+      objectReference: {fileID: 713301925}
+    - target: {fileID: 3144881913863523074, guid: 9c0131fc61b3f5343b085001b08563f7, type: 3}
       propertyPath: pickUpFX
       value: 
       objectReference: {fileID: 517709882}
+    - target: {fileID: 3144881913863523078, guid: 9c0131fc61b3f5343b085001b08563f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -344.104
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144881913863523078, guid: 9c0131fc61b3f5343b085001b08563f7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -462.377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144881913863523078, guid: 9c0131fc61b3f5343b085001b08563f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 630.792
+      objectReference: {fileID: 0}
     - target: {fileID: 3144881914858705486, guid: 9c0131fc61b3f5343b085001b08563f7, type: 3}
       propertyPath: player
       value: 

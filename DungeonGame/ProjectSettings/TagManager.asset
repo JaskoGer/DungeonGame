@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Border
+  - DevTool
+  - DevActive
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - UI
   - Player
   - Border
-  - 
+  - Enemy
   - 
   - 
   - 

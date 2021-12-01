@@ -12,7 +12,7 @@ using UnityEngine.AI;
  */
 public class EnemyController : MonoBehaviour
 {
-	public float lookRadius = 15f;
+	public float lookRadius = 25f;
 	public float attackDistance = 2f;
 	public float movementSpeed = 5f;
 	public float attackSpeed = 0.5f;
@@ -22,17 +22,21 @@ public class EnemyController : MonoBehaviour
 	public float enemyHP = 50;
 	public float attackCooldown = 0f;
 	private float patrolCooldown = 0f;
+	Animator animator;
+	//private float drawRayDuration = 0.2f;
 
 	Transform target;
 	NavMeshAgent agent;
 
+
 	/**
 	 * @author Jasko
 	 * Methode Start() wird vor dem ersten geladenen Bild aufgerufen
-	 * setzt die Attribute für das Mob
+	 * setzt die Attribute fÃ¼r das Mob
 	 */
 	void Start()
 	{
+		animator = GetComponentInChildren<Animator>();
 		target = PlayerManager.instance.player.transform;
 		// setzen der Attribute
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -43,14 +47,14 @@ public class EnemyController : MonoBehaviour
 	/**
 	 * @author Jasko
 	 * bearbeitet von TOBIAS und JONAS
-	 *  Methode wird vor dem ersten Frame ausgeführt
+	 *  Methode wird vor dem ersten Frame ausgefÃ¼hrt
 	 */
 	void Update()
 	{
 		// berechnet den Abstand zwischen dem Mob und dem Player
 		float distance = Vector3.Distance(target.position, transform.position);
 
-		// setzt und überprüft den Cooldown
+		// setzt und Ã¼berprÃ¼ft den Cooldown
 		if (attackCooldown > 0)
 		{
 			attackCooldown -= Time.deltaTime;
@@ -66,7 +70,7 @@ public class EnemyController : MonoBehaviour
 		}
 
 		// wenn das Mob Sichtkontakt zum Player hat, wird die ChasePlayer Methode aufgerufen
-		if (hasVisual(distance))
+		if (HasVisual(distance))
 		{
 			agent.speed = movementSpeed;
 			hasPatrolDest = false;
@@ -77,18 +81,18 @@ public class EnemyController : MonoBehaviour
 		else
 		{
 			agent.speed = movementSpeed * 0.6f;
-			Patroling();
+			Patrolling();
 		}
 	}
 
 
 	/**
 	 * @author Jasko
-	 * überarbeitet und verbessert von JONAS
+	 * Ã¼berarbeitet und verbessert von JONAS
 	 * Anpassung der Attacks durch TOBIAS
-	 * Prüft ob ein Player in der Nähe ist und überprüft dann, ob nichts die Sicht des Mobs auf den Player blockiert
+	 * PrÃ¼ft ob ein Player in der NÃ¤he ist und Ã¼berprÃ¼ft dann, ob nichts die Sicht des Mobs auf den Player blockiert
 	 */
-	bool hasVisual(float distance)
+bool HasVisual(float distance)
 	{
 		RaycastHit hit;
 		if (distance <= lookRadius)
@@ -96,49 +100,62 @@ public class EnemyController : MonoBehaviour
 			//Deklarierung der Vektoren
 			Quaternion qRaycastDir = Quaternion.LookRotation(target.position - transform.position);
 			Vector3 raycastDir = qRaycastDir.eulerAngles;
-			Vector3 addDegree = new Vector3(0, 1, 0);
+			Vector3 addDegreeB = new Vector3(0, 1, 0);
 			float angle = Quaternion.Angle(transform.rotation, qRaycastDir);
-
-			for (int i = 0; i < 9; i++)
+			float angleVision = Quaternion.Angle(qRaycastDir,transform.rotation);
+			
+			
+			if (angleVision <= 90f || angleVision > 270f)
 			{
-				// prüft ob der Player direkt angeschaut wird und ob er in Angriffsreichweite ist und der Attack Cooldown <= 0 ist
-				if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir + addDegree * i * 1) * Vector3.forward, out hit, lookRadius))
-				{
-					if (hit.transform == target)
+				
+				for (float j = 0; j < 10; j = j+1)
+				{	
+					for (int i = 0; i < 9; i++)
 					{
-						if (distance <= attackDistance && attackCooldown <= 0)
+						//Debug.DrawRay(transform.position, Quaternion.Euler(raycastDir + addDegreeB * i) * Vector3.forward * 10 + Vector3.up * j, Color.red, drawRayDuration, false);
+						// prÃ¼ft ob der Player direkt angeschaut wird, ob er in Angriffsreichweite ist und ob der Attack Cooldown <= 0 ist
+						if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir + addDegreeB * i)  * Vector3.forward + Vector3.up * j, out hit, lookRadius))
 						{
-							AttackPlayer();
-							setAttackCooldown();
+							 return CheckCollider(hit, distance);
 						}
-
-						return true;
+						if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir - addDegreeB * i) * Vector3.forward, out hit, lookRadius))
+						{
+							return CheckCollider(hit, distance);
+						}
 					}
 				}
-				if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir - addDegree * i * 1) * Vector3.forward, out hit, lookRadius))
-				{
-					if (hit.transform == target)
-					{
-						if (distance <= attackDistance && attackCooldown == 0)
-						{
-							AttackPlayer();
-							setAttackCooldown();
-						}
-						return true;
-					}
-				}
-			}
+			
+			}			
 		}
 		return false;
+	}
+	
+	/**
+	 * @author Jonas
+	 * checkt ob das getroffene Ziel der Player oder ein anderes Objekt ist
+	 */
+	private bool CheckCollider(RaycastHit hit, float distance)
+	{
+		//print(hit.collider.name);
+		if (hit.collider.name == "Player")
+		{
+			if (distance <= attackDistance && attackCooldown <= 0)
+			{
+				StartCoroutine(AttackPlayer());
+				SetAttackCooldown();
+			}
+			return true;
+		}
+		return true;
 	}
 
 	/**
 	 * @author Jasko
-	 * lässt das Mob auf random generierten Strecken patrouillieren, wenn kein Gegner bzw. Player in der Nähe ist
+	 * lÃ¤sst das Mob auf random generierten Strecken patrouillieren, wenn kein Gegner bzw. Player in der NÃ¤he ist
 	 */
-	private void Patroling()
+	private void Patrolling()
 	{
-		//prüft, ob das Mob einen aktiven Zielpunkt hat. Fall das nicht der Fall ist, wird ein neuer Punkt zugewiesen
+		//prÃ¼ft, ob das Mob einen aktiven Zielpunkt hat. Fall das nicht der Fall ist, wird ein neuer Punkt zugewiesen
 		if (!hasPatrolDest)
 		{
 			patrolDest = new Vector3(transform.position[0] + Random.Range(-10f, 10), transform.position[1], transform.position[2] + Random.Range(-10, 10));
@@ -162,7 +179,7 @@ public class EnemyController : MonoBehaviour
 
 	/**
 	 * @author Jasko
-	 * lässt das Mob den Player verfolgen, wenn er in der unmittelbaren Nähe ist
+	 * lÃ¤sst das Mob den Player verfolgen, wenn er in der unmittelbaren NÃ¤he ist
 	 */
 	private void ChasePlayer()
 	{
@@ -173,21 +190,37 @@ public class EnemyController : MonoBehaviour
 	}
 
 	/**
-	 * @author Jasko
+	 * @author Tobias
 	 * benachrichtigt den Spieler, dass er angegriffen wird
 	 */
-	void AttackPlayer()
+	IEnumerator AttackPlayer()
 	{
-		print("I punched you in the face you A-hole!");
+		animator.SetBool("isAttacking", true);
+		yield return new WaitForSeconds(0.4f);
 		PlayerStatsSingleton.instance.PlayerDamage(attackDamage);
+		yield return new WaitForSeconds(0.4f);
+		animator.SetBool("isAttacking", false);
 	}
 
 	/**
 	 * @author Tobias
 	 * setzt den Attack Cooldown
 	 */
-	void setAttackCooldown()
+	void SetAttackCooldown()
 	{
 		attackCooldown = 1 / attackSpeed;
+	}
+
+	/**
+	 * @author Tobias
+	 * getDamage
+	 */
+	public void GetDamage(float pAttackDamage)
+	{
+		enemyHP -= pAttackDamage;
+		if (enemyHP <= 0)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 }

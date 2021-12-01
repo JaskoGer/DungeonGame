@@ -19,14 +19,40 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
 
     private Vector3 moveDirection = Vector3.zero;
+    private Vector3 moveDir = Vector3.zero;
+    private float moveDirMag;
+
+    public static PlayerMovement instance = null;
 
     public float normalSpeed = 7.0f;
     public float speed = 7.0f;
-    public float jumpSpeed = 4.0f;
     public float jumpForce = 5.0f;
+    public float gravityScale = 1.3f;
     public bool isGrounded = false;
-    public float lerpSpeed = 0.05f;
+    float lerpSpeed = 7.5f;
     float jumpCooldown = 0;
+
+    bool wallTrigger = false;
+
+    RaycastHit hitEnemy1;
+    RaycastHit hitEnemy2;
+    RaycastHit hitEnemy3;
+
+    private void Awake()
+    {
+        // Erstellen der Instance dieser Klasse
+        if (instance == null)
+        {
+            instance = this;
+        }
+        //Zerstöre ein bestehendes Objekt, falls es nicht dieses ist
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     /**
      * @Author Tobias
@@ -38,27 +64,56 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        wallTrigger = true;
+    }
+
     /**
      * @Author Tobias
-     * Abfrage eines Raycasts zum Boden
+     * Abfrage aller Raycasts zum Boden und restliche Physics
      */
     void FixedUpdate()
     {
-        RaycastHit hit;
+        // Verlangsamung falls in der Luft (imitierte Reibung)
+        moveDirection = 0.99f * moveDirection;
 
-        if (Physics.Raycast(PlayerCharacter.position, Vector3.down, out hit, 2.0f))
+        // Gravitation
+        rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
+
+        //Raycasts zum überprüfen der Postition
+        if (Physics.Raycast(Player.position + Vector3.up * 0.5f, Vector3.down, 1f))
         {
-            if (hit.distance > 0.5)
-            {
-                isGrounded = false;
-            }
-            else
-            {
-                isGrounded = true;
-            }
+            isGrounded = true;
         }
-    }
+        else if (Physics.Raycast(Player.position + Vector3.up * 0.5f + Vector3.forward * 0.5f + Vector3.left * 0.5f, Vector3.down, 1f))
+        {
+            isGrounded = true;
+        }
+        else if (Physics.Raycast(Player.position + Vector3.up * 0.5f + Vector3.forward * 0.5f + Vector3.right * 0.5f, Vector3.down, 1f))
+        {
+            isGrounded = true;
+        }
+        else if (Physics.Raycast(Player.position + Vector3.up * 0.5f + Vector3.back * 0.5f + Vector3.left * 0.5f, Vector3.down, 1f))
+        {
+            isGrounded = true;
+        }
+        else if (Physics.Raycast(Player.position + Vector3.up * 0.5f + Vector3.back * 0.5f + Vector3.right * 0.5f, Vector3.down, 1f))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
 
+        //Raycast zum Angreifen nach vorne
+        Physics.Raycast(Player.position + new Vector3(0, 0.3f, 0), (Player.rotation) * Vector3.forward, out hitEnemy1, PlayerStatsSingleton.instance.AttackRange);
+        //Raycast zum Angreifen nach 3° nach rechts
+        Physics.Raycast(Player.position + new Vector3(0, 0.3f, 0), (Player.rotation * Quaternion.Euler(Vector3.up * 5)) * Vector3.forward, out hitEnemy2, PlayerStatsSingleton.instance.AttackRange);
+        //Raycast zum Angreifen nach 3° nach links
+        Physics.Raycast(Player.position + new Vector3(0, 0.3f, 0), (Player.rotation * Quaternion.Euler(Vector3.down * 5)) * Vector3.forward, out hitEnemy3, PlayerStatsSingleton.instance.AttackRange);
+    }
 
     /**
      * @Author Tobias
@@ -69,17 +124,19 @@ public class PlayerMovement : MonoBehaviour
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
 
-
         //sprinting
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (isGrounded)
         {
-            speed = 10.0f;
-            animator.SetFloat("speed", speed / 8.0f);
-        }
-        else
-        {
-            speed = normalSpeed;
-            animator.SetFloat("speed", 1.0f);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                speed = 11.0f;
+                animator.SetFloat("speed", speed / 8.0f);
+            }
+            else
+            {
+                speed = normalSpeed;
+                animator.SetFloat("speed", 1.0f);
+            }
         }
 
         if (!isGrounded)
@@ -91,49 +148,66 @@ public class PlayerMovement : MonoBehaviour
         //Springen
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && jumpCooldown <= 0)
         {
-            jumpCooldown = 1.5f;
+            jumpCooldown = 0.6f;
             rb.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
             isGrounded = false;
-            speed = jumpSpeed;
         }
 
 
         //Tastenänderungen beim Drehen der Kamera
+        moveDir = Vector3.zero;
+        moveDirMag = (moveDirection).magnitude;
+        if (Math.Round(Cam.eulerAngles.y) == 0)
+        {
+            moveDir = new Vector3(horizontal, 0.0f, vertical).normalized;
+        }
+
+        if (Math.Round(Cam.eulerAngles.y) == 90)
+        {
+            moveDir = new Vector3(vertical, 0.0f, -horizontal).normalized;
+        }
+
+        if (Math.Round(Cam.eulerAngles.y) == 180)
+        {
+            moveDir = new Vector3((-horizontal), 0.0f, -vertical).normalized;
+        }
+
+        if (Math.Round(Cam.eulerAngles.y) == 270)
+        {
+            moveDir = new Vector3(-vertical, 0.0f, horizontal).normalized;
+        }
+
         if (isGrounded)
         {
-            if (Math.Round(Cam.eulerAngles.y) == 0)
+            moveDirection = moveDir;
+        }
+        else
+        {
+            if (moveDir != Vector3.zero)
             {
-                moveDirection = new Vector3(horizontal, 0.0f, vertical);
-            }
-
-            if (Math.Round(Cam.eulerAngles.y) == 90)
-            {
-                moveDirection = new Vector3(vertical, 0.0f, -horizontal);
-            }
-
-            if (Math.Round(Cam.eulerAngles.y) == 180)
-            {
-                moveDirection = new Vector3((-horizontal), 0.0f, -vertical);
-            }
-
-            if (Math.Round(Cam.eulerAngles.y) == 270)
-            {
-                moveDirection = new Vector3(-vertical, 0.0f, horizontal);
+                moveDirection = moveDir.normalized * moveDirMag;
             }
         }
 
-
-
         //Spielerpositionsändreung mit translate
-		
-		if (!animator.GetBool("attack")){
-			Player.Translate(moveDirection.normalized * Time.deltaTime * speed);
-	    }
+
+        if (wallTrigger)
+        {
+            rb.velocity = Vector3.zero;
+            moveDirection = Vector3.zero;
+            wallTrigger = false;
+        }
+
+        if (!animator.GetBool("attack"))
+        {
+            //rb.MovePosition(transform.position + moveDirection * speed / 50);
+            Player.Translate(moveDirection * Time.deltaTime * speed);
+        }
 
         //Spielerdrehung mit schönem Übergang
         if (moveDirection != Vector3.zero)
         {
-            PlayerCharacter.rotation = Quaternion.Slerp(PlayerCharacter.rotation, Quaternion.LookRotation(moveDirection), lerpSpeed);
+            PlayerCharacter.rotation = Quaternion.Slerp(PlayerCharacter.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * lerpSpeed);
         }
 
         //Boolean als bool für die Laufanimation des Spielers
@@ -155,35 +229,38 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("EmoteT", false);
         }
-        
+
         //spring Cooldown, damit er nicht fliegt
         if (jumpCooldown > 0)
         {
             jumpCooldown -= Time.deltaTime;
         }
 
-        /*
+        /**
          * angreifen
          * bearbeitet von Kacper
          */
-        if (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true)
-		{
-            if(animator.GetBool("attack") == false)
+        if (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true || Input.GetButton("Fire1") && GlobalScene.currentScene > 2)
+        {
+            if (animator.GetBool("attack") == false)
             {
                 animator.SetBool("attack", true);
-                StartCoroutine(Attack());
+                StartCoroutine(AttackAnimation());
             }
-		}
-
-        /*
-         * @Author Kacper
-         * Methode zum abspielen der Angriffsanimation
-         */
-        IEnumerator Attack()
-        {
-            animator.SetBool("moving", false);
-            yield return new WaitForSeconds(0.75f);
-            animator.SetBool("attack", false);
         }
+    }
+
+    /**
+     * @Author Kacper
+     * Methode zum Abspielen der Angriffsanimation
+     * bearbeitet von Tobias
+     */
+    IEnumerator AttackAnimation()
+    {
+        animator.SetBool("moving", false);
+        yield return new WaitForSeconds(0.3f);
+        PlayerStatsSingleton.instance.AttackEnemy(hitEnemy1, hitEnemy2, hitEnemy3);
+        yield return new WaitForSeconds(0.45f);
+        animator.SetBool("attack", false);
     }
 }

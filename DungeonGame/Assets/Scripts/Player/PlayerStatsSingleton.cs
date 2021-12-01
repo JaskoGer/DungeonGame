@@ -16,16 +16,28 @@ public class PlayerStatsSingleton : MonoBehaviour
     public Image HealthBarSlider;
     public Image ArmorBarSlider;
 
+    [SerializeField]
+    private Text HealthValue;
+    [SerializeField]
+    private Text ArmorValue;
+    
+
     private float MaxHealth = 100;
     private float Health = 100;
     private float Armor = 0;
     private float DamageReduction = 0;
+    private float RegenerationPower = 0.33333f;
 
     private int PlayerLevel = 1;
     private int PlayerXp = 0;
     private int nextLevelXp = 100;
 
-	private void Awake()
+    private float AttackDamage = 10f;
+    public float AttackRange = 4f;
+
+    public Transform PlayerCharacter;
+
+    private void Awake()
 	{
 		// Erstellen der Instance dieser Klasse
 		if (instance == null)
@@ -49,32 +61,19 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     * Methode zum Anpassen des Levels und des Lebens in jeden Frame
+     * Methode zum Anpassen des Levels in jeden Frame
+     * Lebensregeneration von Laurin Angepasst
      */
     void Update()
     {
-        if (Health < MaxHealth)
-        {
-            Health += 0.33333f*Time.deltaTime;
-            if (Health > MaxHealth)
-                Health = MaxHealth;
-            SetUIImage();
-        }
-        if (Input.GetKeyUp(KeyCode.L))
-        {
-            LevelUp();
-        }
-    }
-
-    /**
-     * @Author Tobias
-     * Zurücksetzen des Lebens
-     */
-    public void resetHealth()
-    {
-        Health = MaxHealth;
+        float tempHealth;
+        tempHealth = EntityStatsController.instance.HealthRegeneration(RegenerationPower, Health, MaxHealth);
+        SetPlayerHealth(tempHealth);
         SetUIImage();
     }
+
+
+    
 
     /**
      * @Author Tobias
@@ -87,7 +86,6 @@ public class PlayerStatsSingleton : MonoBehaviour
         {
             Health = 0;
         }
-        SetUIImage();
     }
 
     /**
@@ -100,6 +98,38 @@ public class PlayerStatsSingleton : MonoBehaviour
 	}
 
     /**
+     *@Author Laurin   
+     *Zurückgeben des Maximalen Lebens
+     */
+    public float GetPlayerMaxHealth()
+    {
+        return MaxHealth;
+    }
+
+    /**
+     *@Author Laurin   
+     *Zurückgeben Rüstung
+     */
+    public float GetPlayerArmor()
+    {
+        return Armor;
+    }
+
+    /**
+     *@Author Laurin   
+     *Zurückgeben der Regenerationskraft
+     */
+    public float GetRegenerationPower()
+    {
+        return RegenerationPower;
+    }
+
+    public float GetAttackDamage()
+    {
+        return AttackDamage;
+    }
+
+    /**
      * @Author Tobias
      * Hinzufügen von Leben
      */
@@ -110,7 +140,6 @@ public class PlayerStatsSingleton : MonoBehaviour
         {
             Health = MaxHealth;
         }
-        SetUIImage();
     }
 
     /**
@@ -134,7 +163,6 @@ public class PlayerStatsSingleton : MonoBehaviour
         {
             Health = 0;
         }
-        SetUIImage();
     }
 
     /**
@@ -147,14 +175,13 @@ public class PlayerStatsSingleton : MonoBehaviour
         MaxHealth += 10;
         Health += 10;
         SetPlayerArmor(Armor + 1);
-        
     }
 
     /**
      * @Author Tobias
      * Zurückgeben des Levels
      */
-    public int getPlayerLevel()
+    public int GetPlayerLevel()
     {
         return PlayerLevel;
     }
@@ -176,12 +203,63 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     /**
      * @Author Tobias
-     * vorläufige Setzung des UI zum testen
+     * Angreifen von Gegner
+     */
+    public void AttackEnemy(RaycastHit hitEnemy1, RaycastHit hitEnemy2, RaycastHit hitEnemy3)
+    {
+        if (hitEnemy1.collider != null)
+        {
+            AttackEnemyRaycast(hitEnemy1);
+        }
+        else if (hitEnemy2.collider != null)
+        {
+            AttackEnemyRaycast(hitEnemy2);
+        }
+        else if (hitEnemy3.collider != null)
+        {
+            AttackEnemyRaycast(hitEnemy3);
+        }
+    }
+
+    /**
+     * @Author Tobias
+     * Angreifen von Gegner
+     */
+    void AttackEnemyRaycast(RaycastHit hitEnemy)
+    {
+        GameObject Enemy = hitEnemy.collider.gameObject;
+        print(hitEnemy.collider);
+        if (hitEnemy.collider.gameObject.transform.parent != null)
+        {
+            Enemy = hitEnemy.collider.gameObject.transform.parent.gameObject;
+        }
+        if (Enemy.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Enemy.GetComponent<EnemyController>().GetDamage(AttackDamage);
+        }
+    }
+
+    /**
+     * @Author Tobias
+     * Setzung des UI
      * bearbeitet von Kacper
+     * Anzeige der Lebenszahl/Rüstungszahl und rundung von Laurin
      */
     public void SetUIImage()
     {
+        float RoundedHealth;
+        if(Health == MaxHealth)
+        {
+          HealthValue.text = Health + " / " + MaxHealth;
+        }
+        else if (Health != MaxHealth)
+        {
+          RoundedHealth = Mathf.Round(Health);  
+          HealthValue.text = RoundedHealth + " / " + MaxHealth;
+        }
+        ArmorValue.text = Armor + " ";
         HealthBarSlider.fillAmount = Health / MaxHealth;
         ArmorBarSlider.fillAmount = Armor;
     }
-}
+
+} 

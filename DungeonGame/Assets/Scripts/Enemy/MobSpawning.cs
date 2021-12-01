@@ -10,27 +10,29 @@ using UnityEngine;
 public class MobSpawning : MonoBehaviour
 {
     public GameObject Enemy;
-    public float xPos;
-    public float yPos;
-    public float zPos;
+    float xPos;
+    float yPos;
+    float zPos;
+    public float radiant;
+    private int enemies;
     public int enemyCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        yPos = -6f;
+        xPos = gameObject.transform.localPosition.x;
+        yPos = gameObject.transform.localPosition.y;
+        zPos = gameObject.transform.localPosition.z;
         StartCoroutine(EnemyDrop());
     }
 
     IEnumerator EnemyDrop()
     {
-        while (enemyCount < 10)
+        while (enemies < enemyCount)
         {
-            xPos = Random.Range(0, -14);
-            zPos = Random.Range(-230, -250);
-            Instantiate(Enemy, new Vector3(xPos, yPos, zPos), Quaternion.identity);
-            yield return new WaitForSeconds(0.1f);
-            enemyCount += 1;
+            Instantiate(Enemy, new Vector3(Random.Range(xPos - radiant, xPos + radiant), yPos, Random.Range(zPos - radiant, zPos + radiant)), Quaternion.identity);
+            yield return new WaitForSeconds(0.01f);
+            enemies += 1;
         }
     }
 }

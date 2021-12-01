@@ -69,8 +69,11 @@ public class PlayerStatsSingleton : MonoBehaviour
         float tempHealth;
         tempHealth = EntityStatsController.instance.HealthRegeneration(RegenerationPower, Health, MaxHealth);
         SetPlayerHealth(tempHealth);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b36e2e21f5142b35451a62c1df66f0f3652b70e5
         SetUIImage();
     }
 

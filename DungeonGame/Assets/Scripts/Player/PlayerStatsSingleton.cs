@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 /**
  * @Author Tobias
@@ -25,6 +26,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     private int playerXp = 0;
     private int nextLevelXp = 100;
     private int moneten = 0;
+    private Scene scene;
 
     private float attackDamage = 10f;
     private float attackRange = 4f;
@@ -52,6 +54,8 @@ public class PlayerStatsSingleton : MonoBehaviour
     {
         playerCharacter = ObjectManager.instance.playerCharacter.transform;
         SetUIImage();
+
+        scene = SceneManager.GetActiveScene();
     }
 
     /**
@@ -91,6 +95,9 @@ public class PlayerStatsSingleton : MonoBehaviour
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
+
+        scene = data.scene;
+        SceneManager.LoadScene(scene.name);
 
         playerLevel = data.level;
         health = data.health;
@@ -207,6 +214,15 @@ public class PlayerStatsSingleton : MonoBehaviour
     public int GetPlayerXP()
     {
         return playerXp;
+    }
+
+    /**
+     * @Author Jonas
+     * gibt aktuell verwendete Szene zurück
+     */
+    public Scene GetCurrentScene()
+    {
+        return scene;
     }
 
     /**

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 /**
  * @Author Jonas
  * speichert die Spielerdaten
@@ -15,6 +15,7 @@ public class PlayerData
 	public int moneten;
 	public float[] position;
 	public int xp;
+	public Scene scene;
 	
 	public PlayerData (PlayerStatsSingleton player)
 	{
@@ -22,6 +23,7 @@ public class PlayerData
 		health = player.GetPlayerHealth();
 		moneten = player.GetPlayerMoneten();
 		xp = player.GetPlayerXP();
+		scene = player.GetCurrentScene();
 		
 		position = new float[3];
 		position[0] = player.transform.position.x;

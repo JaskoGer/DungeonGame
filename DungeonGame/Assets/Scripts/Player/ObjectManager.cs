@@ -9,14 +9,24 @@ public class ObjectManager : MonoBehaviour
 
     public static ObjectManager instance;
 
-    void Awake()
-    {
-        instance = this;
-    }
+	private void Awake()
+	{
+		if (instance == null)
+		{
+			instance = this;
+		}
+		
+		else if (instance != this)
+		{
+			Destroy(gameObject);
+		}
 
-    #endregion
+		DontDestroyOnLoad(gameObject);
+	}
 
-    public GameObject playerCharacter;
+	#endregion
+
+	public GameObject playerCharacter;
     public Transform player;
     public Transform mainCam;
     public Transform camRotator;

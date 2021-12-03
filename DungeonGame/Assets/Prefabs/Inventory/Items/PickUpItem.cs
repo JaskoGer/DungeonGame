@@ -23,6 +23,7 @@ public class PickUpItem : MonoBehaviour
 			if (wasPickedUp)
 			{
 				Destroy(fakeItem);
+				Destroy(this);
 			}
 		}
     }

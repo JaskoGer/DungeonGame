@@ -46,7 +46,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		DontDestroyOnLoad (gameObject);
+		//DontDestroyOnLoad (gameObject);
 	}
 
     // Start is called before the first frame update
@@ -250,6 +250,15 @@ public class PlayerStatsSingleton : MonoBehaviour
     }
 
     /**
+	 * @Author Jasko
+	 * addiert neu verdiente Moneten hinzu
+	 */
+    public void AddPlayerMoneten(int earning)
+    {
+        moneten += earning;
+    }
+
+    /**
      * @Author Tobias
      * Angreifen von Gegner
      */
@@ -276,7 +285,6 @@ public class PlayerStatsSingleton : MonoBehaviour
     void AttackEnemyRaycast(RaycastHit hitEnemy)
     {
         GameObject Enemy = hitEnemy.collider.gameObject;
-        print(hitEnemy.collider);
         if (hitEnemy.collider.gameObject.transform.parent != null)
         {
             Enemy = hitEnemy.collider.gameObject.transform.parent.gameObject;

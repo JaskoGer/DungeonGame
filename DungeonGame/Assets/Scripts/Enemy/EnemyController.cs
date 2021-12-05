@@ -81,7 +81,7 @@ public class EnemyController : MonoBehaviour
 		else
 		{
 			agent.speed = movementSpeed * 0.6f;
-			Patrolling();
+			newPatrolling();
 		}
 	}
 
@@ -97,6 +97,10 @@ bool HasVisual(float distance)
 		RaycastHit hit;
 		if (distance <= lookRadius)
 		{
+			if (distance <= lookRadius * 0.3)
+			{
+				return true;
+            }
 			//Deklarierung der Vektoren
 			Quaternion qRaycastDir = Quaternion.LookRotation(target.position - transform.position);
 			Vector3 raycastDir = qRaycastDir.eulerAngles;
@@ -163,6 +167,31 @@ bool HasVisual(float distance)
 		}
 
 		else if (Vector3.Distance(patrolDest.normalized, transform.position.normalized) <= 0.02f)
+		{
+			hasPatrolDest = false;
+		}
+
+		else if (patrolCooldown == 0)
+		{
+			Vector3 direction = (patrolDest - transform.position).normalized;
+			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+			transform.rotation = lookRotation;
+			agent.SetDestination(patrolDest);
+			patrolCooldown = 5;
+		}
+	}
+
+	private void newPatrolling()
+	{
+		//prüft, ob das Mob einen aktiven Zielpunkt hat. Fall das nicht der Fall ist, wird ein neuer Punkt zugewiesen
+		if (!hasPatrolDest)
+		{
+			NavMeshHit hit;
+			patrolDest = new Vector3(transform.position[0] + Random.Range(-10f, 10), transform.position[1], transform.position[2] + Random.Range(-10, 10));
+			hasPatrolDest = NavMesh.SamplePosition(patrolDest, out hit, 10, NavMesh.AllAreas);
+		}
+
+		else if (Vector3.Distance(patrolDest.normalized, transform.position.normalized) <= 0.4f)
 		{
 			hasPatrolDest = false;
 		}

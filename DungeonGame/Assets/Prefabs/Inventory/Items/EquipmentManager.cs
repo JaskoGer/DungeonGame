@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * @author Kacper Purtak
+ * version 1.0
+ * 03.12.2021
+ * Description: Controller zum ausruesten von Ausruestung
+ */
+
 public class EquipmentManager : MonoBehaviour
 {
     #region Singleton
@@ -19,7 +26,7 @@ public class EquipmentManager : MonoBehaviour
 
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
     public OnEquipmentChanged onEquipmentChanged;
-    public GameObject[] itemObj;
+    public GameObject[] itemObj;   //Array aus Gegenstaenden, die der Spieler ausruesten kann
 
     NewInventory inventory;
 
@@ -31,18 +38,21 @@ public class EquipmentManager : MonoBehaviour
         currentEquipment = new Equipment[numSlots];
     }
 
+    //ruestet ein neues Item aus
     public void Equip(Equipment newItem)
     {
-        int slotIndex = (int)newItem.equipmentSlot;
+        int slotIndex = (int)newItem.equipmentSlot;   //Slot-Platz, in den der Gegenstand passt
 
         Equipment oldItem = null;
 
+        //der zuletzt verwendete Gegenstand wird zurueck in das Inventar gelegt
         if (currentEquipment[slotIndex] != null)
         {
             oldItem = currentEquipment[slotIndex];
             inventory.Add(oldItem);
         }
 
+        //ein Gegenstand wurde ausgeruestet, wodurch ein Delegate-Rueckruf ausgeloest wird
         if (onEquipmentChanged != null)
         {
             onEquipmentChanged.Invoke(newItem, oldItem);
@@ -52,6 +62,7 @@ public class EquipmentManager : MonoBehaviour
         itemObj[slotIndex].SetActive(true);
     }
 
+    //zieht die verwendete Item aus
     public void Unequip(int slotIndex)
     {
         if (currentEquipment[slotIndex] != null)
@@ -68,6 +79,7 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
+    //zieht alle verwendeten Items aus
     public void UnequipAll()
     {
         for (int i = 0; i < currentEquipment.Length; i++)
@@ -77,6 +89,7 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
+    //prueft, ob alle vewendeten Ausruestungen ausgezogen werden
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.U))

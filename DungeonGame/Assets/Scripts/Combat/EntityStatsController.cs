@@ -25,7 +25,7 @@ public class EntityStatsController : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		DontDestroyOnLoad (gameObject);
+		//DontDestroyOnLoad (gameObject);
 	}
 
     // Start is called before the first frame update

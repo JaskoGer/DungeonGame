@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
 		target = ObjectManager.instance.player.transform;
 		// setzen der Attribute
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-		agent.stoppingDistance = attackDistance;
+		agent.stoppingDistance = attackDistance - 0.2f;
 		agent.speed = movementSpeed;
 	}
 
@@ -99,6 +99,11 @@ bool HasVisual(float distance)
 		{
 			if (distance <= lookRadius * 0.3)
 			{
+				if (distance <= attackDistance && attackCooldown <= 0)
+				{
+					StartCoroutine(AttackPlayer());
+					SetAttackCooldown();
+				}
 				return true;
             }
 			//Deklarierung der Vektoren
@@ -120,7 +125,7 @@ bool HasVisual(float distance)
 						// prüft ob der Player direkt angeschaut wird, ob er in Angriffsreichweite ist und ob der Attack Cooldown <= 0 ist
 						if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir + addDegreeB * i)  * Vector3.forward + Vector3.up * j, out hit, lookRadius))
 						{
-							 return CheckCollider(hit, distance);
+							return CheckCollider(hit, distance);
 						}
 						if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir - addDegreeB * i) * Vector3.forward, out hit, lookRadius))
 						{
@@ -140,7 +145,7 @@ bool HasVisual(float distance)
 	 */
 	private bool CheckCollider(RaycastHit hit, float distance)
 	{
-		//print(hit.collider.name);
+		print(hit.collider.name);
 		if (hit.collider.name == "Player")
 		{
 			if (distance <= attackDistance && attackCooldown <= 0)
@@ -225,9 +230,8 @@ bool HasVisual(float distance)
 	IEnumerator AttackPlayer()
 	{
 		animator.SetBool("isAttacking", true);
-		yield return new WaitForSeconds(0.4f);
+		yield return new WaitForSeconds(0.6f);
 		PlayerStatsSingleton.instance.PlayerDamage(attackDamage);
-		yield return new WaitForSeconds(0.4f);
 		animator.SetBool("isAttacking", false);
 	}
 

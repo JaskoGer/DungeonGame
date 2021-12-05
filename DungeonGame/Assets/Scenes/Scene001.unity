@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.47243452, g: 0.7549774, b: 0.9301623, a: 1}
+  m_IndirectSpecularColor: {r: 0.4724357, g: 0.754977, b: 0.93016243, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6249,9 +6249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3704c2ba58e0a418942f0599a6b40e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thePlayer: {fileID: 0}
-  fadeOutScene: {fileID: 0}
-  errorMessage: {fileID: 0}
+  thePlayer: {fileID: 712002021}
+  fadeOutScene: {fileID: 271739572}
+  errorMessage: {fileID: 376755369}
 --- !u!65 &154165489
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9999,6 +9999,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 023955e24e778304d8c2264836c89d34, type: 3}
+--- !u!1 &271739572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7086467524521240168, guid: 71716dc3fbc0ac743ab712eff3409a85, type: 3}
+  m_PrefabInstance: {fileID: 376755367}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &273212123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26929,6 +26934,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4678a115cd0f4b49b736181aa5865fb, type: 3}
+--- !u!1 &712002021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2616559266214925528, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
+  m_PrefabInstance: {fileID: 43083293}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &712292037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45177,9 +45187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3704c2ba58e0a418942f0599a6b40e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thePlayer: {fileID: 0}
-  fadeOutScene: {fileID: 0}
-  errorMessage: {fileID: 0}
+  thePlayer: {fileID: 712002021}
+  fadeOutScene: {fileID: 271739572}
+  errorMessage: {fileID: 376755369}
 --- !u!65 &1131122199
 BoxCollider:
   m_ObjectHideFlags: 0

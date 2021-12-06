@@ -30,4 +30,14 @@ public class ObjectManager : MonoBehaviour
     public Transform player;
     public Transform mainCam;
     public Transform camRotator;
+	
+	void Start()
+	{
+		player = GameObject.Find("/Player").transform;
+		print(GameObject.Find("/Player").transform);
+		playerCharacter = GameObject.Find("/Player/RandyBeta");
+		print(GameObject.Find("/Player/RandyBeta"));
+		camRotator = GameObject.Find("/Player/rotator").transform;
+		mainCam = GameObject.Find("/Player/rotator/Main Camera").transform;
+	}
 }

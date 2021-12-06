@@ -46,7 +46,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		//DontDestroyOnLoad (gameObject);
+		DontDestroyOnLoad (gameObject);
 	}
 
     // Start is called before the first frame update
@@ -247,6 +247,15 @@ public class PlayerStatsSingleton : MonoBehaviour
     public int GetPlayerMoneten()
     {
         return moneten;
+    }
+
+    /**
+	 * @Author Jasko
+	 * addiert neu verdiente Moneten hinzu
+	 */
+    public void AddPlayerMoneten(int earning)
+    {
+        moneten += earning;
     }
 
     /**

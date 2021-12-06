@@ -12,15 +12,15 @@ using UnityEngine.AI;
  */
 public class EnemyController : MonoBehaviour
 {
-	public float lookRadius = 25f;
-	public float attackDistance = 2f;
-	public float movementSpeed = 5f;
-	public float attackSpeed = 0.5f;
-	public float attackDamage = 5f;
+	private float lookRadius = 25f;
+	private float attackDistance = 2f;
+	private float movementSpeed = 5f;
+	private float attackSpeed = 0.5f;
+	private float attackDamage = 5f;
 	public Vector3 patrolDest;
 	public bool hasPatrolDest = false;
-	public float enemyHP = 50;
-	public float attackCooldown = 0f;
+	private float enemyHP = 50;
+	private float attackCooldown = 0f;
 	private float patrolCooldown = 0f;
 	Animator animator;
 	//private float drawRayDuration = 0.2f;
@@ -171,7 +171,7 @@ bool HasVisual(float distance)
 			hasPatrolDest = true;
 		}
 
-		else if (Vector3.Distance(patrolDest.normalized, transform.position.normalized) <= 0.02f)
+		else if (Vector3.Distance(patrolDest, transform.position) <= 0.02f)
 		{
 			hasPatrolDest = false;
 		}
@@ -189,25 +189,27 @@ bool HasVisual(float distance)
 	private void newPatrolling()
 	{
 		//prüft, ob das Mob einen aktiven Zielpunkt hat. Fall das nicht der Fall ist, wird ein neuer Punkt zugewiesen
-		if (!hasPatrolDest)
+		if (!hasPatrolDest && patrolCooldown == 0)
 		{
 			NavMeshHit hit;
 			patrolDest = new Vector3(transform.position[0] + Random.Range(-10f, 10), transform.position[1], transform.position[2] + Random.Range(-10, 10));
 			hasPatrolDest = NavMesh.SamplePosition(patrolDest, out hit, 10, NavMesh.AllAreas);
+			patrolDest = hit.position;
+		    //print(Vector3.Distance(patrolDest, transform.position));
 		}
 
-		else if (Vector3.Distance(patrolDest.normalized, transform.position.normalized) <= 0.4f)
+		else if (Vector3.Distance(patrolDest, transform.position) <= 2f)
 		{
 			hasPatrolDest = false;
+			patrolCooldown = 1 / 5;
 		}
 
-		else if (patrolCooldown == 0)
+		else
 		{
 			Vector3 direction = (patrolDest - transform.position).normalized;
 			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
 			transform.rotation = lookRotation;
 			agent.SetDestination(patrolDest);
-			patrolCooldown = 5;
 		}
 	}
 
@@ -253,6 +255,8 @@ bool HasVisual(float distance)
 		enemyHP -= pAttackDamage;
 		if (enemyHP <= 0)
 		{
+			PlayerStatsSingleton.instance.AddPlayerXp(40);
+			PlayerStatsSingleton.instance.AddPlayerMoneten(20);
 			Destroy(this.gameObject);
 		}
 	}

@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
 
         //Raycasts zum überprüfen der Postition
+		print("88 " + playerCharacter);
         if (Physics.Raycast(playerCharacter.position + Vector3.up * 0.5f, Vector3.down, 1f))
         {
             isGrounded = true;

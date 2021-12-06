@@ -1,37 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
-/*
- * @author Kacper Purtak
- * version 1.0
- * 30.10.2021
- * Description: Script to load the next scene after completing one
- */
-
-public class SceneComplete : MonoBehaviour
+public class Boos1Deafeat : MonoBehaviour
 {
 	private GameObject thePlayer;
     public GameObject fadeOutScene;
+	public GameObject SlimeBoss;
 	private bool loaded = false;
 
 	void Start()
 	{
+		fadeOutScene.SetActive(false);
 		thePlayer = ObjectManager.instance.player.transform.gameObject;
-		
 	}
 	
-    private void OnTriggerEnter(Collider other)
-    {
-		if(!loaded)
+    void Update()
+	{
+		
+		Debug.Log("SlimeBoss");
+		if(SlimeBoss == null && !loaded)
+		{
 			StartCoroutine(CompletedScene());
-    }
+		}
+	}
 
     IEnumerator CompletedScene()
     {
 		loaded = true;
-        GlobalScene.currentScene++;
+        GlobalScene.currentScene = 4;
         fadeOutScene.SetActive(true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(GlobalScene.currentScene);

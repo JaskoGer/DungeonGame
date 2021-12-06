@@ -145,7 +145,7 @@ bool HasVisual(float distance)
 	 */
 	private bool CheckCollider(RaycastHit hit, float distance)
 	{
-		print(hit.collider.name);
+		/*  print(hit.collider.name); */
 		if (hit.collider.name == "Player")
 		{
 			if (distance <= attackDistance && attackCooldown <= 0)
@@ -195,7 +195,7 @@ bool HasVisual(float distance)
 			patrolDest = new Vector3(transform.position[0] + Random.Range(-10f, 10), transform.position[1], transform.position[2] + Random.Range(-10, 10));
 			hasPatrolDest = NavMesh.SamplePosition(patrolDest, out hit, 10, NavMesh.AllAreas);
 			patrolDest = hit.position;
-			print(Vector3.Distance(patrolDest, transform.position));
+			/*print(Vector3.Distance(patrolDest, transform.position));*/
 		}
 
 		else if (Vector3.Distance(patrolDest, transform.position) <= 2f)
@@ -206,7 +206,7 @@ bool HasVisual(float distance)
 
 		else
 		{
-			print("test");
+			/*print("test");*/
 			Vector3 direction = (patrolDest - transform.position).normalized;
 			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
 			transform.rotation = lookRotation;

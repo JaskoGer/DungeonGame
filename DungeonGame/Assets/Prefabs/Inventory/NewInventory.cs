@@ -2,13 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
- * @author Kacper Purtak
- * version 1.0
- * 30.11.2021
- * Description: Vorlage für das Inventar mit Methoden zum bearbeiten
- */
-
 public class NewInventory : MonoBehaviour
 {
     #region Singleton
@@ -29,11 +22,10 @@ public class NewInventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
-    public int invSpace = 6;   //Anzahl der Itemplaetze
+    public int invSpace = 20;
 
-    public List<NewItem> items = new List<NewItem>();   //eine Liste aus Items
+    public List<NewItem> items = new List<NewItem>();
 
-    //fuegt ein neues Item hinzu, wenn genuegend Platz vorhanden ist
     public bool Add (NewItem item)
     {
         if (!item.isDefaultItem)
@@ -52,7 +44,6 @@ public class NewInventory : MonoBehaviour
         return true;
     }
 
-    //entfernt ein Item
     public void Remove(NewItem item)
     {
         if(onItemChangedCallback != null)

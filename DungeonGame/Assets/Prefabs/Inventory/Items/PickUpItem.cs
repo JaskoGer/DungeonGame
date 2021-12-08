@@ -6,15 +6,14 @@ using UnityEngine;
  * @author Kacper Purtak
  * version 1.0
  * 30.11.2021
- * Description: Aufheben eines Items
+ * Description: Script to pick up items
  */
 public class PickUpItem : MonoBehaviour
 {
-    public GameObject fakeItem;	   //Gegenstand, welcher auf sich auf der Map befindet
-    public AudioSource pickUpFX;   //Sound, der beim aufsammeln abgespielt wird
+    public GameObject fakeItem;
+    public AudioSource pickUpFX;
     public NewItem item;
 
-	//wird ausgefuehrt, wenn der Gegenstand mit dem Spieler kolliediert
     private void OnTriggerEnter(Collider other)
     {
 		if(other == ObjectManager.instance.player.GetComponent<BoxCollider>()){	

@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: HealPotion
   m_EditorClassIdentifier: 
   name: Heal Potion
-  icon: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
+  icon: {fileID: 21300000, guid: a20df3660c62ece4c96a048af86c4a46, type: 3}
   isDefaultItem: 0
-  itemID: 3

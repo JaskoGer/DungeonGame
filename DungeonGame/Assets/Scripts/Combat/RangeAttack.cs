@@ -1,10 +1,24 @@
 using UnityEngine;
+using System.Collections;
+
+/*@Author Laurin
+*Methode für das Angreifen auf Distanz
+*
+*/
 
 public class RangeAttack : MonoBehaviour
 {
 
     private float damage = 10f;
     private float range = 100f;
+	private float speed = 50f;
+    private float cooldown = 0f;
+	public Rigidbody Visual;
+	public GameObject Player;
+	private Vector3 playerPos;
+    RaycastHit hit;
+
+	
 
     private Transform Entity;
     public TrailRenderer tracerEffect;
@@ -18,38 +32,36 @@ public class RangeAttack : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("Fire2"))
+        if(cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
+            if(cooldown < 0)
+            {
+                cooldown = 0;
+            } 
+        }
+
+        if (Input.GetButtonDown("Fire2") && cooldown == 0)
         {
             Attack();
+            cooldown = 2.5f;
         }
 
     }
     
-     /**
-     *@Author Laurin   
-     * damage apply am Enemy
-     * bearbeitet von Tobias
-     */
+    
+     /*@Author Laurin
+    *updated position und spawnt Projektile
+    *
+    */
     public void Attack()
     {
 
-        /* var tracer = Instantiate(tracerEffect, Entity.transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity); */
-     /*    tracer.transform.position = Entity.transform.forward; */
-        
-        RaycastHit hit;
-        
-        if (Physics.Raycast(Entity.transform.position + new Vector3(0f, 1f, 0f), Entity.transform.forward, out hit, range))
-        {
-            GameObject Enemy = hit.collider.gameObject;
-            if (hit.collider.gameObject.transform.parent != null)
-            {
-                Enemy = hit.collider.gameObject.transform.parent.gameObject;
-            }
-            if (Enemy.layer == LayerMask.NameToLayer("Enemy"))
-            {
-                Enemy.GetComponent<EnemyController>().GetDamage(PlayerStatsSingleton.instance.GetAttackDamage());
-            }
-        }
+    playerPos = Player.transform.position + new Vector3(0f, 1f, 0f);
+     var clone = Instantiate(Visual, playerPos, Player.transform.rotation);
+     clone.velocity = Player.transform.TransformDirection(new Vector3(0, 0, speed)) + new Vector3(0, 1 ,0);
+     Destroy (clone.gameObject, 5);
+		
     }
 
     public void setDamage(float newdamage)

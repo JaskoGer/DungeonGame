@@ -13,6 +13,7 @@ public class NewItem : ScriptableObject
     new public string name = "New Item";    //Name des Items
     public Sprite icon = null;              //Item Symbol
     public bool isDefaultItem = false;
+	public int itemID;
 
     //wird ausgefuehrt, wenn das Item im Inventar gedrueckt wird
     public virtual void Use()

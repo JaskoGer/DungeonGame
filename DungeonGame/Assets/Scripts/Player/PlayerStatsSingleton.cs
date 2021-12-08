@@ -250,6 +250,15 @@ public class PlayerStatsSingleton : MonoBehaviour
     }
 
     /**
+	 * @Author Jasko
+	 * addiert neu verdiente Moneten hinzu
+	 */
+    public void AddPlayerMoneten(int earning)
+    {
+        moneten += earning;
+    }
+
+    /**
      * @Author Tobias
      * Angreifen von Gegner
      */

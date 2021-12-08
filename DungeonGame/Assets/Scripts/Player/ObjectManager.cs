@@ -30,4 +30,5 @@ public class ObjectManager : MonoBehaviour
     public Transform player;
     public Transform mainCam;
     public Transform camRotator;
+	public Transform earl;
 }

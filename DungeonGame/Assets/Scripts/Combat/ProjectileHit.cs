@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class ProjectileHit : MonoBehaviour
 {
-     /**
+    /**
      *@Author Laurin   
      * damage apply am Enemy
      * bearbeitet von Tobias
      */
     void OnCollisionEnter(Collision col)
         {
+        
           GameObject Enemy = col.collider.gameObject;
+
             if (col.collider.gameObject.transform.parent != null)
             {
                 Enemy = col.collider.gameObject.transform.parent.gameObject;

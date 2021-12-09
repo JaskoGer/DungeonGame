@@ -81,7 +81,7 @@ public class EnemyController : MonoBehaviour
 		else
 		{
 			agent.speed = movementSpeed * 0.6f;
-			newPatrolling();
+			Patrolling();
 		}
 	}
 
@@ -165,7 +165,12 @@ bool HasVisual(float distance)
 	private void Patrolling()
 	{
 		//prüft, ob das Mob einen aktiven Zielpunkt hat. Fall das nicht der Fall ist, wird ein neuer Punkt zugewiesen
-		if (!hasPatrolDest)
+		if(patrolDest == new Vector3(0,0,0))
+        {
+			patrolDest = transform.position;
+			hasPatrolDest = true;
+        }
+		else if (!hasPatrolDest)
 		{
 			patrolDest = new Vector3(transform.position[0] + Random.Range(-10f, 10), transform.position[1], transform.position[2] + Random.Range(-10, 10));
 			hasPatrolDest = true;

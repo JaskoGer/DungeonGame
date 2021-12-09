@@ -6,13 +6,20 @@ public class ProjectileHit : MonoBehaviour
 {
     /**
      *@Author Laurin   
-     * damage apply am Enemy
-     * bearbeitet von Tobias
+     * damage apply am Enemy und Sound
+     * prinzip der Schleife von Tobias
      */
+    public AudioSource HitWall;
+    public AudioSource HitEnemy;
+    double cooldown = 0;
+
+    
+
     void OnCollisionEnter(Collision col)
+    
         {
-        
           GameObject Enemy = col.collider.gameObject;
+
 
             if (col.collider.gameObject.transform.parent != null)
             {
@@ -21,6 +28,22 @@ public class ProjectileHit : MonoBehaviour
             if (Enemy.layer == LayerMask.NameToLayer("Enemy"))
             {
                 Enemy.GetComponent<EnemyController>().GetDamage(PlayerStatsSingleton.instance.GetAttackDamage());
+                HitEnemy.Play();
             }   
+            if (Enemy.layer == LayerMask.NameToLayer("Player"))
+            {
+
+            }
+            else
+            {
+                if(cooldown <= Time.time)
+                {
+                HitWall.Play();
+                cooldown = Time.time + 0.5;
+                }
+            }
+
+
         }
+
 }

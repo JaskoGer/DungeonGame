@@ -14,12 +14,13 @@ using UnityEngine.SceneManagement;
 public class SceneComplete : MonoBehaviour
 {
     private GameObject thePlayer;
-    public GameObject fadeOutScene;
+    private GameObject fadeOutScene;
     private bool loaded = false;
 
     void Start()
     {
         thePlayer = ObjectManager.instance.player.transform.gameObject;
+		fadeOutScene = ObjectManager.instance.player.transform.GetChild(3).GetChild(0).GetChild(2).gameObject;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -9,7 +9,11 @@ using UnityEngine;
 
 public class MovingPlatformAttach : MonoBehaviour
 {
-    public GameObject thePlayer;
+    private GameObject thePlayer;
+
+	void Start(){
+		thePlayer = ObjectManager.instance.player.gameObject;
+	}
 
     //Bindet den Spieler an die Platform (als Kindobjekt) beim Betreten
     private void OnTriggerEnter(Collider other)

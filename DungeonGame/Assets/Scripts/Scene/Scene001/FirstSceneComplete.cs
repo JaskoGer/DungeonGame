@@ -8,15 +8,23 @@ using UnityEngine.SceneManagement;
  * @author Kacper Purtak
  * version 1.0
  * 01.11.2021
+ * Bearbeitet von Tobias
  * Description: Script to load the next scene after completing the fist scene and picking up the starter-wearpon
  */
 
 public class FirstSceneComplete : MonoBehaviour
 {
     public static bool isStarterWeaponPickedUp = false;
-    public GameObject thePlayer;
-    public GameObject fadeOutScene;
-    public Text errorMessage;
+    private GameObject thePlayer;
+    private GameObject fadeOutScene;
+    private Text errorMessage;
+
+    private void Start()
+    {
+        thePlayer = ObjectManager.instance.player.gameObject;
+        fadeOutScene = ObjectManager.instance.player.transform.GetChild(3).GetChild(0).GetChild(2).gameObject;
+        errorMessage = ObjectManager.instance.player.transform.GetChild(3).GetChild(0).GetChild(4).GetComponent<Text>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -32,17 +40,15 @@ public class FirstSceneComplete : MonoBehaviour
 
     IEnumerator CompletedScene()
     {
-        GlobalScene.currentScene++;
+        GlobalScene.currentScene = 3;
         fadeOutScene.SetActive(true);
-        thePlayer.GetComponent<PlayerMovement>().enabled = false;
         yield return new WaitForSeconds(2f);
-        Destroy(thePlayer);
         SceneManager.LoadScene(GlobalScene.currentScene);
     }
 
     IEnumerator PickUpStarterWeaponErrorMessage()
     {
-        errorMessage.GetComponent<Text>().text = "Hebe zuerst die Waffe an den Heuballen auf, bevor du den Dungeon betrittst!";
+        errorMessage.text = "Hebe zuerst die Waffe an den Heuballen auf, bevor du den Dungeon betrittst!";
         errorMessage.enabled = true;
         yield return new WaitForSeconds(4f);
         errorMessage.enabled = false;

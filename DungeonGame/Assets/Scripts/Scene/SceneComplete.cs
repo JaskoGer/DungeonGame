@@ -8,24 +8,34 @@ using UnityEngine.SceneManagement;
  * version 1.0
  * 30.10.2021
  * Description: Script to load the next scene after completing one
+ * Bearbeitet von Tobias
  */
 
 public class SceneComplete : MonoBehaviour
 {
-    public GameObject thePlayer;
-    public GameObject fadeOutScene;
+    private GameObject thePlayer;
+    private GameObject fadeOutScene;
+    private bool loaded = false;
+
+    void Start()
+    {
+        thePlayer = ObjectManager.instance.player.transform.gameObject;
+		fadeOutScene = ObjectManager.instance.player.transform.GetChild(3).GetChild(0).GetChild(2).gameObject;
+        fadeOutScene.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(CompletedScene());
+        if (!loaded)
+            StartCoroutine(CompletedScene());
     }
 
     IEnumerator CompletedScene()
     {
+        loaded = true;
         GlobalScene.currentScene++;
         fadeOutScene.SetActive(true);
         yield return new WaitForSeconds(2f);
-		Destroy(thePlayer);
         SceneManager.LoadScene(GlobalScene.currentScene);
     }
 }

@@ -21,7 +21,7 @@ public class ObjectManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 
-		DontDestroyOnLoad(gameObject);
+		//DontDestroyOnLoad(gameObject);
 	}
 
 	#endregion
@@ -30,4 +30,5 @@ public class ObjectManager : MonoBehaviour
     public Transform player;
     public Transform mainCam;
     public Transform camRotator;
+	public Transform earl;
 }

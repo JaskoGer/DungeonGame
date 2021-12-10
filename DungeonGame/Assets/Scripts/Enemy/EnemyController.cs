@@ -12,15 +12,15 @@ using UnityEngine.AI;
  */
 public class EnemyController : MonoBehaviour
 {
-	public float lookRadius = 25f;
-	public float attackDistance = 2f;
-	public float movementSpeed = 5f;
-	public float attackSpeed = 0.5f;
-	public float attackDamage = 5f;
+	private float lookRadius = 25f;
+	private float attackDistance = 2f;
+	private float movementSpeed = 5f;
+	private float attackSpeed = 0.5f;
+	private float attackDamage = 5f;
 	public Vector3 patrolDest;
 	public bool hasPatrolDest = false;
-	public float enemyHP = 50;
-	public float attackCooldown = 0f;
+	private float enemyHP = 50;
+	private float attackCooldown = 0f;
 	private float patrolCooldown = 0f;
 	Animator animator;
 	//private float drawRayDuration = 0.2f;
@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
 		target = ObjectManager.instance.player.transform;
 		// setzen der Attribute
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-		agent.stoppingDistance = attackDistance;
+		agent.stoppingDistance = attackDistance - 0.2f;
 		agent.speed = movementSpeed;
 	}
 
@@ -99,6 +99,11 @@ bool HasVisual(float distance)
 		{
 			if (distance <= lookRadius * 0.3)
 			{
+				if (distance <= attackDistance && attackCooldown <= 0)
+				{
+					StartCoroutine(AttackPlayer());
+					SetAttackCooldown();
+				}
 				return true;
             }
 			//Deklarierung der Vektoren
@@ -120,7 +125,7 @@ bool HasVisual(float distance)
 						// prüft ob der Player direkt angeschaut wird, ob er in Angriffsreichweite ist und ob der Attack Cooldown <= 0 ist
 						if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir + addDegreeB * i)  * Vector3.forward + Vector3.up * j, out hit, lookRadius))
 						{
-							 return CheckCollider(hit, distance);
+							return CheckCollider(hit, distance);
 						}
 						if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir - addDegreeB * i) * Vector3.forward, out hit, lookRadius))
 						{
@@ -140,7 +145,7 @@ bool HasVisual(float distance)
 	 */
 	private bool CheckCollider(RaycastHit hit, float distance)
 	{
-		//print(hit.collider.name);
+		/*  print(hit.collider.name); */
 		if (hit.collider.name == "Player")
 		{
 			if (distance <= attackDistance && attackCooldown <= 0)
@@ -160,15 +165,17 @@ bool HasVisual(float distance)
 	private void Patrolling()
 	{
 		//prüft, ob das Mob einen aktiven Zielpunkt hat. Fall das nicht der Fall ist, wird ein neuer Punkt zugewiesen
-		if (!hasPatrolDest)
+		
+		if (!hasPatrolDest || Vector3.Distance(patrolDest, transform.position) >= 14f)
 		{
 			patrolDest = new Vector3(transform.position[0] + Random.Range(-10f, 10), transform.position[1], transform.position[2] + Random.Range(-10, 10));
 			hasPatrolDest = true;
 		}
 
-		else if (Vector3.Distance(patrolDest.normalized, transform.position.normalized) <= 0.02f)
+		else if (Vector3.Distance(patrolDest, transform.position) <= 2f)
 		{
 			hasPatrolDest = false;
+			patrolCooldown = 5;
 		}
 
 		else if (patrolCooldown == 0)
@@ -177,32 +184,34 @@ bool HasVisual(float distance)
 			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
 			transform.rotation = lookRotation;
 			agent.SetDestination(patrolDest);
-			patrolCooldown = 5;
 		}
 	}
 
 	private void newPatrolling()
 	{
 		//prüft, ob das Mob einen aktiven Zielpunkt hat. Fall das nicht der Fall ist, wird ein neuer Punkt zugewiesen
-		if (!hasPatrolDest)
+		if (!hasPatrolDest || Vector3.Distance(patrolDest, transform.position) >= 14f)
 		{
 			NavMeshHit hit;
 			patrolDest = new Vector3(transform.position[0] + Random.Range(-10f, 10), transform.position[1], transform.position[2] + Random.Range(-10, 10));
 			hasPatrolDest = NavMesh.SamplePosition(patrolDest, out hit, 10, NavMesh.AllAreas);
+			patrolDest = hit.position;
+			/*print(Vector3.Distance(patrolDest, transform.position));*/
 		}
 
-		else if (Vector3.Distance(patrolDest.normalized, transform.position.normalized) <= 0.4f)
+		else if (Vector3.Distance(patrolDest, transform.position) <= 2f)
 		{
 			hasPatrolDest = false;
+			patrolCooldown = 3;
 		}
 
-		else if (patrolCooldown == 0)
+		else
 		{
+			/*print("test");*/
 			Vector3 direction = (patrolDest - transform.position).normalized;
 			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
 			transform.rotation = lookRotation;
 			agent.SetDestination(patrolDest);
-			patrolCooldown = 5;
 		}
 	}
 
@@ -225,9 +234,8 @@ bool HasVisual(float distance)
 	IEnumerator AttackPlayer()
 	{
 		animator.SetBool("isAttacking", true);
-		yield return new WaitForSeconds(0.4f);
+		yield return new WaitForSeconds(0.6f);
 		PlayerStatsSingleton.instance.PlayerDamage(attackDamage);
-		yield return new WaitForSeconds(0.4f);
 		animator.SetBool("isAttacking", false);
 	}
 
@@ -249,6 +257,8 @@ bool HasVisual(float distance)
 		enemyHP -= pAttackDamage;
 		if (enemyHP <= 0)
 		{
+			PlayerStatsSingleton.instance.AddPlayerXp(40);
+			PlayerStatsSingleton.instance.AddPlayerMoneten(20);
 			Destroy(this.gameObject);
 		}
 	}

@@ -31,4 +31,5 @@ public class ObjectManager : MonoBehaviour
     public Transform mainCam;
     public Transform camRotator;
 	public Transform earl;
+	public GameObject inventory;
 }

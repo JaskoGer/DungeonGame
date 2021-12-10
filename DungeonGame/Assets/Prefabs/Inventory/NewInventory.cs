@@ -58,4 +58,18 @@ public class NewInventory : MonoBehaviour
         if(onItemChangedCallback != null)
             items.Remove(item);
     }
+
+    /**
+	 * @Author Jasko, Jonas
+	 * gibt die Liste mit Items zurueck
+	 */
+    public int[] getInv()
+    {
+        int[] inv = new int[items.Count];
+        for (int i = 0; i < items.Count; i++)
+        {
+            inv[i] = items[i].ItemID;
+        }
+        return inv;
+    }
 }

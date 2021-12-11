@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4724357, g: 0.7549759, b: 0.9301621, a: 1}
+  m_IndirectSpecularColor: {r: 0.4724357, g: 0.754977, b: 0.93016243, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -34863,7 +34863,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1221397183}
   - component: {fileID: 1221397184}
-  - component: {fileID: 1221397185}
   m_Layer: 5
   m_Name: UI_Shop
   m_TagString: Untagged
@@ -34914,18 +34913,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8992d945c5d8dff4cb95701413c4ce00, type: 2}
   - {fileID: 11400000, guid: b03efdb3e3858c04bb11ba9d62d2b2d2, type: 2}
   - {fileID: 11400000, guid: 535104df666166b4a99e8d2494d08dff, type: 2}
---- !u!114 &1221397185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1221397182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc44d7a28d27c114da5f54ca7eaf13b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1222240796
 GameObject:
   m_ObjectHideFlags: 0

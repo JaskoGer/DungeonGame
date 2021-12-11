@@ -19,7 +19,6 @@ public class FirstSceneComplete : MonoBehaviour
     private GameObject fadeOutScene;
     private GameObject gameManager;
     private PlayerManager positionManager;
-    private Text errorMessage;
 
     private void Start()
     {
@@ -28,7 +27,6 @@ public class FirstSceneComplete : MonoBehaviour
         positionManager = gameManager.GetComponent<PlayerManager>();
         thePlayer.transform.position = new Vector3(positionManager.startPointx, positionManager.startPointy, positionManager.startPointz);
         fadeOutScene = ObjectManager.instance.fadeOutScene.gameObject;
-        errorMessage = ObjectManager.instance.errorTextField.GetComponent<Text>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,9 +51,9 @@ public class FirstSceneComplete : MonoBehaviour
 
     IEnumerator PickUpStarterWeaponErrorMessage()
     {
-        errorMessage.text = "Hebe zuerst die Waffe an den Heuballen auf, bevor du den Dungeon betrittst!";
-        errorMessage.enabled = true;
+        ObjectManager.instance.errorTextField.text = "Hebe zuerst die Waffe an den Heuballen auf, bevor du den Dungeon betrittst!";
+        ObjectManager.instance.errorTextField.enabled = true;
         yield return new WaitForSeconds(4f);
-        errorMessage.enabled = false;
+        ObjectManager.instance.errorTextField.enabled = false;
     }
 }

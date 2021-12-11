@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /**
  * @Author Tobias
@@ -243,7 +244,7 @@ public class PlayerMovement : MonoBehaviour
          * angreifen
          * bearbeitet von Kacper
          */
-        if (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true || Input.GetButton("Fire1") && GlobalScene.currentScene > 2)
+        if (!EventSystem.current.IsPointerOverGameObject() && (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true || Input.GetButton("Fire1") && GlobalScene.currentScene > 2))
         {
             if (ObjectManager.instance.metalFork.activeSelf || ObjectManager.instance.pitchFork.activeSelf)
             {

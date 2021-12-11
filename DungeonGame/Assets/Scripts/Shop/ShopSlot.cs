@@ -36,7 +36,15 @@ public class ShopSlot : MonoBehaviour
         }
         else
         {
-            // nicht genug Geld 
+            StartCoroutine(NotEnoughMoney());
         }
+    }
+
+    IEnumerator NotEnoughMoney()
+    {
+        ObjectManager.instance.errorTextField.text = "Du hast nicht genug Moneten!";
+        ObjectManager.instance.errorTextField.enabled = true;
+        yield return new WaitForSeconds(4f);
+        ObjectManager.instance.errorTextField.enabled = false;
     }
 }

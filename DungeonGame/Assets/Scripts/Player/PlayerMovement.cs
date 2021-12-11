@@ -245,11 +245,15 @@ public class PlayerMovement : MonoBehaviour
          */
         if (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true || Input.GetButton("Fire1") && GlobalScene.currentScene > 2)
         {
-            if (animator.GetBool("attack") == false)
+            if (ObjectManager.instance.metalFork.activeSelf || ObjectManager.instance.pitchFork.activeSelf)
             {
-                animator.SetBool("attack", true);
-                StartCoroutine(AttackAnimation());
+                if (animator.GetBool("attack") == false)
+                {
+                    animator.SetBool("attack", true);
+                    StartCoroutine(AttackAnimation());
+                }
             }
+            
         }
     }
 

@@ -9,6 +9,7 @@ using UnityEngine;
  */
 public class MobSpawning : MonoBehaviour
 {
+    public float hp;
     public GameObject Enemy;
     float xPos;
     float yPos;
@@ -30,7 +31,8 @@ public class MobSpawning : MonoBehaviour
     {
         while (enemies < enemyCount)
         {
-            Instantiate(Enemy, new Vector3(Random.Range(xPos - radiant, xPos + radiant), yPos, Random.Range(zPos - radiant, zPos + radiant)), Quaternion.identity);
+            var clone = Instantiate(Enemy, new Vector3(Random.Range(xPos - radiant, xPos + radiant), yPos, Random.Range(zPos - radiant, zPos + radiant)), Quaternion.identity);
+            clone.GetComponent<EnemyController>().setHealth(hp);
             yield return new WaitForSeconds(0.01f);
             enemies += 1;
         }

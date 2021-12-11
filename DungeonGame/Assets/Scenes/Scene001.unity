@@ -13760,10 +13760,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earl
       objectReference: {fileID: 0}
-    - target: {fileID: 8510858586289359584, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: dfd0914c21ff88b48b14f91596169685, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
 --- !u!4 &352338696 stripped

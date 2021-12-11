@@ -17,11 +17,11 @@ public class NewInventory : MonoBehaviour
 
     private void Awake()
     {
-        if(instance != null)
+        if(instance == null)
         {
-            Debug.Log("Mehr als eine Instanz von NewInventory gefunden!");
+            instance = this;
         }
-        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     #endregion Singleton

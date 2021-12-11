@@ -255,6 +255,7 @@ bool HasVisual(float distance)
 	public void GetDamage(float pAttackDamage)
 	{
 		enemyHP -= pAttackDamage;
+		attackCooldown = 3;
 		if (enemyHP <= 0)
 		{
 			PlayerStatsSingleton.instance.AddPlayerXp(40);

@@ -86,15 +86,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0c92e69b64ce6499db2ea7046836d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 15
-  attackDistance: 3
-  movementSpeed: 5
-  attackSpeed: 0.5
   attackDamage: 5
   patrolDest: {x: 0, y: 0, z: 0}
   hasPatrolDest: 0
   enemyHP: 20
-  attackCooldown: 0
+  enemyRend: {fileID: 6222945877010164866}
+  rimuruNormal: {fileID: 2100000, guid: c3fc1802bb1ac694e8d89a869511b757, type: 2}
+  rimuruDamage: {fileID: 2100000, guid: 1bb9d0514beb4df4180891a6cf81980f, type: 2}
+  length1: 4
+  length2: 2
 --- !u!135 &7488567703040877950
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -188,6 +188,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -1998302251926898928, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c3fc1802bb1ac694e8d89a869511b757, type: 2}
+    - target: {fileID: -1998302251926898928, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce75b4efdd4f35f4584bb35a19c6ffa6, type: 2}
     - target: {fileID: 919132149155446097, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}
       propertyPath: m_Name
       value: RimuruTempest
@@ -222,5 +230,10 @@ PrefabInstance:
 --- !u!4 &3860283624340978809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}
+  m_PrefabInstance: {fileID: 3609849495629896594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6222945877010164866 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1998302251926898928, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}
   m_PrefabInstance: {fileID: 3609849495629896594}
   m_PrefabAsset: {fileID: 0}

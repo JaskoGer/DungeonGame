@@ -19,7 +19,7 @@ public class Equipment : NewItem
     //wird aufgerugen, wenn die Ausruestung im Inventar gedrueckt wird
     public override void Use()
     {
-        base.Use();
+        // base.Use();
         EquipmentManager.instance.Equip(this);
         RemoveFromInventory();
     }

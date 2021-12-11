@@ -17,13 +17,18 @@ public class FirstSceneComplete : MonoBehaviour
     public static bool isStarterWeaponPickedUp = false;
     private GameObject thePlayer;
     private GameObject fadeOutScene;
+    private GameObject gameManager;
+    private PlayerManager positionManager;
     private Text errorMessage;
 
     private void Start()
     {
         thePlayer = ObjectManager.instance.player.gameObject;
-        fadeOutScene = ObjectManager.instance.player.transform.GetChild(3).GetChild(0).GetChild(2).gameObject;
-        errorMessage = ObjectManager.instance.player.transform.GetChild(3).GetChild(0).GetChild(4).GetComponent<Text>();
+        gameManager = GameObject.Find("GameManager");
+        positionManager = gameManager.GetComponent<PlayerManager>();
+        thePlayer.transform.position = new Vector3(positionManager.startPointx, positionManager.startPointy, positionManager.startPointz);
+        fadeOutScene = ObjectManager.instance.fadeOutScene.gameObject;
+        errorMessage = ObjectManager.instance.errorTextField.GetComponent<Text>();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -5,11 +5,17 @@ using UnityEngine;
 /*
  * @Author Kacper
  * Beschreibung: Zieht den Spieler auf einer bewegenden Plattform mit sich
+ * Bearbeitet von Tobias
  */
 
 public class MovingPlatformAttach : MonoBehaviour
 {
-    public GameObject thePlayer;
+    private GameObject thePlayer;
+
+    private void Start()
+    {
+        thePlayer = ObjectManager.instance.player.gameObject;
+    }
 
     //Bindet den Spieler an die Platform (als Kindobjekt) beim Betreten
     private void OnTriggerEnter(Collider other)

@@ -35,17 +35,10 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     private void Awake()
 	{
-		// Erstellen der Instance dieser Klasse
 		if (instance == null)
 		{
 			instance = this;
 		}
-		//Zerstöre ein bestehendes Objekt, falls es nicht dieses ist
-		else if (instance != this)
-		{
-			Destroy(gameObject);
-		}
-
 		DontDestroyOnLoad (gameObject);
 	}
 

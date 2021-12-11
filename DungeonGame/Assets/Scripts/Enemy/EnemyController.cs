@@ -24,7 +24,14 @@ public class EnemyController : MonoBehaviour
 	private float enemyHP = 50;
 	private float attackCooldown = 0f;
 	private float patrolCooldown = 0f;
+	[SerializeField]
+	private Renderer enemyRend;
+	[SerializeField]
+	private Material rimuruNormal;
+	[SerializeField]
+	private Material rimuruDamage;
 	Animator animator;
+	private Rigidbody rg;
 	//private float drawRayDuration = 0.2f;
 
 	Transform target;
@@ -38,6 +45,7 @@ public class EnemyController : MonoBehaviour
 	 */
 	void Start()
 	{
+		rg = GetComponent<Rigidbody>();
 		animator = GetComponentInChildren<Animator>();
 		target = ObjectManager.instance.player.transform;
 		// setzen der Attribute
@@ -53,6 +61,11 @@ public class EnemyController : MonoBehaviour
 	 */
 	void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.U))
+		{
+			rg.AddForce(ObjectManager.instance.playerCharacter.transform.rotation * new Vector3(0, 4f, 0), ForceMode.Impulse);
+		}
+
 		// berechnet den Abstand zwischen dem Mob und dem Player
 		float distance = Vector3.Distance(target.position, transform.position);
 
@@ -257,6 +270,8 @@ bool HasVisual(float distance)
 	public void GetDamage(float pAttackDamage)
 	{
 		enemyHP -= pAttackDamage;
+		rg.AddForce(ObjectManager.instance.playerCharacter.transform.rotation * new Vector3(0, 2.5f, 5f), ForceMode.Impulse);
+		StartCoroutine(EnemyAttackColor());
 		attackCooldown = 3;
 		if (enemyHP <= 0)
 		{
@@ -264,6 +279,17 @@ bool HasVisual(float distance)
 			PlayerStatsSingleton.instance.AddPlayerMoneten(20);
 			Destroy(this.gameObject);
 		}
+	}
+
+	/**
+	 * @author Tobias
+	 * Damage Feedback
+	 */
+	IEnumerator EnemyAttackColor()
+    {
+		enemyRend.material = rimuruDamage;
+		yield return new WaitForSeconds(0.5f);
+		enemyRend.material = rimuruNormal;
 	}
 
 	/**

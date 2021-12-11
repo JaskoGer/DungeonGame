@@ -73535,6 +73535,11 @@ MonoBehaviour:
   patrolDest: {x: 0, y: 0, z: 0}
   hasPatrolDest: 0
   enemyHP: 150
+  enemyRend: {fileID: 6650355879634715821}
+  rimuruNormal: {fileID: 0}
+  rimuruDamage: {fileID: 0}
+  length1: 0
+  length2: 0
 --- !u!54 &6650355879473895275
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -73693,6 +73698,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!137 &6650355879634715821 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1998302251926898928, guid: f41fa02a0d1b4d5419cc788a54bc810c, type: 3}
+  m_PrefabInstance: {fileID: 6650355879634715817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6678656745130003348
 Transform:
   m_ObjectHideFlags: 0

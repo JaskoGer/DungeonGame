@@ -22,7 +22,7 @@ public class Items : MonoBehaviour
 
     /*[SerializeField]
     private Sprite[] itemIcon;*/
-
+    
     public static int GetCost(ItemType itemType)
     {
         switch (itemType)

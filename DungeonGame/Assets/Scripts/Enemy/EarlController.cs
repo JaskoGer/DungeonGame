@@ -29,7 +29,14 @@ public class EarlController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GoBehind();
+        if (Vector3.Distance(target.position, transform.position) >= 5f)
+        {
+            GoBehind();
+        }
+        else
+        {
+            agent.SetDestination(transform.position);
+        }
 
         SetAnimation();
     }
@@ -87,12 +94,12 @@ public class EarlController : MonoBehaviour
 
     void setSpeed(Vector3 dest)
     {
-        double distance = (dest.normalized - transform.position.normalized).magnitude;
-        if (distance < 0.05f)
+        double distance = Vector3.Distance(target.position, transform.position);
+        if (distance < 10f)
         {
             agent.speed = 5f;
         }
-        else if (distance < 0.1)
+        else if (distance < 20)
         {
             agent.speed = 10;
         }
@@ -107,8 +114,8 @@ public class EarlController : MonoBehaviour
     {
         Vector3 playerPos = target.position;
         Vector3 playerRot = randyBody.eulerAngles;
-        Vector3 dest = playerPos - (Quaternion.Euler(playerRot) * Vector3.forward) * 5;
-        Debug.DrawRay(playerPos, -(Quaternion.Euler(playerRot) * Vector3.forward) * 5, Color.red, 0.1f);
+        Vector3 dest = playerPos - (Quaternion.Euler(playerRot) * Vector3.forward) * 4;
+        Debug.DrawRay(playerPos, -(Quaternion.Euler(playerRot) * Vector3.forward) * 4, Color.red, 0.1f);
         return dest;
     }
 

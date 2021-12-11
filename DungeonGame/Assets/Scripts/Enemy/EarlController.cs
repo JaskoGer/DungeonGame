@@ -10,6 +10,11 @@ public class EarlController : MonoBehaviour
     Transform target;
     Transform randyBody;
     UnityEngine.AI.NavMeshAgent agent;
+    Animator earlAnim;
+    public Transform earlObj;
+    [SerializeField] private float changeX;
+    [SerializeField]private float changeY;
+    Vector3 lastPos;
 
     // Start is called before the first frame update
     void Start()
@@ -17,14 +22,58 @@ public class EarlController : MonoBehaviour
         target = ObjectManager.instance.player.transform;
         randyBody = ObjectManager.instance.playerCharacter.transform;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        earlAnim = GetComponentInChildren<Animator>();
+        StartCoroutine(TrackLastPos());
     }
 
     // Update is called once per frame
     void Update()
     {
         GoBehind();
+
+        SetAnimation();
     }
 
+    /*
+     * @Author Kacper Purtak
+     * Setzt, je nach dem wie die Position von Earl ich aendert, die passende Animation
+     */
+    private void SetAnimation()
+    {
+        changeX = lastPos.x - earlObj.position.x;
+        changeY = lastPos.y - earlObj.position.y;
+        if (changeX < 0)
+        {
+            changeX = changeX * (-1);
+        }
+        if (changeY < 0)
+        {
+            changeY = changeY * (-1);
+        }
+
+        if (changeX < 0.1 && changeY < 0.1)
+        {
+            earlAnim.SetBool("isMoving", false);
+        }
+        else if (changeX > 0.1 || changeY > 0.1)
+        {
+            earlAnim.SetBool("isMoving", true);
+        }
+    }
+
+    /*
+     * @Author Kacper Purtak
+     * Trackt jede Sekunde die Position von Earl
+     */
+    IEnumerator TrackLastPos()
+    {
+        while(1 != 0)
+        {
+            lastPos = earlObj.position;
+            yield return new WaitForSeconds(1f);
+            Debug.Log("Letzte Position getrackt!");
+        }
+    }
 
     void GoBehind()
     {

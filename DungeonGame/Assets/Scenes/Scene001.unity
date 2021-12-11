@@ -13673,6 +13673,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 733180755582693318, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
+      propertyPath: earlObj
+      value: 
+      objectReference: {fileID: 1674553952}
+    - target: {fileID: 733180755582693318, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1782815043450609758, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
       propertyPath: m_UseGravity
       value: 1
@@ -13749,6 +13757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earl
       objectReference: {fileID: 0}
+    - target: {fileID: 8510858586289359584, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dfd0914c21ff88b48b14f91596169685, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
 --- !u!4 &352338696 stripped
@@ -70111,6 +70123,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b4678a115cd0f4b49b736181aa5865fb, type: 3}
   m_PrefabInstance: {fileID: 1202175455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1674553952 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3796267007862377955, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
+  m_PrefabInstance: {fileID: 352338695}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1680061336 stripped
 GameObject:

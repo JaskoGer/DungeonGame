@@ -19,13 +19,16 @@ public class PlayerStatsSingleton : MonoBehaviour
     [SerializeField]
     private Text HealthValue;
 
+    [SerializeField]
+    private Text PlayerMoneten;
+
     private float maxHealth = 100;
     private float health = 100;
     private float regenerationPower = 0.33333f;
     private int playerLevel = 1;
     private int playerXp = 0;
     private int nextLevelXp = 100;
-    private int moneten = 0;
+    private int moneten = 1000;
     private Scene scene;
 
     private float attackDamage = 10f;
@@ -47,6 +50,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     {
         playerCharacter = ObjectManager.instance.playerCharacter.transform;
         SetUIImage();
+        SetPlayerMoneten();
 
         scene = SceneManager.GetActiveScene();
     }
@@ -309,6 +313,11 @@ public class PlayerStatsSingleton : MonoBehaviour
           HealthValue.text = RoundedHealth + " / " + maxHealth;
         }
         healthBarSlider.fillAmount = health / maxHealth;
+    }
+
+    public void SetPlayerMoneten()
+    {
+        PlayerMoneten.text = moneten.ToString();
     }
 
 } 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4724357, g: 0.754977, b: 0.93016243, a: 1}
+  m_IndirectSpecularColor: {r: 0.4724357, g: 0.754976, b: 0.93016213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1777,6 +1777,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1907025776556790797, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2616559266214925525, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
+      propertyPath: PlayerMoneten
+      value: 
+      objectReference: {fileID: 404817621}
     - target: {fileID: 2616559266214925526, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1832,6 +1840,22 @@ PrefabInstance:
     - target: {fileID: 2922426158916459317, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3083930981472597926, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3083930981472597926, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3083930981472597926, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3083930981472597926, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 3210296006431919256, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
       propertyPath: m_AnchorMax.y
@@ -15448,6 +15472,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7200e57867ed0d449a5f20437697f432, type: 3}
+--- !u!114 &404817621 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8737888254654886664, guid: 111a08776e21e424d8adb95e215007f2, type: 3}
+  m_PrefabInstance: {fileID: 43083293}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &405225397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4120855026032116, guid: 55e2779e6396fa24289e5aaef0069acb, type: 3}

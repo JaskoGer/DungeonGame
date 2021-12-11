@@ -252,9 +252,10 @@ public class PlayerStatsSingleton : MonoBehaviour
 	 * @Author Jasko
 	 * addiert neu verdiente Moneten hinzu
 	 */
-    public void AddPlayerMoneten(int earning)
+    public void AddPlayerMoneten(int ernie)
     {
-        moneten += earning;
+        moneten += ernie;
+        SetPlayerMoneten();
     }
 
     /**

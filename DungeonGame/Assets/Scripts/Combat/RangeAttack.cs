@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-/*@Author Laurin
-*Methode für das Angreifen auf Distanz
-*
-*/
+/*
+ * @Author Laurin
+ * Methode für das Angreifen auf Distanz
+ * Bearbeitet von Tobias
+ */
 
 public class RangeAttack : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class RangeAttack : MonoBehaviour
             } 
         }
 
-        if (Input.GetButtonDown("Fire2") && cooldown == 0)
+        if (Input.GetButtonDown("Fire2") && cooldown == 0 && ObjectManager.instance.crossBow.activeSelf)
         {
             Attack();
             cooldown = 2.5f;
@@ -56,12 +57,10 @@ public class RangeAttack : MonoBehaviour
     */
     public void Attack()
     {
-
-    playerPos = Player.transform.position + new Vector3(0f, 1f, 0f);
-     var clone = Instantiate(Visual, playerPos, Player.transform.rotation);
-     clone.velocity = Player.transform.TransformDirection(new Vector3(0, 0, speed)) + new Vector3(0, 1 ,0);
-     Destroy (clone.gameObject, 5);
-		
+        playerPos = Player.transform.position + Player.transform.rotation * new Vector3(0.8f, 1.2f, 0.9f);
+        var clone = Instantiate(Visual, playerPos, Player.transform.rotation);
+        clone.velocity = Player.transform.TransformDirection(new Vector3(0, 0, speed)) + new Vector3(0, 1 ,0);
+        Destroy (clone.gameObject, 5);
     }
 
     public void setDamage(float newdamage)

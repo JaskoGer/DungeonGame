@@ -34,4 +34,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject fadeOutScene;
 	public GameObject errorTextField;
     public GameObject inventory;
+	public GameObject crossBow;
+    public GameObject pitchFork;
+	public GameObject metalFork;
 }

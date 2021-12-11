@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/**
+ * @Author Tobias
+ * Ort um auf die wichtigsten Objekte zuzugreifen
+ */
 public class ObjectManager : MonoBehaviour
 {
 
@@ -38,4 +43,21 @@ public class ObjectManager : MonoBehaviour
 	public GameObject crossBow;
     public GameObject pitchFork;
 	public GameObject metalFork;
+
+	public void ErrorMessage(string pM)
+    {
+		StartCoroutine(ErrorMessageUI(pM));
+    }
+
+	/**
+	* @Author Tobias
+	* setzt einen error
+	*/
+	IEnumerator ErrorMessageUI(string pM)
+	{
+		errorTextField.text = pM;
+		errorTextField.enabled = true;
+		yield return new WaitForSeconds(4f);
+		errorTextField.enabled = false;
+	}
 }

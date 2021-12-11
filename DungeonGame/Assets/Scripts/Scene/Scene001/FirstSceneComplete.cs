@@ -37,7 +37,7 @@ public class FirstSceneComplete : MonoBehaviour
         }
         else
         {
-            StartCoroutine(PickUpStarterWeaponErrorMessage());
+            ObjectManager.instance.ErrorMessage("Hebe zuerst die Heugabel an den Heuballen auf!");
         }
     }
 
@@ -47,13 +47,5 @@ public class FirstSceneComplete : MonoBehaviour
         fadeOutScene.SetActive(true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(GlobalScene.currentScene);
-    }
-
-    IEnumerator PickUpStarterWeaponErrorMessage()
-    {
-        ObjectManager.instance.errorTextField.text = "Hebe zuerst die Waffe an den Heuballen auf, bevor du den Dungeon betrittst!";
-        ObjectManager.instance.errorTextField.enabled = true;
-        yield return new WaitForSeconds(4f);
-        ObjectManager.instance.errorTextField.enabled = false;
     }
 }

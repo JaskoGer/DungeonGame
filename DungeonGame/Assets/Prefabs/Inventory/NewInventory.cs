@@ -39,10 +39,9 @@ public class NewInventory : MonoBehaviour
         {
             if(items.Count >= invSpace)
             {
-                Debug.Log("Das Inventar ist voll!");
+                ObjectManager.instance.ErrorMessage("Inventar voll!");
                 return false;
             }
-			print("1");
             items.Add(item);
 
             if(onItemChangedCallback != null)

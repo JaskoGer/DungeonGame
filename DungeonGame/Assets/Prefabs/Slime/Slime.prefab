@@ -93,8 +93,6 @@ MonoBehaviour:
   enemyRend: {fileID: 6222945877010164866}
   rimuruNormal: {fileID: 2100000, guid: c3fc1802bb1ac694e8d89a869511b757, type: 2}
   rimuruDamage: {fileID: 2100000, guid: 1bb9d0514beb4df4180891a6cf81980f, type: 2}
-  length1: 4
-  length2: 2
 --- !u!135 &7488567703040877950
 SphereCollider:
   m_ObjectHideFlags: 0

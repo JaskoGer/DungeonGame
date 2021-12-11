@@ -9,7 +9,7 @@ using UnityEngine;
  * 01.11.2021
  * Description: Scene Wechsel
  */
-public class Boos2Deafeat : MonoBehaviour
+public class Boss2Deafeat : MonoBehaviour
 {
 	private GameObject fadeOut;
 	public GameObject Boss;
@@ -25,7 +25,6 @@ public class Boos2Deafeat : MonoBehaviour
 		positionManager = gameManager.GetComponent<PlayerManager>();
 		thePlayer.transform.position = new Vector3(positionManager.startPointx, positionManager.startPointy, positionManager.startPointz);
 		fadeOut = ObjectManager.instance.fadeOutScene.gameObject;
-		fadeOut.SetActive(false);
 	}
 	
     void Update()
@@ -39,7 +38,7 @@ public class Boos2Deafeat : MonoBehaviour
     IEnumerator CompletedScene()
     {
 		loaded = true;
-        GlobalScene.currentScene = 4;
+        GlobalScene.currentScene = 2;
 		fadeOut.SetActive(true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(GlobalScene.currentScene);

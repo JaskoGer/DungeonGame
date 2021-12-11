@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectManager : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class ObjectManager : MonoBehaviour
     public Transform camRotator;
 	public Transform earl;
     public GameObject fadeOutScene;
-	public GameObject errorTextField;
+	public Text errorTextField;
     public GameObject inventory;
 	public GameObject crossBow;
     public GameObject pitchFork;

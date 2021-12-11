@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class PlayerData
 {
+	//Deklarierung der Variablen
 	public int level;
 	public float health;
 	public int moneten;
@@ -18,6 +19,7 @@ public class PlayerData
 	public Scene scene;
 	public int[] inventory;
 
+	//Variablen werden im Constructor befuellt
 	public PlayerData(PlayerStatsSingleton player, int[] inv)
 	{
 		level = player.GetPlayerLevel();

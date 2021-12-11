@@ -9,9 +9,12 @@ using System.Runtime.Serialization.Formatters.Binary;
  */
 public static class SaveSystem
 {
+	//speichert die Daten des Players und des Inventars
 	public static void SavePlayer(PlayerStatsSingleton player)
 	{
 		//GameObject inv = ObjectManager.instance.inventory;
+
+		//Datei zum Speichern wird aufgerufen und die Daten werden verschoben
 		BinaryFormatter formatter = new BinaryFormatter();
 		string path = Application.persistentDataPath + "/player.alexander";
 		FileStream stream = new FileStream(path, FileMode.Create);
@@ -22,11 +25,13 @@ public static class SaveSystem
 		stream.Close();
 	}
 
+	//lädt die Daten des Players und des Inventars 
 	public static PlayerData LoadPlayer()
 	{
 		string path = Application.persistentDataPath + "/player.alexander";
 		if (File.Exists(path))
 		{
+			//formatiert die Daten Daten wieder zurück und überschreibt die PlayerData Klasse
 			BinaryFormatter formatter = new BinaryFormatter();
 			FileStream stream = new FileStream(path, FileMode.Open);
 
@@ -37,6 +42,7 @@ public static class SaveSystem
 		}
 		else
 		{
+			//gibt Feedback, wenn keine Datei zum Laden der Daten vorhanden ist
 			Debug.LogError("Save file not found in " + path);
 			return null;
 		}

@@ -21036,7 +21036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1705864001039833163, guid: a79671aff7c07df4588a9db901b0ec43, type: 3}
       propertyPath: m_Name
-      value: GameManger
+      value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 8154667017493893255, guid: a79671aff7c07df4588a9db901b0ec43, type: 3}
       propertyPath: m_RootOrder
@@ -51373,6 +51373,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 733180755582693318, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
+      propertyPath: earlObj
+      value: 
+      objectReference: {fileID: 1613629999}
     - target: {fileID: 4044070121062095923, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
       propertyPath: m_Drag
       value: 0
@@ -51435,6 +51439,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
+--- !u!4 &1613629999 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3796267007862377955, guid: 07d8772c87e70b74181af6837632f79b, type: 3}
+  m_PrefabInstance: {fileID: 1613629998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1619930535
 GameObject:
   m_ObjectHideFlags: 0

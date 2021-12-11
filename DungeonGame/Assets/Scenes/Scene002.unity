@@ -73536,10 +73536,8 @@ MonoBehaviour:
   hasPatrolDest: 0
   enemyHP: 150
   enemyRend: {fileID: 6650355879634715821}
-  rimuruNormal: {fileID: 0}
-  rimuruDamage: {fileID: 0}
-  length1: 0
-  length2: 0
+  rimuruNormal: {fileID: 2100000, guid: c3fc1802bb1ac694e8d89a869511b757, type: 2}
+  rimuruDamage: {fileID: 2100000, guid: 1bb9d0514beb4df4180891a6cf81980f, type: 2}
 --- !u!54 &6650355879473895275
 Rigidbody:
   m_ObjectHideFlags: 0

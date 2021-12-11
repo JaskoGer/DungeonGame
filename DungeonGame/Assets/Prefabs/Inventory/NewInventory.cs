@@ -21,7 +21,6 @@ public class NewInventory : MonoBehaviour
         {
             instance = this;
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     #endregion Singleton

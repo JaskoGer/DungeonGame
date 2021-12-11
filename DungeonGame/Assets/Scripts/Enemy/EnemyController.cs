@@ -16,9 +16,11 @@ public class EnemyController : MonoBehaviour
 	private float attackDistance = 2f;
 	private float movementSpeed = 5f;
 	private float attackSpeed = 0.5f;
+	[SerializeField]
 	private float attackDamage = 5f;
 	public Vector3 patrolDest;
 	public bool hasPatrolDest = false;
+	[SerializeField]
 	private float enemyHP = 50;
 	private float attackCooldown = 0f;
 	private float patrolCooldown = 0f;
@@ -263,4 +265,13 @@ bool HasVisual(float distance)
 			Destroy(this.gameObject);
 		}
 	}
+
+	/**
+	 * @author Tobias
+	 * getDamage
+	 */
+	public void setHealth(float pHp)
+    {
+		enemyHP = pHp;
+    }
 }

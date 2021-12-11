@@ -1831,6 +1831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d50c31f768f9004e8fc70571b9353de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 30
   Enemy: {fileID: 1895493566}
   radiant: 4
   enemyCount: 6
@@ -11351,6 +11352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d50c31f768f9004e8fc70571b9353de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 20
   Enemy: {fileID: 1895493566}
   radiant: 10
   enemyCount: 3
@@ -26475,6 +26477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d50c31f768f9004e8fc70571b9353de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 30
   Enemy: {fileID: 1895493566}
   radiant: 10
   enemyCount: 4
@@ -73528,8 +73531,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0c92e69b64ce6499db2ea7046836d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDamage: 10
   patrolDest: {x: 0, y: 0, z: 0}
   hasPatrolDest: 0
+  enemyHP: 150
 --- !u!54 &6650355879473895275
 Rigidbody:
   m_ObjectHideFlags: 0

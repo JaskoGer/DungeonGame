@@ -38,8 +38,8 @@ public class ProjectileHit : MonoBehaviour
             {
                 if(cooldown <= Time.time)
                 {
-                HitWall.Play();
-                cooldown = Time.time + 0.5;
+                    HitWall.Play();
+                    cooldown = Time.time + 0.5;
                 }
             }
 

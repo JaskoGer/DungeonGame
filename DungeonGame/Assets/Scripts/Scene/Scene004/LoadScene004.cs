@@ -6,6 +6,7 @@ using UnityEngine;
  * @author Kacper Purtak
  * version 1.0
  * 31.10.2021
+ * Bearbeitet von Tobias
  * Description: Script to set correct scene value after loading the scene
  */
 

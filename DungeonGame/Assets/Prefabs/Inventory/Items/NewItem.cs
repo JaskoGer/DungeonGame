@@ -14,11 +14,14 @@ public class NewItem : ScriptableObject
     public Sprite icon = null;              //Item Symbol
     public bool isDefaultItem = false;
 	public int itemID;
+    public int preis;
 
     //wird ausgefuehrt, wenn das Item im Inventar gedrueckt wird
     public virtual void Use()
     {
         Debug.Log("Using " + name);
+        ItemUse.instance.UseItem(this);
+
     }
 
     //wird verwendet, um ein Item aus dem Inventar zu entfernen
@@ -27,3 +30,4 @@ public class NewItem : ScriptableObject
         NewInventory.instance.Remove(this);
     }
 }
+

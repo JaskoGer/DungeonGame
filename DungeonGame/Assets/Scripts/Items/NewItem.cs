@@ -20,7 +20,7 @@ public class NewItem : ScriptableObject
     public virtual void Use()
     {
         Debug.Log("Using " + name);
-        // ItemUse.instance.UseItem(this);
+        ItemUse.instance.UseItem(this);
 
     }
 

@@ -68,7 +68,7 @@ public class NewInventory : MonoBehaviour
         int[] inv = new int[items.Count];
         for (int i = 0; i < items.Count; i++)
         {
-            inv[i] = items[i].ItemID;
+            inv[i] = items[i].itemID;
         }
         return inv;
     }

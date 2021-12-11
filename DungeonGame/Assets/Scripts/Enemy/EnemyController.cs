@@ -61,11 +61,6 @@ public class EnemyController : MonoBehaviour
 	 */
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.U))
-		{
-			rg.AddForce(ObjectManager.instance.playerCharacter.transform.rotation * new Vector3(0, 4f, 0), ForceMode.Impulse);
-		}
-
 		// berechnet den Abstand zwischen dem Mob und dem Player
 		float distance = Vector3.Distance(target.position, transform.position);
 

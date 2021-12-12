@@ -35,6 +35,7 @@ public class EnemyController : MonoBehaviour
 	Animator animator;
 	private Rigidbody rg;
 	//private float drawRayDuration = 0.2f;
+    private Vector3 lastPosition;
 
 	Transform target;
 	NavMeshAgent agent;
@@ -96,6 +97,8 @@ public class EnemyController : MonoBehaviour
 			agent.speed = movementSpeed * 0.6f;
 			newPatrolling();
 		}
+
+		SetAnimation();
 	}
 
 
@@ -105,7 +108,7 @@ public class EnemyController : MonoBehaviour
 	 * Anpassung der Attacks durch TOBIAS
 	 * Prüft ob ein Player in der Nähe ist und überprüft dann, ob nichts die Sicht des Mobs auf den Player blockiert
 	 */
-bool HasVisual(float distance)
+    bool HasVisual(float distance)
 	{
 		RaycastHit hit;
 		if (distance <= lookRadius)
@@ -252,11 +255,29 @@ bool HasVisual(float distance)
 		animator.SetBool("isAttacking", false);
 	}
 
-	/**
+	/*
+     * @Author Tobias Haubold
+     * Setzt die movement variable des enemies durch Postionsveränderung
+     */
+	private void SetAnimation()
+	{
+		float distance = Vector3.Distance(lastPosition, transform.position);
+		
+		if (distance < 0.1f)
+		{
+			animator.SetBool("isMoving", false);
+		}
+		else if (distance > 0.1f)
+		{
+			animator.SetBool("isMoving", true);
+        }
+    }
+
+    /**
 	 * @author Tobias
 	 * setzt den Attack Cooldown
 	 */
-	void SetAttackCooldown()
+    void SetAttackCooldown()
 	{
 		attackCooldown = 1 / attackSpeed;
 	}

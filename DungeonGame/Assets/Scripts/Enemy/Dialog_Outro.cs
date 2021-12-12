@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * @Author Jonas
+ * stellt die Bedingung für den Dialog und den Dialog an sich mit Earl im Outro
+ */
 public class Dialog_Outro : MonoBehaviour
 {
     EarlInteraction act;
@@ -46,7 +50,6 @@ public class Dialog_Outro : MonoBehaviour
         text[6, 1] = "Earl";
         text[7, 0] = "[Grunz...]";
         text[7, 1] = "Randy";  
-
 
         return text;
     }

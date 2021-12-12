@@ -21,7 +21,7 @@ public class Equipment : NewItem
     {
         // base.Use();
         EquipmentManager.instance.Equip(this);
-        RemoveFromInventory();
+        //RemoveFromInventory();
     }
 }
 

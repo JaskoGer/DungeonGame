@@ -11,12 +11,9 @@ using UnityEngine;
 
 public class LoadScene003 : MonoBehaviour
 {
-	private GameObject fadeOut;
     // Start is called before the first frame update
     void Start()
     {
-		fadeOut = ObjectManager.instance.fadeOutScene.gameObject;
-        fadeOut.SetActive(false);
         StartCoroutine(SetScene());
     }
 

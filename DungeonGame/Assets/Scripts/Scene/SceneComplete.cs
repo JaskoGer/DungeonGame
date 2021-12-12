@@ -13,21 +13,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneComplete : MonoBehaviour
 {
-    private GameObject thePlayer;
-    private GameObject gameManager;
-    private PlayerManager positionManager;
-    private GameObject fadeOutScene;
     private bool loaded = false;
-
-    void Start()
-    {
-        thePlayer = ObjectManager.instance.player.gameObject;
-        gameManager = GameObject.Find("GameManager");
-        positionManager = gameManager.GetComponent<PlayerManager>();
-        thePlayer.transform.position = new Vector3(positionManager.startPointx, positionManager.startPointy, positionManager.startPointz);
-        fadeOutScene = ObjectManager.instance.fadeOutScene.gameObject;
-        fadeOutScene.SetActive(false);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -39,7 +25,7 @@ public class SceneComplete : MonoBehaviour
     {
         loaded = true;
         GlobalScene.currentScene++;
-        fadeOutScene.SetActive(true);
+        ObjectManager.instance.fadeOutScene.SetActive(true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(GlobalScene.currentScene);
     }

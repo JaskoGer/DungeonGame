@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /*
  * @author Kacper Purtak
@@ -15,18 +14,8 @@ public class LoadScene001 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-            StartCoroutine(SetScene());
+        StartCoroutine(SetScene());
     }
-
-    /*
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            GlobalScene.currentScene = 5;
-            SceneManager.LoadScene(GlobalScene.currentScene);
-        }
-    }*/
 
     IEnumerator SetScene()
     {

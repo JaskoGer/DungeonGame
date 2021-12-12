@@ -18,5 +18,5 @@ MonoBehaviour:
   itemID: 0
   preis: 0
   equipmentSlot: 0
-  armorModifier: 0
-  damageModifier: 0
+  healthModifier: 0
+  damageModifier: 1

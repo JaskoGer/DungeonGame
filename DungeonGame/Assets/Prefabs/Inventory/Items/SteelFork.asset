@@ -19,4 +19,4 @@ MonoBehaviour:
   preis: 100
   equipmentSlot: 0
   healthModifier: 0
-  damageModifier: 0
+  damageModifier: 2

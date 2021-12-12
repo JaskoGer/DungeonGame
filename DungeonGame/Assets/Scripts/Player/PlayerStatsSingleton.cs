@@ -51,7 +51,6 @@ public class PlayerStatsSingleton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 12;
         playerCharacter = ObjectManager.instance.playerCharacter.transform;
         SetUIImage();
         SetPlayerMoneten();
@@ -312,7 +311,14 @@ public class PlayerStatsSingleton : MonoBehaviour
         if (Enemy.layer == LayerMask.NameToLayer("Enemy"))
         {
             HitEnemySound.Play();
-            Enemy.GetComponent<EnemyController>().GetDamage(attackDamage);
+            if (ObjectManager.instance.metalFork.activeSelf)
+            {
+                Enemy.GetComponent<EnemyController>().GetDamage(2 * attackDamage);
+            }
+            else
+            {
+                Enemy.GetComponent<EnemyController>().GetDamage(attackDamage);
+            }
         }
     }
 

@@ -37,7 +37,7 @@ public class FirstSceneComplete : MonoBehaviour
         }
         else
         {
-            ObjectManager.instance.ErrorMessage("Hebe zuerst die Heugabel an den Heuballen auf!");
+            ObjectManager.instance.canvasMessenger.ErrorMessage("Hebe zuerst die Heugabel an den Heuballen auf!");
         }
     }
 

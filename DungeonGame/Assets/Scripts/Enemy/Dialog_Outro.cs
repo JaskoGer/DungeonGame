@@ -45,7 +45,7 @@ public class Dialog_Outro : MonoBehaviour
         text[6, 0] = "Naja dann mein Freund... \n Wir sehen uns beim nächsten Abenteuer!";
         text[6, 1] = "Earl";
         text[7, 0] = "[Grunz...]";
-        text[7, 1] = "Randy";
+        text[7, 1] = "Randy";  
 
 
         return text;

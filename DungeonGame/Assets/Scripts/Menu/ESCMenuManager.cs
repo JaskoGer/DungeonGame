@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*@Author Laurin   
 * Script für das Escape Menü
@@ -8,12 +9,13 @@ using UnityEngine;
 
 public class ESCMenuManager : MonoBehaviour
 {
-public GameObject Menu;
+    public GameObject Menu;
+    PlayerStatsSingleton playerStats;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerStats = PlayerStatsSingleton.instance;
     }
 
     // Update is called once per frame
@@ -43,20 +45,22 @@ public GameObject Menu;
         }
     }
 
+    /*
+     * Bearbeitet von Kacper
+     * Speichert den Spielstand des Spiels
+     */
     public void SaveGame()
     {
-        //Jonas sein Part (Aufrufen deiner Methode und so)
+        playerStats.SavePlayer();
     }
 
-    //Laedt den alten Spielstand
-    public void LoadGame()
+    /*
+     * Bearbeitet von Kacper
+     * Kehrt ins Main Menu zurück
+     */
+    public void ReturnToMenu()
     {
-        //Jonas sein Part (Aufrufen deiner Methode und so)
-    }
-
-    //Schliesst das Spiel
-    public void ExitGame()
-    {
-        Application.Quit();
+        SceneManager.LoadScene(1);
+        Menu.SetActive(false);
     }
 }

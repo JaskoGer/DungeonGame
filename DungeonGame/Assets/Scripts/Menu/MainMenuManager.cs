@@ -12,6 +12,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    PlayerStatsSingleton playerStats;
+
+    private void Start()
+    {
+        playerStats = PlayerStatsSingleton.instance;
+    }
+
     //Startet ein neues Spiel
     public void StartNewGame()
     {
@@ -21,7 +28,7 @@ public class MainMenuManager : MonoBehaviour
     //Laedt den alten Spielstand
     public void LoadGame()
     {
-        Debug.Log("Jonas oder Jasko macht dat");
+        playerStats.LoadPlayer();
     }
 
     //Schliesst das Spiel

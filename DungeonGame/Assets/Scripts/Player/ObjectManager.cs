@@ -44,26 +44,11 @@ public class ObjectManager : MonoBehaviour
     public GameObject pitchFork;
 	public GameObject metalFork;
 	public GameObject pickUpFx;
-	public GameObject armor;
+	public GameObject earlTextField;
+	public Messenger canvasMessenger;
+
     public GameObject GetGameManager()
     {
 		return GameObject.Find("GameManager");
     }
-
-    public void ErrorMessage(string pM)
-    {
-		StartCoroutine(ErrorMessageUI(pM));
-    }
-
-	/**
-	* @Author Tobias
-	* setzt einen error
-	*/
-	IEnumerator ErrorMessageUI(string pM)
-	{
-		errorTextField.text = pM;
-		errorTextField.enabled = true;
-		yield return new WaitForSeconds(4f);
-		errorTextField.enabled = false;
-	}
 }

@@ -9,11 +9,13 @@ using UnityEngine;
 public class Dialog_Outro : MonoBehaviour
 {
     EarlInteraction act;
+    private GameObject interactionField;
 
     // Start is called before the first frame update
     void Start()
     {
-        act = new EarlInteraction(setTriggers(), setText());
+        interactionField = ObjectManager.instance.earlTextField.gameObject;
+        act = new EarlInteraction(setTriggers(), setText(), interactionField);
     }
 
     // Update is called once per frame
@@ -37,19 +39,19 @@ public class Dialog_Outro : MonoBehaviour
         text[0, 0] = "Boah Randy... \n Das war ein Abenteuer! \n Ist ja aber alles zum Glück gut ausgegangen";
         text[0, 1] = "Earl";
         text[1, 0] = "...";
-        text[1, 1] = "Randy";
+        text[1, 1] = "Ich";
         text[2, 0] = "Nach unserem Abschied dachte ich, dass ich dich nicht mehr wieder sehen würde...";
         text[2, 1] = "Earl";
         text[3, 0] = "...";
-        text[3, 1] = "Randy";
+        text[3, 1] = "Ich";
         text[4, 0] = "Ouh! \n Ist das etwa dein Traktor? \n Ich habe es dir ja gesagt. Wenn du Gutes tust, wird dir auch Gutes widerfahren.";
         text[4, 1] = "Earl";
         text[5, 0] = "Ja, das ist mein Traktor";
-        text[5, 1] = "Randy";
+        text[5, 1] = "Ich";
         text[6, 0] = "Naja dann mein Freund... \n Wir sehen uns beim nächsten Abenteuer!";
         text[6, 1] = "Earl";
         text[7, 0] = "[Grunz...]";
-        text[7, 1] = "Randy";  
+        text[7, 1] = "Ich";  
 
         return text;
     }

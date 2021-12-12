@@ -36,7 +36,7 @@ public class ShopSlot : MonoBehaviour
         }
         else
         {
-            ObjectManager.instance.ErrorMessage("Du hast nicht genug Moneten!");
+            ObjectManager.instance.canvasMessenger.ErrorMessage("Du hast nicht genug Moneten!");
         }
     }
 }

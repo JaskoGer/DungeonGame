@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    public AudioSource AttackSound;
+
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 moveDir = Vector3.zero;
     private float moveDirMag;
@@ -269,10 +271,11 @@ public class PlayerMovement : MonoBehaviour
      */
     IEnumerator AttackAnimation()
     {
+        AttackSound.Play();
         animator.SetBool("moving", false);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.15f);
         PlayerStatsSingleton.instance.AttackEnemy(hitEnemy1, hitEnemy2, hitEnemy3);
-        yield return new WaitForSeconds(0.45f);
+        yield return new WaitForSeconds(0.55f);
         animator.SetBool("attack", false);
     }
 }

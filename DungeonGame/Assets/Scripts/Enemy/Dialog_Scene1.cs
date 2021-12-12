@@ -21,10 +21,19 @@ public class Dialog_Scene1 : MonoBehaviour
     private Vector3[,] setTriggers()
     {
         Vector3[,] pos = new Vector3[2,2];
-        pos[0,0] = new Vector3(-5, -11, -184);
-        pos[0, 0] = new Vector3(-5, -11, -184);
-        pos[0, 0] = new Vector3(-5, -11, -184);
-        pos[0, 0] = new Vector3(-5, -11, -184);
+        pos[0, 0] = new Vector3(-16, -11, -211);
+        pos[0, 1] = new Vector3(4, -10, -197);
+        pos[1, 0] = new Vector3();
+        pos[1, 1] = new Vector3();
+        pos[2, 0] = new Vector3();
+        pos[2, 1] = new Vector3();
+        pos[3, 0] = new Vector3();
+        pos[3, 1] = new Vector3();
+        pos[4, 0] = new Vector3();
+        pos[4, 1] = new Vector3();
+        pos[5, 0] = new Vector3();
+        pos[5, 1] = new Vector3();
+
 
         return pos;
     }

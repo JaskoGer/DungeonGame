@@ -15,24 +15,24 @@ public class Dialog_Scene1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        act.playDialog();
+        act.PlayDialog();
     }
 
     private Vector3[,] setTriggers()
     {
-        Vector3[,] pos = new Vector3[2,2];
+        Vector3[,] pos = new Vector3[6,2];
         pos[0, 0] = new Vector3(-16, -11, -211);
         pos[0, 1] = new Vector3(4, -10, -197);
-        pos[1, 0] = new Vector3();
-        pos[1, 1] = new Vector3();
-        pos[2, 0] = new Vector3();
-        pos[2, 1] = new Vector3();
-        pos[3, 0] = new Vector3();
-        pos[3, 1] = new Vector3();
-        pos[4, 0] = new Vector3();
-        pos[4, 1] = new Vector3();
-        pos[5, 0] = new Vector3();
-        pos[5, 1] = new Vector3();
+        pos[1, 0] = new Vector3(-12,-11,-173);
+        pos[1, 1] = new Vector3(17,-12,-166);
+        pos[2, 0] = new Vector3(-14, -8, -144);
+        pos[2, 1] = new Vector3(34, -10, -138);
+        pos[3, 0] = new Vector3(-31,-115);
+        pos[3, 1] = new Vector3(21,-9, -104);
+        pos[4, 0] = new Vector3(-8, 0, -67);
+        pos[4, 1] = new Vector3(3,-2,-60);
+        pos[5, 0] = new Vector3(32,43,54);
+        pos[5, 1] = new Vector3(32,12,32);
 
 
         return pos;

@@ -18,9 +18,9 @@ public class EarlInteraction : MonoBehaviour
         maxDistance = Vector3.Distance(positionTriggers[0, 0], positionTriggers[0, 1]);
     }
 
-    public void playDialog()
+    public void PlayDialog()
     {
-        if(j < positionTriggers.Length && checkPosition())
+        if(j < positionTriggers.Length && CheckPosition())
         {
             print(dialogText[j, 1] + " sagt: " + dialogText[j, 0]);
             j++;
@@ -28,7 +28,7 @@ public class EarlInteraction : MonoBehaviour
         }
     }
 
-    private bool checkPosition()
+    private bool CheckPosition()
     {
         if (maxDistance >= Vector3.Distance(positionTriggers[j, 0], target.position) && maxDistance >= Vector3.Distance(positionTriggers[j, 1], target.position))
         {

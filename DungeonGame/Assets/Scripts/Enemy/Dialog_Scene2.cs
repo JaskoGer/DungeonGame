@@ -15,7 +15,7 @@ public class Dialog_Scene2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        act.playDialog();
+        act.PlayDialog();
     }
 
     private Vector3[,] setTriggers()

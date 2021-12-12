@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * @Author Jasko
+ * bearbeitet von Jonas
+ * stellt die Bedingung für den Dialog und den Dialog an sich mit Earl in Scene001
+ */
 public class Dialog_Scene1 : MonoBehaviour
 {
-    // Start is called before the first frame update
     EarlInteraction act;
 
+    // Start is called before the first frame update
     void Start()
     {
         act = new EarlInteraction(setTriggers(), setText());
@@ -42,8 +47,7 @@ public class Dialog_Scene1 : MonoBehaviour
         text[4, 1] = "Earl";
         text[5, 0] = "...";
         text[5, 1] = "Randy";
-        
-
+       
         return text;
     }
 }

@@ -19,6 +19,7 @@ public static class SaveSystem
 		string path = Application.persistentDataPath + "/player.alexander";
 		FileStream stream = new FileStream(path, FileMode.Create);
 
+		//Daten werden an PlayerData übergeben
 		PlayerData data = new PlayerData(player, NewInventory.instance.getInv());
 
 		formatter.Serialize(stream, data);

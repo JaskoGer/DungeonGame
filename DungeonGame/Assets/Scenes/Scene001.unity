@@ -10256,10 +10256,6 @@ PrefabInstance:
       value: FakeBitchfork
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 023955e24e778304d8c2264836c89d34, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 023955e24e778304d8c2264836c89d34, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -41929,7 +41925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 167016, guid: 1dcc6f17f2ad24b98a7ef082c8c454a9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 421366, guid: 1dcc6f17f2ad24b98a7ef082c8c454a9, type: 3}
       propertyPath: m_RootOrder
@@ -88409,10 +88405,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1852776267, guid: a3e74a4cf4a03c54e916f22d568f5af9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1852776269, guid: a3e74a4cf4a03c54e916f22d568f5af9, type: 3}
       propertyPath: fakeItem
       value: 
@@ -88476,10 +88468,6 @@ PrefabInstance:
     - target: {fileID: 1244397471015721963, guid: a3e74a4cf4a03c54e916f22d568f5af9, type: 3}
       propertyPath: m_Name
       value: Inventory
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242427786441168803, guid: a3e74a4cf4a03c54e916f22d568f5af9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4242427786441168813, guid: a3e74a4cf4a03c54e916f22d568f5af9, type: 3}
       propertyPath: fakeItem

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df04f4a081ff0074d9ed47a553fbf2f1, type: 3}
   m_Name: Meat
   m_EditorClassIdentifier: 
-  name: meat
+  name: Meat
   icon: {fileID: 21300000, guid: ae1c3109f551a874a962d3d6d3189055, type: 3}
   isDefaultItem: 0
-  itemID: 6
-  preis: 50
+  itemID: 7
+  preis: 20

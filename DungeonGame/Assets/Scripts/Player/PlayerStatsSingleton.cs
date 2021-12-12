@@ -50,6 +50,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = 12;
         playerCharacter = ObjectManager.instance.playerCharacter.transform;
         SetUIImage();
         SetPlayerMoneten();

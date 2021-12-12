@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df04f4a081ff0074d9ed47a553fbf2f1, type: 3}
-  m_Name: healthPotion
+  m_Name: HealthPotion
   m_EditorClassIdentifier: 
-  name: healthPotion
+  name: Health Potion
   icon: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
   isDefaultItem: 0
-  itemID: 3
-  preis: 50
+  itemID: 6
+  preis: 20

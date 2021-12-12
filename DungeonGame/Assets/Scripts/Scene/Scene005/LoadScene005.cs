@@ -16,14 +16,6 @@ public class LoadScene005 : MonoBehaviour
 
     void Start()
     {
-        thePlayer = ObjectManager.instance.player.gameObject;
-        gameManager = GameObject.Find("GameManager");
-        positionManager = gameManager.GetComponent<PlayerManager>();
-        thePlayer.transform.position = new Vector3(positionManager.startPointx, positionManager.startPointy, positionManager.startPointz);
-        ObjectManager.instance.camRotator.transform.rotation = positionManager.startRotation;
-        ObjectManager.instance.playerCharacter.transform.rotation = positionManager.startRotation;
-        fadeOut = ObjectManager.instance.fadeOutScene.gameObject;
-        fadeOut.SetActive(false);
         StartCoroutine(SetScene());
     }
 

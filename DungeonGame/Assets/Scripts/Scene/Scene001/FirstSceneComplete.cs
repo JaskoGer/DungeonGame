@@ -15,18 +15,9 @@ using UnityEngine.SceneManagement;
 public class FirstSceneComplete : MonoBehaviour
 {
     public static bool isStarterWeaponPickedUp = false;
-    private GameObject thePlayer;
-    private GameObject fadeOutScene;
-    private GameObject gameManager;
-    private PlayerManager positionManager;
 
     private void Start()
     {
-        thePlayer = ObjectManager.instance.player.gameObject;
-        gameManager = ObjectManager.instance.GetGameManager();
-        positionManager = gameManager.GetComponent<PlayerManager>();
-        thePlayer.transform.position = new Vector3(positionManager.startPointx, positionManager.startPointy, positionManager.startPointz);
-        fadeOutScene = ObjectManager.instance.fadeOutScene.gameObject;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +35,7 @@ public class FirstSceneComplete : MonoBehaviour
     IEnumerator CompletedScene()
     {
         GlobalScene.currentScene = 3;
-        fadeOutScene.SetActive(true);
+        ObjectManager.instance.fadeOutScene.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(GlobalScene.currentScene);
     }

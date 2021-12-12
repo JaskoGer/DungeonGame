@@ -38,14 +38,11 @@ public class Dialog_Scene1 : MonoBehaviour
         text[2, 1] = "Earl";
         text[3, 0] = "Mein Traktor wurde gestohlen.";
         text[3, 1] = "Randy";
-        text[4, 0] = "Hmm, also ich persönlich würde mich da nicht reintrauen, aber das muss jeder selbst mit sich vereinbaren. Wenn du damit im Reinen bist, ist das okay. \n Ich persönlich kann dir nur empfehlen eine Waffe oder Ähnliches mitzunehmen. Hast du vielleicht eine Heugabel? \n Die wäre perfekt!";
+        text[4, 0] = "An deiner Stelle würde ich eine Waffe oder etwas Ähnliches mitnehmen. \n Hast du vielleicht eine Heugabel? \n Die wäre perfekt!";
         text[4, 1] = "Earl";
         text[5, 0] = "...";
         text[5, 1] = "Randy";
-        text[6, 0] = "Mir fällt gerade eine Möglichkeit ein, wie du dir gutes Karma verdienen könntest. Ich habe vor ein paar Tagen, als ich die Höhle erkundet habe, meinen Ring verloren. \n Seitdem habe ich das Gefühl, dass meine spirituellen Energien etwas gehemmt sind.Kannst du mir helfen den Ring wiederzubekommen? \n Und wenn wir schon drin sind, kannst du ja gleich nach deinem Traktor suchen. Win - Win für beide Personen.Vielleicht bekomme ich dann auch etwas positives Karma...";
-        text[6, 1] = "Earl";
-        text[7, 0] = "...";
-        text[7, 1] = "Randy";
+        
 
         return text;
     }

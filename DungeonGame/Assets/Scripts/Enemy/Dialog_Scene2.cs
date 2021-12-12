@@ -20,14 +20,20 @@ public class Dialog_Scene2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        act.checkPosition();
+        act.PlayDialog();
     }
 
-    private Vector3[] setTriggers()
+    private Vector3[,] setTriggers()
     {
-        Vector3[] pos = new Vector3[2];
-        pos[0] = new Vector3(18, -10, -145);
-        pos[1] = new Vector3(30, 5, 10);
+        Vector3[,] pos = new Vector3[2, 2];
+        pos[0, 0] = new Vector3(-16, -11, -211);
+        pos[0, 1] = new Vector3(4, -10, -197);
+        pos[1, 0] = new Vector3();
+        pos[1, 1] = new Vector3();
+        pos[1, 0] = new Vector3();
+        pos[1, 1] = new Vector3();
+        pos[1, 0] = new Vector3();
+        pos[1, 1] = new Vector3();
 
         return pos;
     }

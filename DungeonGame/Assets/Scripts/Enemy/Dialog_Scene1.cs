@@ -33,7 +33,7 @@ public class Dialog_Scene1 : MonoBehaviour
         pos[1, 0] = new Vector3(-12,-11,-173);
         pos[1, 1] = new Vector3(17,-12,-166);
         pos[2, 0] = new Vector3(-14, -8, -144);
-        pos[2, 1] = new Vector3(34, -10, -138);
+        pos[2, 1] = new Vector3(40, -10, -138);
         pos[3, 0] = new Vector3(-31,-115);
         pos[3, 1] = new Vector3(21,-9, -104);
         pos[4, 0] = new Vector3(-8, 0, -67);

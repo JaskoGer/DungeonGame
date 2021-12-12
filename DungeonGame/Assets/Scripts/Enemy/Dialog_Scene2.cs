@@ -27,15 +27,23 @@ public class Dialog_Scene2 : MonoBehaviour
 
     private Vector3[,] setTriggers()
     {
-        Vector3[,] pos = new Vector3[2, 2];
-        pos[0, 0] = new Vector3(-16, -11, -211);
-        pos[0, 1] = new Vector3(4, -10, -197);
-        pos[1, 0] = new Vector3();
-        pos[1, 1] = new Vector3();
-        pos[1, 0] = new Vector3();
-        pos[1, 1] = new Vector3();
-        pos[1, 0] = new Vector3();
-        pos[1, 1] = new Vector3();
+        Vector3[,] pos = new Vector3[8, 2];
+        pos[0, 0] = new Vector3(-5, 0, -5);
+        pos[0, 1] = new Vector3(6, 0, 5);
+        pos[1, 0] = new Vector3(-3, 0, 8);
+        pos[1, 1] = new Vector3(3, 0, 12);
+        pos[2, 0] = new Vector3(-3, 1, 20);
+        pos[2, 1] = new Vector3(4, 2, 33);
+        pos[3, 0] = new Vector3(15, 1, 51);
+        pos[3, 1] = new Vector3(24, 2, 45);
+        pos[4, 0] = new Vector3(32, 1, 63);
+        pos[4, 1] = new Vector3(51, 2, 53);
+        pos[5, 0] = new Vector3(80, 1, 63);
+        pos[5, 1] = new Vector3(91, 3, 58);
+        pos[6, 0] = new Vector3(114, 8, 65);
+        pos[6, 1] = new Vector3(132, 7, 87);
+        pos[7, 0] = new Vector3(211, 7, 111);
+        pos[7, 1] = new Vector3(221, 8, 128);
 
         return pos;
     }
@@ -57,6 +65,8 @@ public class Dialog_Scene2 : MonoBehaviour
         text[5, 1] = "Earl";
         text[6, 0] = "...";
         text[6, 1] = "Ich";
+        text[7, 0] = "Ahh du hast meinen Gem gefunden! Ich bin mir sicher das Karma dich belohnen wird! Es war mir eine wunderbare Freude dich kennen gelernt zu haben!";
+        text[7, 1] = "Earl";
 
         return text;
     }

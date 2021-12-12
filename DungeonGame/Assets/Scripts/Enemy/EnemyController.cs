@@ -14,6 +14,7 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
 	private float lookRadius = 25f;
+	[SerializeField]
 	private float attackDistance = 2f;
 	private float movementSpeed = 5f;
 	private float attackSpeed = 0.5f;

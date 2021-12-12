@@ -21,6 +21,7 @@ public class MobSpawning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BossSpawn.instance.addEnemies(enemyCount);
         xPos = gameObject.transform.localPosition.x;
         yPos = gameObject.transform.localPosition.y;
         zPos = gameObject.transform.localPosition.z;

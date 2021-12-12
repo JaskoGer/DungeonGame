@@ -3,19 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * @author Kacper Purtak
- * version 1.0
- * 31.10.2021
- * Bearbeitet von Tobias
+ * @author Tobias
  * Description: Script to set correct scene value after loading the scene
  */
 
-
 public class LoadScene005 : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private GameObject fadeOut;
+    private GameObject thePlayer;
+    private GameObject gameManager;
+    private PlayerManager positionManager;
+
     void Start()
     {
+        thePlayer = ObjectManager.instance.player.gameObject;
+        gameManager = GameObject.Find("GameManager");
+        positionManager = gameManager.GetComponent<PlayerManager>();
+        thePlayer.transform.position = new Vector3(positionManager.startPointx, positionManager.startPointy, positionManager.startPointz);
+        ObjectManager.instance.camRotator.transform.rotation = positionManager.startRotation;
+        ObjectManager.instance.playerCharacter.transform.rotation = positionManager.startRotation;
+        fadeOut = ObjectManager.instance.fadeOutScene.gameObject;
+        fadeOut.SetActive(false);
         StartCoroutine(SetScene());
     }
 

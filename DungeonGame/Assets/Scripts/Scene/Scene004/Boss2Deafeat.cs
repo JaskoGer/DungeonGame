@@ -38,9 +38,9 @@ public class Boss2Deafeat : MonoBehaviour
     IEnumerator CompletedScene()
     {
 		loaded = true;
-        GlobalScene.currentScene = 2;
 		fadeOut.SetActive(true);
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(GlobalScene.currentScene);
+		GlobalScene.currentScene = 6;
+		SceneManager.LoadScene(GlobalScene.currentScene);
     }
 }

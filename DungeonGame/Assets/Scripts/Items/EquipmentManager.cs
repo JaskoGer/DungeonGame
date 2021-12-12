@@ -50,9 +50,9 @@ public class EquipmentManager : MonoBehaviour
         {
             oldItem = currentEquipment[slotIndex];
             
-			inventory.Add(oldItem);
+			//inventory.Add(oldItem);
             itemObj[oldItem.itemID].SetActive(false);
-            Debug.Log("Altes Item wurde geadded");
+            Debug.Log("Altes Item wurde deaktiviert");
         }
 
         //ein Gegenstand wurde ausgeruestet, wodurch ein Delegate-Rueckruf ausgeloest wird
@@ -72,7 +72,7 @@ public class EquipmentManager : MonoBehaviour
         if (currentEquipment[slotIndex] != null)
         {
             Equipment oldItem = currentEquipment[slotIndex];
-            inventory.Add(oldItem);
+            //inventory.Add(oldItem);
             itemObj[oldItem.itemID].SetActive(false);
 
             currentEquipment[slotIndex] = null;

@@ -86,13 +86,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 2
-  attackDamage: 12
+  attackDamage: 5
   patrolDest: {x: 0, y: 0, z: 0}
   hasPatrolDest: 0
   enemyHP: 50
   enemyRend: {fileID: 1964956354584505099}
   rimuruNormal: {fileID: 2100000, guid: 6c26a091c11a08344a7e773a16636b96, type: 2}
   rimuruDamage: {fileID: 2100000, guid: 3bc701c3a7ecc714c93b456f843f9448, type: 2}
+  isAttack: 0
+  isWalk: 0
 --- !u!65 &8998304003245400515
 BoxCollider:
   m_ObjectHideFlags: 0

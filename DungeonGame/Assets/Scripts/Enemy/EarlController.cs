@@ -77,7 +77,7 @@ public class EarlController : MonoBehaviour
         while(1 != 0)
         {
             lastPos = earlObj.position;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             Debug.Log("Letzte Position getrackt!");
         }
     }

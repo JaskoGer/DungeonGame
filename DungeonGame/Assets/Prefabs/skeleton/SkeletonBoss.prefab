@@ -65,7 +65,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3432303758498668257}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 120
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0c92e69b64ce6499db2ea7046836d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDistance: 2
   attackDamage: 5
   patrolDest: {x: 0, y: 0, z: 0}
   hasPatrolDest: 0
@@ -92,6 +93,8 @@ MonoBehaviour:
   enemyRend: {fileID: 1964956354584505099}
   rimuruNormal: {fileID: 2100000, guid: 6c26a091c11a08344a7e773a16636b96, type: 2}
   rimuruDamage: {fileID: 2100000, guid: 3bc701c3a7ecc714c93b456f843f9448, type: 2}
+  isAttack: 0
+  isWalk: 0
 --- !u!65 &8998304003245400515
 BoxCollider:
   m_ObjectHideFlags: 0

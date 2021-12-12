@@ -40,7 +40,7 @@ public class Messenger : MonoBehaviour
 	{
 		earlTextField.GetComponentInChildren<Text>().text = pM;
 		earlTextField.gameObject.SetActive(true);
-		float timer = pM.Length / 40f + 2f;
+		float timer = pM.Length / 20f + 2f;
 		yield return new WaitForSeconds(timer);
 		earlTextField.gameObject.SetActive(false);
 	}

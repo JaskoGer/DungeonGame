@@ -13,37 +13,28 @@ public class ProjectileHit : MonoBehaviour
     public AudioSource HitEnemy;
     double cooldown = 0;
 
-    
-
     void OnCollisionEnter(Collision col)
-    
+    {
+        GameObject Enemy = col.collider.gameObject;
+
+        if (col.collider.gameObject.transform.parent != null)
         {
-          GameObject Enemy = col.collider.gameObject;
-
-
-            if (col.collider.gameObject.transform.parent != null)
-            {
-                Enemy = col.collider.gameObject.transform.parent.gameObject;
-            }
-            if (Enemy.layer == LayerMask.NameToLayer("Enemy"))
-            {
-                Enemy.GetComponent<EnemyController>().GetDamage(PlayerStatsSingleton.instance.GetAttackDamage());
-                HitEnemy.Play();
-            }   
-            if (Enemy.layer == LayerMask.NameToLayer("Player"))
-            {
-
-            }
-            else
-            {
-                if(cooldown <= Time.time)
-                {
-                    HitWall.Play();
-                    cooldown = Time.time + 0.5;
-                }
-            }
-
-
+            Enemy = col.collider.gameObject.transform.parent.gameObject;
         }
-
+        if (Enemy.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            Enemy.GetComponent<EnemyController>().GetDamage(PlayerStatsSingleton.instance.GetAttackDamage());
+            HitEnemy.Play();
+            Destroy(this);
+        }
+        if (Enemy.layer == LayerMask.NameToLayer("Player")) { }
+        else
+        {
+            if (cooldown <= Time.time)
+            {
+                HitWall.Play();
+                cooldown = Time.time + 0.5;
+            }
+        }
+    }
 }

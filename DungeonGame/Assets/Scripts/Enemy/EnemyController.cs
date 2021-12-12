@@ -274,6 +274,7 @@ bool HasVisual(float distance)
 		{
 			PlayerStatsSingleton.instance.AddPlayerXp(40);
 			PlayerStatsSingleton.instance.AddPlayerMoneten(20);
+			BossSpawn.instance.addEnemies(-1);
 			Destroy(this.gameObject);
 		}
 	}

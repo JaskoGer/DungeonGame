@@ -70,4 +70,26 @@ public class NewInventory : MonoBehaviour
         }
         return inv;
     }
+
+    /**
+     * @Author Manuel, Jonas
+     * Hilfe von Tobi (ein bisschen)
+     * gibt Armor zurück
+     */
+    public float getArmor()
+    {
+        float amountArmor = 0;
+
+        for (int i = 0; i < items.Count; i++)
+        { 
+            if(getInv()[i] == 4)
+            {
+                amountArmor += 1f;
+            }
+        }
+
+        PlayerStatsSingleton.instance.SetArmor(amountArmor);
+        print(amountArmor);
+        return amountArmor;
+    }
 }

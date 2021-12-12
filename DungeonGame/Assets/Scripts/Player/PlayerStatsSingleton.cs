@@ -25,6 +25,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 
     private float maxHealth = 100;
     private float health = 100;
+    private float armor = 0;
     private float regenerationPower = 0.33333f;
     private int playerLevel = 1;
     private int playerXp = 0;
@@ -75,6 +76,9 @@ public class PlayerStatsSingleton : MonoBehaviour
         {
             LoadPlayer();
         } 
+         
+        SetMaxPlayerHealth();
+       
     }
 
     /**
@@ -114,6 +118,20 @@ public class PlayerStatsSingleton : MonoBehaviour
         {
             health = 0;
         }
+    }
+
+    /**
+     * @Author Manuel, Jonas
+     * 
+     */
+    public void SetMaxPlayerHealth()
+    {
+        maxHealth = maxHealth + 20 * armor;
+    }
+
+    public void SetArmor(float pArmor)
+    {
+        armor = pArmor;
     }
 
     /**

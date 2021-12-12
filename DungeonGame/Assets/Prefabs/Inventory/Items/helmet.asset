@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf517486c47db0247b6abfc9e39f3011, type: 3}
-  m_Name: helmet
+  m_Name: Helmet
   m_EditorClassIdentifier: 
-  name: helmet
+  name: Helmet
   icon: {fileID: 21300000, guid: fd6e4fc32c78509458fc45ea4a478ba8, type: 3}
   isDefaultItem: 0
   itemID: 5
-  preis: 300
+  preis: 50
   equipmentSlot: 1
-  armorModifier: 0
+  healthModifier: 0
   damageModifier: 0

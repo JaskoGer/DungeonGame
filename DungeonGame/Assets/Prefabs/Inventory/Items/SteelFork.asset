@@ -16,6 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: facdaa528ee202644b3b87eac0480317, type: 3}
   isDefaultItem: 0
   itemID: 3
+  preis: 100
   equipmentSlot: 0
-  armorModifier: 0
+  healthModifier: 0
   damageModifier: 0

@@ -7,6 +7,7 @@ using TMPro;
 /**
  * @author Manuel
  * Erstellung der Klasse UI_Shop und Deklarierung der Variablen
+ * Bearbeitet von Tobias
  */
 public class UI_Shop : MonoBehaviour
 {

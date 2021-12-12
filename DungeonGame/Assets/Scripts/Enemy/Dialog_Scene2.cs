@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * @Author Jasko
+ * bearbeitet von Jonas
+ * stellt die Bedingung für den Dialog und den Dialog an sich mit Earl in Scene002
+ */
 public class Dialog_Scene2 : MonoBehaviour
 {
     EarlInteraction act;

@@ -44,6 +44,14 @@ public class DeathController : MonoBehaviour
         
     }
 
+    public void DieInstant()
+    {
+        gameObject.GetComponent<PlayerMovement>().died = true;
+        DeathCanvas.gameObject.SetActive(true);
+        SoundSource.gameObject.SetActive(true);
+        MusicSource.gameObject.SetActive(false);
+    }
+
     /**
      * @Author Tobias
      * Methode zum reviven eines Players

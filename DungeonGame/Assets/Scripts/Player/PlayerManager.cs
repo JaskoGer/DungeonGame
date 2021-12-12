@@ -37,9 +37,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (player.transform.position.y < lowestHeight)
         {
-            player.transform.Find("rotator").rotation = Quaternion.Euler(Vector3.zero);
-            player.transform.Find("RandyBeta").rotation = Quaternion.Euler(Vector3.zero);
-            player.transform.SetPositionAndRotation(new Vector3(startPointx, startPointy, startPointz), startRotation);
+            player.GetComponent<DeathController>().DieInstant();
         }
     }
 

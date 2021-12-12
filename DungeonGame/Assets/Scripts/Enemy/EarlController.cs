@@ -35,7 +35,7 @@ public class EarlController : MonoBehaviour
         }
         else
         {
-            agent.SetDestination(transform.position);
+             // agent.SetDestination(transform.position);
         }
 
         SetAnimation();
@@ -114,8 +114,13 @@ public class EarlController : MonoBehaviour
     {
         Vector3 playerPos = target.position;
         Vector3 playerRot = randyBody.eulerAngles;
-        Vector3 dest = playerPos - (Quaternion.Euler(playerRot) * Vector3.forward) * 4;
-        Debug.DrawRay(playerPos, -(Quaternion.Euler(playerRot) * Vector3.forward) * 4, Color.red, 0.1f);
+        Vector3 dest =(Quaternion.Euler(playerRot) * Vector3.forward).normalized ;
+        dest =  playerPos + Vector3.Scale(dest, new Vector3(-dest[2], 0, dest[0])).normalized * 3;
+        //dest = dest - playerPos;
+        //dest = Vector3.Scale(dest, new Vector3(- dest[2], 0, dest[0]));
+        // dest = dest.normalized * 3;
+        // dest = playerPos + dest;
+        Debug.DrawRay(playerPos, dest - playerPos, Color.red, 0.1f);
         return dest;
     }
 

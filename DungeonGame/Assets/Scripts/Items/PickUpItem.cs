@@ -11,10 +11,15 @@ using UnityEngine;
 public class PickUpItem : MonoBehaviour
 {
     public GameObject fakeItem;	   //Gegenstand, welcher auf sich auf der Map befindet
-    public AudioSource pickUpFX;   //Sound, der beim aufsammeln abgespielt wird
+    private AudioSource pickUpFX;   //Sound, der beim aufsammeln abgespielt wird
     public NewItem item;
 
-	//wird ausgefuehrt, wenn der Gegenstand mit dem Spieler kolliediert
+    private void Start()
+    {
+        pickUpFX = GameObject.Find("Player").GetComponent<ObjectManager>().pickUpFx.GetComponent<AudioSource>();
+    }
+
+    //wird ausgefuehrt, wenn der Gegenstand mit dem Spieler kolliediert
     private void OnTriggerEnter(Collider other)
     {
 		if(other == ObjectManager.instance.player.GetComponent<BoxCollider>()){	

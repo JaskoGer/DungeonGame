@@ -23,7 +23,7 @@ public class FirstSceneComplete : MonoBehaviour
     private void Start()
     {
         thePlayer = ObjectManager.instance.player.gameObject;
-        gameManager = GameObject.Find("GameManager");
+        gameManager = ObjectManager.instance.GetGameManager();
         positionManager = gameManager.GetComponent<PlayerManager>();
         thePlayer.transform.position = new Vector3(positionManager.startPointx, positionManager.startPointy, positionManager.startPointz);
         fadeOutScene = ObjectManager.instance.fadeOutScene.gameObject;

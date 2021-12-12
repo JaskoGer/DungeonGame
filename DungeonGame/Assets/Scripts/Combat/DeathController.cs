@@ -1,24 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathController : MonoBehaviour
 {
- /*    public Animator animator;
-    public GameObject Button; */
+    public static DeathController instance = null;
+    /*    public Animator animator;
+       public GameObject Button; */
     public GameObject DeathCanvas;
     public GameObject MusicSource;
     public GameObject SoundSource;
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        /* DeathCanvas = GameObject.Find("DeathScreen");
-        DeathCanvas.gameObject.SetActive(false);
-        Button = GameObject.Find("Exit");
-        Button.gameObject.SetActive(false); */
+        if (instance == null)
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+    }
+
     void Update()
     {
         Die();
@@ -29,11 +36,29 @@ public class DeathController : MonoBehaviour
         float Health = PlayerStatsSingleton.instance.GetPlayerHealth();
         if(Health <= 0 )
         {
+            gameObject.GetComponent<PlayerMovement>().died = true;
             DeathCanvas.gameObject.SetActive(true);
             SoundSource.gameObject.SetActive(true);
             MusicSource.gameObject.SetActive(false);
         }
         
+    }
+
+    /**
+     * @Author Tobias
+     * Methode zum reviven eines Players
+     */
+    public void Revive ()
+    {
+        gameObject.GetComponent<PlayerMovement>().died = false;
+        SceneManager.LoadScene(GlobalScene.currentScene);
+        PlayerStatsSingleton.instance.SetPlayerHealth(PlayerStatsSingleton.instance.GetPlayerMaxHealth());
+        DeathCanvas.gameObject.SetActive(false);
+        SoundSource.gameObject.SetActive(false);
+        MusicSource.gameObject.SetActive(true);
+        PlayerManager man = ObjectManager.instance.GetGameManager().GetComponent<PlayerManager>();
+        transform.position = new Vector3(man.startPointx, man.startPointy, man.startPointz);
+        transform.rotation = man.startRotation;
     }
 
     public void ExitButton()

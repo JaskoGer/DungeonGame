@@ -317,9 +317,9 @@ public class PlayerStatsSingleton : MonoBehaviour
         healthBarSlider.fillAmount = health / maxHealth;
     }
 
+
     public void SetPlayerMoneten()
     {
         PlayerMoneten.text = moneten.ToString();
     }
-
 } 

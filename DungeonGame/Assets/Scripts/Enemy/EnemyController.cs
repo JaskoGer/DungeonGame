@@ -9,6 +9,7 @@ using UnityEngine.AI;
 /**
  * @author Jasko und Jonas
  * Erstellung der Klasse EnemyController und Deklarierung der Variablen
+ * Bearbeitet von Tobias
  */
 public class EnemyController : MonoBehaviour
 {
@@ -289,7 +290,7 @@ bool HasVisual(float distance)
 
 	/**
 	 * @author Tobias
-	 * getDamage
+	 * setHealth
 	 */
 	public void setHealth(float pHp)
     {

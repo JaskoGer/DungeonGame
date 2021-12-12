@@ -43,8 +43,14 @@ public class ObjectManager : MonoBehaviour
 	public GameObject crossBow;
     public GameObject pitchFork;
 	public GameObject metalFork;
+	public GameObject pickUpFx;
 
-	public void ErrorMessage(string pM)
+    public GameObject GetGameManager()
+    {
+		return GameObject.Find("GameManager");
+    }
+
+    public void ErrorMessage(string pM)
     {
 		StartCoroutine(ErrorMessageUI(pM));
     }

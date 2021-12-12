@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5.0f;
     public float gravityScale = 1.3f;
     public bool isGrounded = false;
+    public bool died = false;
     float lerpSpeed = 7.5f;
     float jumpCooldown = 0;
 
@@ -125,136 +126,139 @@ public class PlayerMovement : MonoBehaviour
      */
     void Update()
     {
-        var horizontal = Input.GetAxis("Horizontal");
-        var vertical = Input.GetAxis("Vertical");
-
-        //sprinting
-        if (isGrounded)
+        if (!died)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            var horizontal = Input.GetAxis("Horizontal");
+            var vertical = Input.GetAxis("Vertical");
+
+            //sprinting
+            if (isGrounded)
             {
-                speed = 11.0f;
-                animator.SetFloat("speed", speed / 8.0f);
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    speed = 11.0f;
+                    animator.SetFloat("speed", speed / 8.0f);
+                }
+                else
+                {
+                    speed = normalSpeed;
+                    animator.SetFloat("speed", 1.0f);
+                }
+            }
+
+            if (!isGrounded)
+            {
+                animator.SetFloat("speed", 0.0f);
+            }
+
+
+            //Springen
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded && jumpCooldown <= 0)
+            {
+                jumpCooldown = 0.6f;
+                rb.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
+                isGrounded = false;
+            }
+
+
+            //Tastenänderungen beim Drehen der Kamera
+            moveDir = Vector3.zero;
+            moveDirMag = (moveDirection).magnitude;
+            if (Math.Round(cam.eulerAngles.y) == 0)
+            {
+                moveDir = new Vector3(horizontal, 0.0f, vertical).normalized;
+            }
+
+            if (Math.Round(cam.eulerAngles.y) == 90)
+            {
+                moveDir = new Vector3(vertical, 0.0f, -horizontal).normalized;
+            }
+
+            if (Math.Round(cam.eulerAngles.y) == 180)
+            {
+                moveDir = new Vector3((-horizontal), 0.0f, -vertical).normalized;
+            }
+
+            if (Math.Round(cam.eulerAngles.y) == 270)
+            {
+                moveDir = new Vector3(-vertical, 0.0f, horizontal).normalized;
+            }
+
+            if (isGrounded)
+            {
+                moveDirection = moveDir;
             }
             else
             {
-                speed = normalSpeed;
-                animator.SetFloat("speed", 1.0f);
-            }
-        }
-
-        if (!isGrounded)
-        {
-            animator.SetFloat("speed", 0.0f);
-        }
-
-
-        //Springen
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && jumpCooldown <= 0)
-        {
-            jumpCooldown = 0.6f;
-            rb.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
-            isGrounded = false;
-        }
-
-
-        //Tastenänderungen beim Drehen der Kamera
-        moveDir = Vector3.zero;
-        moveDirMag = (moveDirection).magnitude;
-        if (Math.Round(cam.eulerAngles.y) == 0)
-        {
-            moveDir = new Vector3(horizontal, 0.0f, vertical).normalized;
-        }
-
-        if (Math.Round(cam.eulerAngles.y) == 90)
-        {
-            moveDir = new Vector3(vertical, 0.0f, -horizontal).normalized;
-        }
-
-        if (Math.Round(cam.eulerAngles.y) == 180)
-        {
-            moveDir = new Vector3((-horizontal), 0.0f, -vertical).normalized;
-        }
-
-        if (Math.Round(cam.eulerAngles.y) == 270)
-        {
-            moveDir = new Vector3(-vertical, 0.0f, horizontal).normalized;
-        }
-
-        if (isGrounded)
-        {
-            moveDirection = moveDir;
-        }
-        else
-        {
-            if (moveDir != Vector3.zero)
-            {
-                moveDirection = moveDir.normalized * moveDirMag;
-            }
-        }
-
-        //Spielerpositionsändreung mit translate
-
-        if (wallTrigger)
-        {
-            rb.velocity = Vector3.zero;
-            moveDirection = Vector3.zero;
-            wallTrigger = false;
-        }
-
-        if (!animator.GetBool("attack"))
-        {
-            //rb.MovePosition(transform.position + moveDirection * speed / 50);
-            player.Translate(moveDirection * Time.deltaTime * speed);
-        }
-
-        //Spielerdrehung mit schönem Übergang
-        if (moveDirection != Vector3.zero)
-        {
-            playerCharacter.rotation = Quaternion.Slerp(playerCharacter.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * lerpSpeed);
-        }
-
-        //Boolean als bool für die Laufanimation des Spielers
-        if (moveDirection != Vector3.zero)
-        {
-            animator.SetBool("moving", true);
-        }
-        else
-        {
-            animator.SetBool("moving", false);
-        }
-
-        //emote (H) : T-Pose
-        if (Input.GetKey(KeyCode.H))
-        {
-            animator.SetBool("EmoteT", true);
-        }
-        else
-        {
-            animator.SetBool("EmoteT", false);
-        }
-
-        //spring Cooldown, damit er nicht fliegt
-        if (jumpCooldown > 0)
-        {
-            jumpCooldown -= Time.deltaTime;
-        }
-
-        /**
-         * angreifen
-         * bearbeitet von Kacper
-         */
-        if (!EventSystem.current.IsPointerOverGameObject() && (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true || Input.GetButton("Fire1") && GlobalScene.currentScene > 2))
-        {
-            if (ObjectManager.instance.metalFork.activeSelf || ObjectManager.instance.pitchFork.activeSelf)
-            {
-                if (animator.GetBool("attack") == false)
+                if (moveDir != Vector3.zero)
                 {
-                    animator.SetBool("attack", true);
-                    StartCoroutine(AttackAnimation());
+                    moveDirection = moveDir.normalized * moveDirMag;
                 }
             }
-            
+
+            //Spielerpositionsändreung mit translate
+
+            if (wallTrigger)
+            {
+                rb.velocity = Vector3.zero;
+                moveDirection = Vector3.zero;
+                wallTrigger = false;
+            }
+
+            if (!animator.GetBool("attack"))
+            {
+                //rb.MovePosition(transform.position + moveDirection * speed / 50);
+                player.Translate(moveDirection * Time.deltaTime * speed);
+            }
+
+            //Spielerdrehung mit schönem Übergang
+            if (moveDirection != Vector3.zero)
+            {
+                playerCharacter.rotation = Quaternion.Slerp(playerCharacter.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * lerpSpeed);
+            }
+
+            //Boolean als bool für die Laufanimation des Spielers
+            if (moveDirection != Vector3.zero)
+            {
+                animator.SetBool("moving", true);
+            }
+            else
+            {
+                animator.SetBool("moving", false);
+            }
+
+            //emote (H) : T-Pose
+            if (Input.GetKey(KeyCode.H))
+            {
+                animator.SetBool("EmoteT", true);
+            }
+            else
+            {
+                animator.SetBool("EmoteT", false);
+            }
+
+            //spring Cooldown, damit er nicht fliegt
+            if (jumpCooldown > 0)
+            {
+                jumpCooldown -= Time.deltaTime;
+            }
+
+            /**
+             * angreifen
+             * bearbeitet von Kacper
+             */
+            if (!EventSystem.current.IsPointerOverGameObject() && (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true || Input.GetButton("Fire1") && GlobalScene.currentScene > 2))
+            {
+                if (ObjectManager.instance.metalFork.activeSelf || ObjectManager.instance.pitchFork.activeSelf)
+                {
+                    if (animator.GetBool("attack") == false)
+                    {
+                        animator.SetBool("attack", true);
+                        StartCoroutine(AttackAnimation());
+                    }
+                }
+
+            }
         }
     }
 

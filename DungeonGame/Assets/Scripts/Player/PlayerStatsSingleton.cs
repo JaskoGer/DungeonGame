@@ -15,6 +15,7 @@ public class PlayerStatsSingleton : MonoBehaviour
 	public static PlayerStatsSingleton instance = null;
 	
     public Image healthBarSlider;
+    public AudioSource HitEnemySound;
 
     [SerializeField]
     private Text HealthValue;
@@ -292,6 +293,7 @@ public class PlayerStatsSingleton : MonoBehaviour
         }
         if (Enemy.layer == LayerMask.NameToLayer("Enemy"))
         {
+            HitEnemySound.Play();
             Enemy.GetComponent<EnemyController>().GetDamage(attackDamage);
         }
     }

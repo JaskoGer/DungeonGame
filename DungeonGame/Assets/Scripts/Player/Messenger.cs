@@ -21,9 +21,9 @@ public class Messenger : MonoBehaviour
 	IEnumerator ErrorMessageUI(string pM)
 	{
 		errorTextField.text = pM;
-		errorTextField.enabled = true;
+		errorTextField.gameObject.SetActive(true);
 		yield return new WaitForSeconds(4f);
-		errorTextField.enabled = false;
+		errorTextField.gameObject.SetActive(false);
 	}
 
 	public void EarlMeassage(string pM)

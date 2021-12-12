@@ -13,7 +13,7 @@ using UnityEngine;
 public class Equipment : NewItem
 {
     public EquipmentSlot equipmentSlot;   //Funktion der Ausruestung
-    public int armorModifier;
+    public int healthModifier;
     public int damageModifier;
 
     //wird aufgerugen, wenn die Ausruestung im Inventar gedrueckt wird

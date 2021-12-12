@@ -44,7 +44,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject pitchFork;
 	public GameObject metalFork;
 	public GameObject pickUpFx;
-
+	public GameObject armor;
     public GameObject GetGameManager()
     {
 		return GameObject.Find("GameManager");

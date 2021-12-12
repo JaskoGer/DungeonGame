@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf517486c47db0247b6abfc9e39f3011, type: 3}
   m_Name: Armor
   m_EditorClassIdentifier: 
-  name: Helmet
+  name: Armor
   icon: {fileID: 21300000, guid: 3d59446e2e3a5d4418895b08f22bf5d7, type: 3}
   isDefaultItem: 0
   itemID: 4

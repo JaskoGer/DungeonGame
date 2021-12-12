@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * @author Manuel Schulz
+ * Description Shop Slots
+ * bearbeitet von Tobias
+ */
 public class ShopSlot : MonoBehaviour
 {
     public Image icon;
@@ -21,6 +26,7 @@ public class ShopSlot : MonoBehaviour
         item = shopItem;
         icon.sprite = item.icon;
         itemText.GetComponent<Text>().text = item.name;
+        priceText.GetComponent<Text>().text = "" + item.preis;
         icon.enabled = true;
         buyButton.interactable = true;
     }

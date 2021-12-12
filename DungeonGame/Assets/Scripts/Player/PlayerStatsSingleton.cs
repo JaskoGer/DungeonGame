@@ -23,6 +23,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     [SerializeField]
     private Text PlayerMoneten;
 
+    private float startHealth = 100;
     private float maxHealth = 100;
     private float health = 100;
     private float armor = 0;
@@ -77,9 +78,6 @@ public class PlayerStatsSingleton : MonoBehaviour
         {
             LoadPlayer();
         } 
-         
-        SetMaxPlayerHealth();
-       
     }
 
     /**
@@ -127,12 +125,13 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     public void SetMaxPlayerHealth()
     {
-        maxHealth = maxHealth + 20 * armor;
+        maxHealth = startHealth + 20 * armor;
     }
 
     public void SetArmor(float pArmor)
     {
         armor = pArmor;
+        SetMaxPlayerHealth();
     }
 
     /**

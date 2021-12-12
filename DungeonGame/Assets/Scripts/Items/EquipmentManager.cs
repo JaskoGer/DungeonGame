@@ -7,6 +7,7 @@ using UnityEngine;
  * version 1.0
  * 03.12.2021
  * Description: Controller zum ausruesten von Ausruestung
+ * Bearbeitet von Tobias
  */
 
 public class EquipmentManager : MonoBehaviour

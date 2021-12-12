@@ -7,6 +7,7 @@ using UnityEngine;
  * version 1.0
  * 03.12.2021
  * Description: Vorlage für Ausruestungsobjekte, welche man dem Spieler ausruesten kann 
+ * Bearbeitet von Tobias
  */
 
 [CreateAssetMenu(fileName = "New Equipment", menuName = "Inventory/Equipment")]

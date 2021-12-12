@@ -7,6 +7,7 @@ using UnityEngine;
  * version 1.0
  * 30.11.2021
  * Description: Vorlage für das Inventar mit Methoden zum bearbeiten
+ * Bearbeitet von Jonas und Tobias
  */
 
 public class NewInventory : MonoBehaviour
@@ -35,6 +36,7 @@ public class NewInventory : MonoBehaviour
     //fuegt ein neues Item hinzu, wenn genuegend Platz vorhanden ist
     public bool Add (NewItem item)
     {
+        getArmor();
         if (!item.isDefaultItem)
         {
             if(items.Count >= invSpace)
@@ -46,6 +48,7 @@ public class NewInventory : MonoBehaviour
 
             if(onItemChangedCallback != null)
                 onItemChangedCallback.Invoke();
+            getArmor();
         }
         return true;
     }
@@ -53,8 +56,9 @@ public class NewInventory : MonoBehaviour
     //entfernt ein Item
     public void Remove(NewItem item)
     {
-        if(onItemChangedCallback != null)
+        if (onItemChangedCallback != null)
             items.Remove(item);
+        getArmor();
     }
 
     /**
@@ -82,7 +86,7 @@ public class NewInventory : MonoBehaviour
 
         for (int i = 0; i < items.Count; i++)
         { 
-            if(getInv()[i] == 4)
+            if(getInv()[i] == 4 || getInv()[i] == 5)
             {
                 amountArmor += 1f;
             }

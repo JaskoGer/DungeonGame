@@ -19,18 +19,17 @@ public class ItemUse : MonoBehaviour
 
     #endregion Singleton
 
-    public void UseItem(NewItem item)
+    public void UseItem(string name)
     {
-        switch (item.name)
+        switch (name)
         {
             default:
-            case "healthPotion":
+            case "Health Potion":
                 HealthPotion.UseItem();
                 break;
-            case "helmet":
-                print("yo");
+            case "Meat":
+                HealthPotion.UseItem();
                 break;
-
         }
     }
 

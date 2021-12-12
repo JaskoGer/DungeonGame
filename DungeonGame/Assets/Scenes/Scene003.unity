@@ -36501,12 +36501,12 @@ MonoBehaviour:
   container: {fileID: 244186582}
   shopSpace: 6
   shopItems:
-  - {fileID: 11400000, guid: 8992d945c5d8dff4cb95701413c4ce00, type: 2}
-  - {fileID: 11400000, guid: b03efdb3e3858c04bb11ba9d62d2b2d2, type: 2}
   - {fileID: 11400000, guid: 40267d5a3b4ac85418871eb771e31766, type: 2}
-  - {fileID: 11400000, guid: 8992d945c5d8dff4cb95701413c4ce00, type: 2}
   - {fileID: 11400000, guid: b03efdb3e3858c04bb11ba9d62d2b2d2, type: 2}
-  - {fileID: 11400000, guid: 535104df666166b4a99e8d2494d08dff, type: 2}
+  - {fileID: 11400000, guid: a98b5754880756a4f979b4c386faab14, type: 2}
+  - {fileID: 11400000, guid: 5252e3c4e6314704790a01b1c7d8cd0c, type: 2}
+  - {fileID: 11400000, guid: 9182653ee6264e04f91e12f3a50c6b01, type: 2}
+  - {fileID: 11400000, guid: 4f99516a0efd610459bd1bcc14ad9d36, type: 2}
 --- !u!1 &1222029133 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3210957601414968117, guid: 899eae8c555951344831fab2bd36a633, type: 3}

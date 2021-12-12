@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: The Farmers Pitchfork
   m_EditorClassIdentifier: 
   name: The Farmers Pichfork
-  icon: {fileID: 21300000, guid: b86e0be351ca49c4a8e6217f302bb64a, type: 3}
+  icon: {fileID: 21300000, guid: 687e2f38a6e0b53439d4c599c3c46163, type: 3}
   isDefaultItem: 0
   itemID: 0
+  preis: 0
   equipmentSlot: 0
   armorModifier: 0
   damageModifier: 0

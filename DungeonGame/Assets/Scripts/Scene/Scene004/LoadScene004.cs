@@ -24,6 +24,6 @@ public class LoadScene004 : MonoBehaviour
     IEnumerator SetScene()
     {
         yield return new WaitForSeconds(1f);
-        GlobalScene.currentScene = 2;
+        GlobalScene.currentScene = 5;
     }
 }

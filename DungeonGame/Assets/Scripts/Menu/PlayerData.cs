@@ -14,9 +14,8 @@ public class PlayerData
 	public int level;
 	public float health;
 	public int moneten;
-	public float[] position;
 	public int xp;
-	public Scene scene;
+	public int scene;
 	public int[] inventory;
 
 	//Variablen werden im Constructor befuellt
@@ -28,12 +27,5 @@ public class PlayerData
 		xp = player.GetPlayerXP();
 		scene = player.GetCurrentScene();
 		inventory = inv;
-
-		position = new float[3];
-		position[0] = player.transform.position.x;
-		position[1] = player.transform.position.y;
-		position[2] = player.transform.position.z;
-
-
 	}
 }

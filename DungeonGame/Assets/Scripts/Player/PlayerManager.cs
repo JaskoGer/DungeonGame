@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * @author Tobias
+ * überprüft ob der Player unter eine gewisse grenze fällt
+*/
 public class PlayerManager : MonoBehaviour
 {
     // Start is called before the first frame update

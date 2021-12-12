@@ -9,6 +9,7 @@ using UnityEngine.AI;
 /**
  * @author Jasko und Jonas
  * Erstellung der Klasse EnemyController und Deklarierung der Variablen
+ * Bearbeitet von Tobias
  */
 public class EnemyController : MonoBehaviour
 {
@@ -48,7 +49,8 @@ public class EnemyController : MonoBehaviour
 		rg = GetComponent<Rigidbody>();
 		animator = GetComponentInChildren<Animator>();
 		target = ObjectManager.instance.player.transform;
-		// setzen der Attribute
+
+		// setzen der Attribute für den agent
 		agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 		agent.stoppingDistance = attackDistance - 0.2f;
 		agent.speed = movementSpeed;
@@ -289,7 +291,7 @@ bool HasVisual(float distance)
 
 	/**
 	 * @author Tobias
-	 * getDamage
+	 * setHealth
 	 */
 	public void setHealth(float pHp)
     {

@@ -29,7 +29,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     private int playerXp = 0;
     private int nextLevelXp = 100;
     private int moneten = 1000;
-    private Scene scene;
+    private int scene;
 
     private float attackDamage = 10f;
     private float attackRange = 4f;
@@ -52,7 +52,7 @@ public class PlayerStatsSingleton : MonoBehaviour
         SetUIImage();
         SetPlayerMoneten();
 
-        scene = SceneManager.GetActiveScene();
+        scene = GlobalScene.currentScene;
     }
 
     /**
@@ -73,7 +73,7 @@ public class PlayerStatsSingleton : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             LoadPlayer();
-        }
+        } 
     }
 
     /**
@@ -94,18 +94,12 @@ public class PlayerStatsSingleton : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayer();
 
         scene = data.scene;
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(scene);  
 
         playerLevel = data.level;
         health = data.health;
         moneten = data.moneten;
         playerXp = data.xp;
-
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        transform.position = position;
     }
 
     /**
@@ -217,9 +211,10 @@ public class PlayerStatsSingleton : MonoBehaviour
      * @Author Jonas
      * gibt aktuell verwendete Szene zurück
      */
-    public Scene GetCurrentScene()
+    public int GetCurrentScene()
     {
-        return scene;
+        print(GlobalScene.currentScene);
+        return GlobalScene.currentScene;
     }
 
     /**

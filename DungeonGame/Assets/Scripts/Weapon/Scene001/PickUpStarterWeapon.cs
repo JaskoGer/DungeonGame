@@ -7,7 +7,7 @@ using UnityEngine;
  * version 1.0
  * 01.11.2021
  * Bearbeitet von Tobias
- * Description: Kontrolliert ob die Starter-Waffe eingesammelt wurde
+ * Description: Script to pick up weapons
  */
 public class PickUpStarterWeapon : MonoBehaviour
 {

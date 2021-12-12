@@ -142,11 +142,19 @@ public class PlayerStatsSingleton : MonoBehaviour
         return regenerationPower;
     }
 
+    /**
+     * @Author Tobias   
+     * Getter für Damage
+     */
     public float GetAttackDamage()
     {
         return attackDamage;
     }
 
+    /**
+     * @Author Tobias   
+     * Getter für Range
+     */
     public float GetAttackRange()
     {
         return attackRange;

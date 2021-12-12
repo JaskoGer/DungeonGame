@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * @author Kacper Purtak
+ * version 1.0
+ * 05.12.2021
+ * Description: Vorlage fuer die Slots im Shop
+ */
+
 public class ShopSlot : MonoBehaviour
 {
     public Image icon;
@@ -16,6 +23,7 @@ public class ShopSlot : MonoBehaviour
         inventory = NewInventory.instance;
     }
 
+    //fuegt ein Item in einen Slot im Shop ein
     public void AddItemToShop(NewItem shopItem)
     {
         item = shopItem;
@@ -25,6 +33,7 @@ public class ShopSlot : MonoBehaviour
         buyButton.interactable = true;
     }
 
+    //wird beim Kauf eines Items ausgefuehrt
     public void BuyItem()
     {
         if (buyButton.interactable && PlayerStatsSingleton.instance.GetPlayerMoneten() >= item.preis)        {

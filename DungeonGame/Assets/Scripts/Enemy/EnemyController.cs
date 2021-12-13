@@ -286,7 +286,7 @@ public class EnemyController : MonoBehaviour
 		enemyHP -= pAttackDamage;
 		rg.AddForce(ObjectManager.instance.playerCharacter.transform.rotation * new Vector3(0, 2.5f, 5f), ForceMode.Impulse);
 		StartCoroutine(EnemyAttackColor());
-		attackCooldown = 3;
+		attackCooldown = 1f;
 		if (enemyHP <= 0)
 		{
 			PlayerStatsSingleton.instance.AddPlayerXp(40);

@@ -4410,6 +4410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+  attackDamage: 8
   Enemy: {fileID: 322432452}
   radiant: 10
   enemyCount: 4
@@ -5978,6 +5979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 130
+  attackDamage: 9
   Enemy: {fileID: 322432452}
   radiant: 4
   enemyCount: 6
@@ -18351,6 +18353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 80
+  attackDamage: 7
   Enemy: {fileID: 322432452}
   radiant: 10
   enemyCount: 3

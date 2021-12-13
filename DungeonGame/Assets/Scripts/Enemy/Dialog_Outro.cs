@@ -26,9 +26,23 @@ public class Dialog_Outro : MonoBehaviour
 
     private Vector3[,] setTriggers()
     {
-        Vector3[,] pos = new Vector3[2,2];
-        pos[0,0] = new Vector3(18, -10, -145);
-        pos[0,1] = new Vector3(30, 5, 10);
+        Vector3[,] pos = new Vector3[8,2];
+        pos[0,0] = new Vector3(10, 5, -57);
+        pos[0,1] = new Vector3(-24, -3, -105);
+        pos[1, 0] = new Vector3(-24, -3, -105);
+        pos[1, 1] = new Vector3(40, -10, -140);
+        pos[2, 0] = new Vector3(40, -10, -140);
+        pos[2, 1] = new Vector3(-40, -11, -180);
+        pos[3, 0] = new Vector3(-40, -11, -180);
+        pos[3, 1] = new Vector3(20, -10, -218);
+        pos[4, 0] = new Vector3(20, -10, -218);
+        pos[4, 1] = new Vector3(-48, -11, -223);
+        pos[5, 0] = new Vector3(-48, -11, -223);
+        pos[5, 1] = new Vector3(33, -3, -240);
+        pos[6, 0] = new Vector3(33, -3, -240);
+        pos[6, 1] = new Vector3(-41, -11, -270);
+        pos[7, 0] = new Vector3(-41, -11, -270);
+        pos[7, 1] = new Vector3(20, -10, -280);
 
         return pos;
     }

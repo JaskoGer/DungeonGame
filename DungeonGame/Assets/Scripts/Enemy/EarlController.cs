@@ -5,6 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
 
+/**
+ * @Author Jasko
+ * bearbeitet von Kacper
+ * Naviert Earl
+ */
 public class EarlController : MonoBehaviour
 {
     Transform target;
@@ -12,8 +17,8 @@ public class EarlController : MonoBehaviour
     UnityEngine.AI.NavMeshAgent agent;
     Animator earlAnim;
     public Transform earlObj;
-    [SerializeField] private float changeX;
-    [SerializeField]private float changeY;
+    private float changeX;
+    private float changeY;
     Vector3 lastPos;
 
     // Start is called before the first frame update
@@ -116,10 +121,6 @@ public class EarlController : MonoBehaviour
         Vector3 playerRot = randyBody.eulerAngles;
         Vector3 dest =(Quaternion.Euler(playerRot) * Vector3.forward).normalized ;
         dest =  playerPos + Vector3.Scale(dest, new Vector3(-dest[2], 0, dest[0])).normalized * 3;
-        //dest = dest - playerPos;
-        //dest = Vector3.Scale(dest, new Vector3(- dest[2], 0, dest[0]));
-        // dest = dest.normalized * 3;
-        // dest = playerPos + dest;
         Debug.DrawRay(playerPos, dest - playerPos, Color.red, 0.1f);
         return dest;
     }

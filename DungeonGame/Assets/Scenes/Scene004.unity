@@ -4409,7 +4409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d50c31f768f9004e8fc70571b9353de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 60
+  hp: 100
+  attackDamage: 8
   Enemy: {fileID: 322432452}
   radiant: 10
   enemyCount: 4
@@ -5977,7 +5978,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d50c31f768f9004e8fc70571b9353de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 50
+  hp: 130
+  attackDamage: 9
   Enemy: {fileID: 322432452}
   radiant: 4
   enemyCount: 6
@@ -18350,7 +18352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d50c31f768f9004e8fc70571b9353de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 60
+  hp: 80
+  attackDamage: 7
   Enemy: {fileID: 322432452}
   radiant: 10
   enemyCount: 3

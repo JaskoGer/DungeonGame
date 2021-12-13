@@ -61,7 +61,7 @@ public class Dialog_Scene2 : MonoBehaviour
         text[3, 1] = "Ich";
         text[4, 0] = "Angeblich soll es hier auch einen riesigen Schleim geben. \n Vor dem solltest du dich in Acht nehmen. \n An dem ist sogar Olaf E. gescheitert und der hatte sonst vor nichts und niemandem Angst. Du scheinst heute ein bisschen wortkarg zu sein. \n Naja egal, nichts wie los!";
         text[4, 1] = "Earl";
-        text[5, 0] = "Mir fällt gerade eine Möglichkeit ein, wie du dir gutes Karma verdienen könntest. Ich habe vor ein paar Tagen, als ich die Höhle erkundet habe, meinen Ring verloren. \n Seitdem habe ich das Gefühl, dass meine spirituellen Energien etwas gehemmt sind. \n Kannst du mir helfen den Ring wiederzubekommen?";
+        text[5, 0] = "Mir fällt gerade eine Möglichkeit ein, wie du dir gutes Karma verdienen könntest. Ich habe vor ein paar Tagen, als ich die Höhle erkundet habe, einen Kristall verloren. \n Seitdem habe ich das Gefühl, dass meine spirituellen Energien etwas gehemmt sind. \n Kannst du mir helfen den Gem wiederzubekommen?";
         text[5, 1] = "Earl";
         text[6, 0] = "...";
         text[6, 1] = "Ich";

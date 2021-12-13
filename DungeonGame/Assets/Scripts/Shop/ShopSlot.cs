@@ -36,8 +36,6 @@ public class ShopSlot : MonoBehaviour
         if (buyButton.interactable && PlayerStatsSingleton.instance.GetPlayerMoneten() >= item.preis)        {
 
             PlayerStatsSingleton.instance.AddPlayerMoneten(-item.preis);
-            Debug.Log("Das Item" + item.name + "wurde gekauft");
-            //inventory.Add(item);
             NewInventory.instance.Add(item);
         }
         else

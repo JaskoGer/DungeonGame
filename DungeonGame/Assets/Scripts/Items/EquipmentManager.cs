@@ -43,7 +43,6 @@ public class EquipmentManager : MonoBehaviour
     public void Equip(Equipment newItem)
     {
         int slotIndex = (int)newItem.equipmentSlot;   //Slot-Platz, in den der Gegenstand passt
-        Debug.Log(slotIndex);
         Equipment oldItem = null;
 
         //der zuletzt verwendete Gegenstand wird zurueck in das Inventar gelegt
@@ -51,16 +50,13 @@ public class EquipmentManager : MonoBehaviour
         {
             oldItem = currentEquipment[slotIndex];
             
-			//inventory.Add(oldItem);
             itemObj[oldItem.itemID].SetActive(false);
-            Debug.Log("Altes Item wurde deaktiviert");
         }
 
         //ein Gegenstand wurde ausgeruestet, wodurch ein Delegate-Rueckruf ausgeloest wird
         if (onEquipmentChanged != null)
         {
             onEquipmentChanged.Invoke(newItem, oldItem);
-			Debug.Log("onEquipmentChanged wurde ausgeführt");
         }
 		
         currentEquipment[slotIndex] = newItem;
@@ -73,7 +69,6 @@ public class EquipmentManager : MonoBehaviour
         if (currentEquipment[slotIndex] != null)
         {
             Equipment oldItem = currentEquipment[slotIndex];
-            //inventory.Add(oldItem);
             itemObj[oldItem.itemID].SetActive(false);
 
             currentEquipment[slotIndex] = null;

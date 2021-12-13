@@ -44,6 +44,7 @@ public class EntityStatsController : MonoBehaviour
      * @Author Laurin
      * Methode für das Regenerieren von Leben
      * Ausgelagerter Code geschrieben von Tobias
+     * Bearbeitet von Tobias
      */
     public float HealthRegeneration(float RegenerationBoost, float Health, float MaxHealth)
     {
@@ -52,10 +53,10 @@ public class EntityStatsController : MonoBehaviour
         if (Health < MaxHealth && Health != 0)
         {
             Health += RegenerationBoost*Time.deltaTime;
-            
-    
-            if (Health > MaxHealth)
-                Health = MaxHealth;
+        }
+        if (Health > MaxHealth)
+        {
+            Health = MaxHealth;
         }
         return Health;
         

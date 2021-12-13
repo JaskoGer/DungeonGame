@@ -24,7 +24,6 @@ public class PickUpItem : MonoBehaviour
     {
 		if(other == ObjectManager.instance.player.GetComponent<BoxCollider>()){	
 			pickUpFX.Play();
-			Debug.Log("Picking up " + item.name);
 			bool wasPickedUp = NewInventory.instance.Add(item);
 			if (wasPickedUp)
 			{

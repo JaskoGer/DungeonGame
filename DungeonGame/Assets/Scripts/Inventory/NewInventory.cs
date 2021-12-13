@@ -93,7 +93,6 @@ public class NewInventory : MonoBehaviour
         }
 
         PlayerStatsSingleton.instance.SetArmor(amountArmor);
-        print(amountArmor);
         return amountArmor;
     }
 }

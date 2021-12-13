@@ -36,7 +36,6 @@ public class InventorySlot : MonoBehaviour
     //wird ausgefuehrt, wenn der RemoveButton im Inventar gedrueckt wird
     public void OnRemoveButton()
     {
-        Debug.Log("Moin Meister");
         NewInventory.instance.Remove(item);
         ClearSlot();
     }

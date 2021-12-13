@@ -4,7 +4,7 @@ using UnityEngine;
 
 /**
  * @Author Jasko
- * bearbeitet von Jonas
+ * Texte von Jonas
  * stellt die Bedingung für den Dialog und den Dialog an sich mit Earl in Scene002
  */
 public class Dialog_Scene2 : MonoBehaviour
@@ -16,7 +16,7 @@ public class Dialog_Scene2 : MonoBehaviour
     void Start()
     {
         interactionField = ObjectManager.instance.earlTextField.gameObject;
-        act = new EarlInteraction(setTriggers(), setText(), interactionField);
+        act = new EarlInteraction(getTriggers(), getText(), interactionField);
     }
 
     // Update is called once per frame
@@ -25,7 +25,12 @@ public class Dialog_Scene2 : MonoBehaviour
         act.PlayDialog();
     }
 
-    private Vector3[,] setTriggers()
+
+    /**
+    * @Author Jasko
+    * gibt die Bereiche zurueck, wo die Texte ausgedruckt werden sollen
+    */
+    private Vector3[,] getTriggers()
     {
         Vector3[,] pos = new Vector3[8, 2];
         pos[0, 0] = new Vector3(-5, 0, -5);
@@ -48,7 +53,12 @@ public class Dialog_Scene2 : MonoBehaviour
         return pos;
     }
 
-    private string[,] setText()
+
+    /**
+    * @Author Jasko
+    * gibt den Auszudruckenden Text und die Person die es sagt zurueck
+    */
+    private string[,] getText()
     {
         string[,] text = new string[10, 2];
         text[0, 0] = "Hallo Randy, hier drüben bin ich! Ich hätte mich hier nicht einfach reingetraut, aber das muss jeder selbst mit sich vereinbaren.";

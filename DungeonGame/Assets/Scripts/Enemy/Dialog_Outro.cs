@@ -3,28 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * @Author Jonas
- * stellt die Bedingung für den Dialog und den Dialog an sich mit Earl im Outro
+ * @Author Jasko
+ * Texte und Koordinaten von Jonas
+ * stellt die Bedingung für den Dialog und den Dialog an sich mit Earl in Scene005
  */
 public class Dialog_Outro : MonoBehaviour
 {
     EarlInteraction act;
     private GameObject interactionField;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         interactionField = ObjectManager.instance.earlTextField.gameObject;
-        act = new EarlInteraction(setTriggers(), setText(), interactionField);
+        act = new EarlInteraction(getTriggers(), getText(), interactionField);
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         act.PlayDialog();
     }
 
-    private Vector3[,] setTriggers()
+
+    /**
+    * @Author Jasko
+    * gibt die Bereiche zurueck, wo die Texte ausgedruckt werden sollen
+    */
+    private Vector3[,] getTriggers()
     {
         Vector3[,] pos = new Vector3[8,2];
         pos[0,0] = new Vector3(10, 5, -57);
@@ -47,7 +53,12 @@ public class Dialog_Outro : MonoBehaviour
         return pos;
     }
 
-    private string[,] setText()
+
+    /**
+    * @Author Jasko
+    * gibt den Auszudruckenden Text und die Person die es sagt zurueck
+    */
+    private string[,] getText()
     {
         string[,] text = new string[10, 2];
         text[0, 0] = "Boah Randy... \n Das war ein Abenteuer! \n Ist ja aber alles zum Glück gut ausgegangen";

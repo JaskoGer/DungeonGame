@@ -8,20 +8,20 @@ using UnityEngine;
 /**
  * @Author Jasko
  * bearbeitet von Kacper
- * Naviert Earl
+ * Navigiert Earl
  */
 public class EarlController : MonoBehaviour
 {
+    public Transform earlObj;
+    private float changeX;
+    private float changeY;
+    private Vector3 lastPos;
+
     Transform target;
     Transform randyBody;
     UnityEngine.AI.NavMeshAgent agent;
     Animator earlAnim;
-    public Transform earlObj;
-    private float changeX;
-    private float changeY;
-    Vector3 lastPos;
 
-    // Start is called before the first frame update
     void Start()
     {
         target = ObjectManager.instance.player.transform;
@@ -31,18 +31,12 @@ public class EarlController : MonoBehaviour
         StartCoroutine(TrackLastPos());
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Vector3.Distance(target.position, transform.position) >= 5f)
         {
-            GoBehind();
+            GoToPlayer();
         }
-        else
-        {
-             // agent.SetDestination(transform.position);
-        }
-
         SetAnimation();
     }
 
@@ -86,7 +80,11 @@ public class EarlController : MonoBehaviour
         }
     }
 
-    void GoBehind()
+    /**
+     * @Author Jasko
+     * Bestimmt wie Earl laufen muss
+     */
+    void GoToPlayer()
     {
         Vector3 dest = GetPosition();
         Vector3 direction = (target.position - transform.position).normalized;
@@ -96,6 +94,11 @@ public class EarlController : MonoBehaviour
         agent.SetDestination(dest);
     }
 
+
+    /**
+     * @Author Jasko
+     * Veraender die Geschwindigkeit von Earl abhängig von der Entfernung zum Spieler
+     */
     void setSpeed(Vector3 dest)
     {
         double distance = Vector3.Distance(target.position, transform.position);
@@ -114,6 +117,10 @@ public class EarlController : MonoBehaviour
     }
 
 
+    /**
+     * @Author Jasko
+     * Berechnet das neue Ziel für Earl
+     */
     Vector3 GetPosition()
     {
         Vector3 playerPos = target.position;

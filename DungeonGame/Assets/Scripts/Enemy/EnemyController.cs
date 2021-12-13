@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
+
 /**
  * @author Jasko und Jonas
  * Erstellung der Klasse EnemyController und Deklarierung der Variablen
@@ -94,7 +95,7 @@ public class EnemyController : MonoBehaviour
 		else
 		{
 			agent.speed = movementSpeed * 0.6f;
-			newPatrolling();
+			Patrolling();
 		}
 
 		SetAnimation();
@@ -173,36 +174,11 @@ public class EnemyController : MonoBehaviour
 
 	/**
 	 * @author Jasko
-	 * lässt das Mob auf random generierten Strecken patrouillieren, wenn kein Gegner bzw. Player in der Nähe ist
+	 * lässt das Mob auf random generierten Strecken patrouillieren, wenn kein Player im Sichtfeld ist
 	 */
 	private void Patrolling()
 	{
-		//prüft, ob das Mob einen aktiven Zielpunkt hat. Fall das nicht der Fall ist, wird ein neuer Punkt zugewiesen
-		
-		if (!hasPatrolDest || Vector3.Distance(patrolDest, transform.position) >= 14f)
-		{
-			patrolDest = new Vector3(transform.position[0] + Random.Range(-10f, 10), transform.position[1], transform.position[2] + Random.Range(-10, 10));
-			hasPatrolDest = true;
-		}
-
-		else if (Vector3.Distance(patrolDest, transform.position) <= 2f)
-		{
-			hasPatrolDest = false;
-			patrolCooldown = 5;
-		}
-
-		else if (patrolCooldown == 0)
-		{
-			Vector3 direction = (patrolDest - transform.position).normalized;
-			Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-			transform.rotation = lookRotation;
-			agent.SetDestination(patrolDest);
-		}
-	}
-
-	private void newPatrolling()
-	{
-		//prüft, ob das Mob einen aktiven Zielpunkt hat. Fall das nicht der Fall ist, wird ein neuer Punkt zugewiesen
+		//prüft, ob das Mob einen aktiven Zielpunkt hat. Falls das nicht der Fall ist, wird ein neuer Punkt zugewiesen
 		if (!hasPatrolDest || Vector3.Distance(patrolDest, transform.position) >= 14f)
 		{
 			NavMeshHit hit;
@@ -295,6 +271,7 @@ public class EnemyController : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 	}
+
 
 	/**
 	 * @author Tobias

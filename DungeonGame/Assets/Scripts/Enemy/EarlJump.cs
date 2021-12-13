@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/**
+ * @Author Jasko
+ * Entfernt Earl aus der Szene, wenn über den Gem gelaufen wird
+ */
 public class EarlJump : MonoBehaviour
 {
     Transform target;
@@ -12,7 +17,6 @@ public class EarlJump : MonoBehaviour
         target = ObjectManager.instance.player.transform;    
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Vector3.Distance(target.position, transform.position) <= 2f)

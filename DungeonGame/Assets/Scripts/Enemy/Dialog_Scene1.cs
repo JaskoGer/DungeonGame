@@ -4,7 +4,7 @@ using UnityEngine;
 
 /**
  * @Author Jasko
- * bearbeitet von Jonas
+ * Texte von Jonas
  * stellt die Bedingung für den Dialog und den Dialog an sich mit Earl in Scene001
  */
 public class Dialog_Scene1 : MonoBehaviour
@@ -12,20 +12,25 @@ public class Dialog_Scene1 : MonoBehaviour
     EarlInteraction act;
     private GameObject interactionField;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         interactionField = ObjectManager.instance.earlTextField.gameObject;
-        act = new EarlInteraction(setTriggers(), setText(), interactionField);
+        act = new EarlInteraction(getTriggers(), getText(), interactionField);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         act.PlayDialog();
     }
 
-    private Vector3[,] setTriggers()
+
+    /**
+    * @Author Jasko
+    * gibt die Bereiche zurueck, wo die Texte ausgedruckt werden sollen
+    */
+    private Vector3[,] getTriggers()
     {
         Vector3[,] pos = new Vector3[6,2];
         pos[0, 0] = new Vector3(-16, -11, -211);
@@ -41,11 +46,15 @@ public class Dialog_Scene1 : MonoBehaviour
         pos[5, 0] = new Vector3(32,43,54);
         pos[5, 1] = new Vector3(32,12,32);
 
-
         return pos;
     }
 
-    private string[,] setText()
+
+    /**
+    * @Author Jasko
+    * gibt den Auszudruckenden Text und die Person die es sagt zurueck
+    */
+    private string[,] getText()
     {
         string[,] text = new string[10,2];
         text[0,0] = "Hallo Reisender \n Ich bin Earl! \n Manche würden mich als komischen Exzentriker beschreiben, der eventuell auch fanatische Züge aufweist, aber ich selbst betrachte mich als einen sehr ausgeglichenen und ruhigen Menschen. \nWie heißt du denn?";

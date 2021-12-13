@@ -18,6 +18,7 @@ public class EarlInteraction
     Transform target = ObjectManager.instance.player.transform;
     private GameObject interaction;
 
+
     public EarlInteraction(Vector3[,] newTriggers, string[,] newDialog, GameObject interactionField)
     {
         positionTriggers = newTriggers;
@@ -26,6 +27,11 @@ public class EarlInteraction
         interaction = interactionField;
     }
 
+
+    /**
+     * @Author Jasko
+     * laesst den Dialog ausdrucken
+     */ 
     public void PlayDialog()
     {
         if(j < positionTriggers.Length && CheckPosition())
@@ -36,6 +42,11 @@ public class EarlInteraction
         }
     }
 
+
+    /**
+    * @Author Jasko
+    * Ueberprueft ob der Spieler im Bereich des Trigger Feldes ist
+    */
     private bool CheckPosition()
     {
         if (maxDistance >= Vector3.Distance(positionTriggers[j, 0], target.position) && maxDistance >= Vector3.Distance(positionTriggers[j, 1], target.position))

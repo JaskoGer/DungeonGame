@@ -34,7 +34,6 @@ public class EnemyController : MonoBehaviour
 	private Material rimuruDamage;
 	Animator animator;
 	private Rigidbody rg;
-	//private float drawRayDuration = 0.2f;
     private Vector3 lastPosition;
 
 	Transform target;
@@ -137,7 +136,6 @@ public class EnemyController : MonoBehaviour
 				{	
 					for (int i = 0; i < 9; i++)
 					{
-						//Debug.DrawRay(transform.position, Quaternion.Euler(raycastDir + addDegreeB * i) * Vector3.forward * 10 + Vector3.up * j, Color.red, drawRayDuration, false);
 						// prüft ob der Player direkt angeschaut wird, ob er in Angriffsreichweite ist und ob der Attack Cooldown <= 0 ist
 						if (Physics.Raycast(transform.position, Quaternion.Euler(raycastDir + addDegreeB * i)  * Vector3.forward + Vector3.up * j, out hit, lookRadius))
 						{

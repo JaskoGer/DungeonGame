@@ -19,7 +19,6 @@ public class NewItem : ScriptableObject
     //wird ausgefuehrt, wenn das Item im Inventar gedrueckt wird
     public virtual void Use()
     {
-        Debug.Log("Using " + name);
         ItemUse.instance.UseItem(name);
         RemoveFromInventory();
     }

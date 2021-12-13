@@ -31,7 +31,7 @@ public class PlayerStatsSingleton : MonoBehaviour
     private int playerLevel = 1;
     private int playerXp = 0;
     private int nextLevelXp = 100;
-    private int moneten = 1000;
+    private int moneten = 20;
     private int scene;
 
     private float attackDamage = 10f;
@@ -239,7 +239,6 @@ public class PlayerStatsSingleton : MonoBehaviour
      */
     public int GetCurrentScene()
     {
-        print(GlobalScene.currentScene);
         return GlobalScene.currentScene;
     }
 

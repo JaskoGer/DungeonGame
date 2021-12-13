@@ -83,7 +83,6 @@ public class EarlController : MonoBehaviour
         {
             lastPos = earlObj.position;
             yield return new WaitForSeconds(0.5f);
-            Debug.Log("Letzte Position getrackt!");
         }
     }
 
@@ -121,7 +120,6 @@ public class EarlController : MonoBehaviour
         Vector3 playerRot = randyBody.eulerAngles;
         Vector3 dest =(Quaternion.Euler(playerRot) * Vector3.forward).normalized ;
         dest =  playerPos + Vector3.Scale(dest, new Vector3(-dest[2], 0, dest[0])).normalized * 3;
-        Debug.DrawRay(playerPos, dest - playerPos, Color.red, 0.1f);
         return dest;
     }
 

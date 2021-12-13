@@ -320,4 +320,13 @@ public class EnemyController : MonoBehaviour
     {
 		enemyHP = pHp;
     }
+
+	/**
+	 * @author Tobias
+	 * setDamage
+	 */
+	public void setAttackDamage(float pAD)
+	{
+		attackDamage = pAD;
+	}
 }

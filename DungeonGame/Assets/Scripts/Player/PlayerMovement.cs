@@ -249,7 +249,7 @@ public class PlayerMovement : MonoBehaviour
              * angreifen
              * bearbeitet von Kacper
              */
-            if (!EventSystem.current.IsPointerOverGameObject() && (Input.GetButton("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true || Input.GetButton("Fire1") && GlobalScene.currentScene > 2))
+            if (!EventSystem.current.IsPointerOverGameObject() && (Input.GetButtonDown("Fire1") && FirstSceneComplete.isStarterWeaponPickedUp == true || Input.GetButtonDown("Fire1") && GlobalScene.currentScene > 2))
             {
                 if (ObjectManager.instance.metalFork.activeSelf || ObjectManager.instance.pitchFork.activeSelf)
                 {
@@ -273,9 +273,9 @@ public class PlayerMovement : MonoBehaviour
     {
         AttackSound.Play();
         animator.SetBool("moving", false);
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.2f);
         PlayerStatsSingleton.instance.AttackEnemy(hitEnemy1, hitEnemy2, hitEnemy3);
-        yield return new WaitForSeconds(0.55f);
+        yield return new WaitForSeconds(0.7f);
         animator.SetBool("attack", false);
     }
 }
